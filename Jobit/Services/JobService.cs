@@ -1,18 +1,24 @@
+using AutoMapper;
 using Jobit.API.Jobit.Domain.Models;
 using Jobit.API.Jobit.Domain.Repositories;
+using Jobit.API.Jobit.Domain.Services;
 
 namespace Jobit.API.Jobit.Services;
 
-public class JobService :  IJobRepository
+public class JobService : IJobService
 {
-    public async Task<IEnumerable<Job>> ListPostsAsync()
+    private readonly IJobRepository _jobRepository;
+    private readonly IMapper _mapper;
+
+    public JobService(IJobRepository jobRepository, IMapper mapper)
     {
-        throw new NotImplementedException();
+        _jobRepository = jobRepository;
+        _mapper = mapper;
     }
 
-    public async Task AddAsync(Job job)
+    public async Task<IEnumerable<Job>> ListJobsAsync()
     {
-        throw new NotImplementedException();
+        return await _jobRepository.ListJobsAsync();
     }
 
     public async Task<Job> FindByJobIdAsync(int jobId)

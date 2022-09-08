@@ -28,4 +28,14 @@ public class PostTypeController : ControllerBase
         var resources = _mapper.Map<IEnumerable<PostType>, IEnumerable<PostTypeResource>>(postTypes);
         return resources;
     }
+    
+    [HttpPost]
+    [SwaggerResponse(200, "The operation was succesful", typeof(SavePostTypeResource))]
+    [SwaggerResponse(200, "The postype data is not valid")]
+    public async Task<IActionResult> PostPostTypeAsync([FromBody, SwaggerRequestBody("PostType")] SavePostTypeResource newPostType)
+    {
+        var postType = _mapper.Map<SavePostTypeResource, PostType>(newPostType);
+        //var result = await _postTypeService.
+        return Ok();
+    }
 }

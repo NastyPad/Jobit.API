@@ -5,4 +5,5 @@ namespace Jobit.API.Jobit.Domain.Services;
 public interface IPostTypeService
 { 
     Task<IEnumerable<PostType>> ListPostTypesAsync();
+    Task AddPostTypeAsync(Post newPost);
 }

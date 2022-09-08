@@ -1,8 +1,9 @@
-using System.Data.Entity;
+
 using Jobit.API.Security.Domain.Models;
 using Jobit.API.Security.Domain.Repositories;
 using Jobit.API.Shared.Persistence.Context;
 using Jobit.API.Shared.Persistence.Repositories;
+using Microsoft.EntityFrameworkCore;
 
 namespace Jobit.API.Security.Persistence.Repositories;
 

@@ -4,7 +4,7 @@ namespace Jobit.API.Jobit.Domain.Repositories;
 
 public interface IJobRepository
 {
-    Task<IEnumerable<Job>> ListPostsAsync();
-    Task AddAsync(Job job);
+    Task<IEnumerable<Job>> ListJobsAsync();
+    Task AddJobAsync(Job job);
     Task<Job> FindByJobIdAsync(int jobId);
 }

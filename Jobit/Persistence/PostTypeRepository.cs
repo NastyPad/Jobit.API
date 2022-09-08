@@ -16,4 +16,9 @@ public class PostTypeRepository : BaseRepository, IPostTypeRepository
     {
         return await databaseContext.PostTypes.ToListAsync();
     }
+
+    public async Task AddJobAsync(Job newJob)
+    {
+        await databaseContext.AddAsync(newJob);
+    }
 }

@@ -63,10 +63,15 @@ builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
 //Jobit Injection Configuration
 builder.Services.AddScoped<IPostTypeRepository, PostTypeRepository>();
 builder.Services.AddScoped<IPostTypeService, PostTypeService>();
+builder.Services.AddScoped<IJobRepository, JobRepository>();
+builder.Services.AddScoped<IJobService, JobService>();
+
 
 //Security Injection Configuration
 builder.Services.AddScoped<IUserRepository, UserRespository>();
 builder.Services.AddScoped<IUserService, UserService>();
+builder.Services.AddScoped<ICompanyRepository, CompanyRepository>();
+builder.Services.AddScoped<ICompanyService, CompanyService>();
 
 //Automapper Configuration
 builder.Services.AddAutoMapper(

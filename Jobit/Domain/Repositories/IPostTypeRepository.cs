@@ -5,4 +5,5 @@ namespace Jobit.API.Jobit.Domain.Repositories;
 public interface IPostTypeRepository
 {
     Task<IEnumerable<PostType>> ListPostTypesAsync();
+    Task AddJobAsync(Job newJob);
 }

@@ -21,4 +21,15 @@ public class PostTypeService : IPostTypeService
     {
         return await _postTypeRepository.ListPostTypesAsync();
     }
+
+    public async Task AddPostTypeAsync(Post newPost)
+    {
+        throw new NotImplementedException();
+    }
+
+    public async Task AddJobAsync(Job newJob)
+    {
+        await _postTypeRepository.AddJobAsync(newJob);
+    }
+
 }
