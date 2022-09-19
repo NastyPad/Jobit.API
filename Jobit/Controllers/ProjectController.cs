@@ -1,6 +1,7 @@
 using AutoMapper;
 using Jobit.API.Jobit.Domain.Models;
 using Jobit.API.Jobit.Domain.Services;
+using Jobit.API.Jobit.Domain.Services.Communication;
 using Jobit.API.Jobit.Resources;
 using Jobit.API.Security.Domain.Repositories;
 using Jobit.API.Security.Domain.Services;
@@ -17,13 +18,11 @@ namespace Jobit.API.Jobit.Controllers;
 public class ProjectController : ControllerBase
 {
     private readonly IProjectService _projectService;
-    private readonly IUserRepository _userRepository;
     private readonly IMapper _mapper;
 
-    public ProjectController(IProjectService projectService, IUserRepository userRepository,IMapper mapper)
+    public ProjectController(IProjectService projectService, IMapper mapper)
     {
         _projectService = projectService;
-        _userRepository = userRepository;
         _mapper = mapper;
     }
 
@@ -32,10 +31,7 @@ public class ProjectController : ControllerBase
     {
         
         var projects = await _projectService.ListProjectsAsync();
-        var enumerable = projects.ToList();
-        enumerable.ToList().ForEach(project =>
-            project.User = _userRepository.FindByUserIdAsync(project.UserId).Result); 
-        var resources = _mapper.Map<IEnumerable<Project>, IEnumerable<ProjectResource>>(enumerable);
+        var resources = _mapper.Map<IEnumerable<Project>, IEnumerable<ProjectResource>>(projects);
         return resources;
     }
     
@@ -46,10 +42,8 @@ public class ProjectController : ControllerBase
     public async Task<IActionResult> PostProjectAsync([FromBody, SwaggerRequestBody("Project")] SaveProjectResource newProject)
     {
         var project = _mapper.Map<SaveProjectResource, Project>(newProject);
-        var user = await _userRepository.FindByUserIdAsync(newProject.UserId);
-        project.User = user;
         await _projectService.AddProjectAsync(project);
         var newProjectResponse = _mapper.Map<Project, ProjectResource>(await _projectService.FindProjectByProjectIdAsync(project.ProjectId));
-        return Ok(newProjectResponse);
+        return Ok(new ProjectResponse("Successfully added"));
     }
 }

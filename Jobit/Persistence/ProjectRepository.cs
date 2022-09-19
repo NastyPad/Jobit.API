@@ -1,7 +1,6 @@
 
 using Jobit.API.Jobit.Domain.Models;
 using Jobit.API.Jobit.Domain.Repositories;
-using Jobit.API.Security.Domain.Repositories;
 using Jobit.API.Shared.Persistence.Context;
 using Jobit.API.Shared.Persistence.Repositories;
 using Microsoft.EntityFrameworkCore;
@@ -10,10 +9,8 @@ namespace Jobit.API.Jobit.Persistence;
 
 public class ProjectRepository : BaseRepository, IProjectRepository
 {
-    private IUserRepository _userRepository;
-    public ProjectRepository(AppDatabaseContext databaseContext, IUserRepository userRepository) : base(databaseContext)
+    public ProjectRepository(AppDatabaseContext databaseContext) : base(databaseContext)
     {
-        _userRepository = userRepository;
     }
 
     public async Task<IEnumerable<Project>> ListProjectsAsync()
@@ -23,13 +20,12 @@ public class ProjectRepository : BaseRepository, IProjectRepository
 
     public async Task AddProjectAsync(Project newProject)
     {
-        //var user = await _userRepository.FindByUserIdAsync(newProject.UserId);
-        //newProject.User = user;
         await databaseContext.Projects.AddAsync(newProject);
     }
 
     public void UpdateProject(Project updatedProject)
     {
+        
         databaseContext.Projects.Update(updatedProject);
     }
 

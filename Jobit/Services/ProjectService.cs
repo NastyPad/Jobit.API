@@ -2,6 +2,7 @@ using Jobit.API.Jobit.Domain.Models;
 using Jobit.API.Jobit.Domain.Repositories;
 using Jobit.API.Jobit.Domain.Services;
 using Jobit.API.Jobit.Domain.Services.Communication;
+using Jobit.API.Security.Domain.Repositories;
 using Jobit.API.Shared.Domain.Repositories;
 
 namespace Jobit.API.Jobit.Services;
@@ -10,17 +11,23 @@ public class ProjectService: IProjectService
 {
     //Remember than in service, we use repo.
     private readonly IProjectRepository _projectRepository;
+    private readonly IUserRepository _userRepository;
     private readonly IUnitOfWork _unitOfWork;
     
-    public ProjectService(IProjectRepository projectRepository, IUnitOfWork unitOfWork)
+    public ProjectService(IProjectRepository projectRepository, IUserRepository userRepository,IUnitOfWork unitOfWork)
     {
+        _userRepository = userRepository;
         _projectRepository = projectRepository;
         _unitOfWork = unitOfWork; 
     }
 
     public async Task<IEnumerable<Project>> ListProjectsAsync()
     {
-        return await _projectRepository.ListProjectsAsync();
+        var projects = await _projectRepository.ListProjectsAsync();
+        projects.ToList()
+            .ForEach(project => project.User = _userRepository.FindByUserIdAsync(project.UserId).Result);
+        
+        return projects.AsEnumerable();
     }
 
     public async Task<Project> FindProjectByProjectIdAsync(long projectId)
