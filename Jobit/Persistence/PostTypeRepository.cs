@@ -1,8 +1,10 @@
 using Jobit.API.Jobit.Domain.Models;
 using Jobit.API.Jobit.Domain.Repositories;
+using Jobit.API.Jobit.Domain.Services.Communication;
 using Jobit.API.Shared.Persistence.Context;
 using Jobit.API.Shared.Persistence.Repositories;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.ChangeTracking;
 
 namespace Jobit.API.Jobit.Persistence;
 
@@ -16,9 +18,31 @@ public class PostTypeRepository : BaseRepository, IPostTypeRepository
     {
         return await databaseContext.PostTypes.ToListAsync();
     }
-
-    public async Task AddJobAsync(Job newJob)
+    
+    public async Task AddPostTypeAsync(PostType newPostType)
     {
-        await databaseContext.AddAsync(newJob);
+        await databaseContext.PostTypes.AddAsync(newPostType);
+        await databaseContext.SaveChangesAsync();
+    }
+
+    public void UpdatePostType(PostType updatedPostType)
+    {
+        databaseContext.PostTypes.Update(updatedPostType);
+    }
+
+    public async Task<PostType?> FindPostTypeByPostTypeId(int postTypeId)
+    {
+        return await databaseContext.PostTypes
+            .FirstOrDefaultAsync(p => p.PostTypeId == postTypeId);
+    }
+
+    public void DeletePostTypeByPostTypeId(int postTypeId)
+    {
+        throw new NotImplementedException();
+    }
+
+    public void DeletePostType(PostType postType)
+    {
+        databaseContext.PostTypes.Remove(postType);
     }
 }

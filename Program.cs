@@ -1,4 +1,5 @@
 using System.Configuration;
+using System.Text.Json.Serialization;
 using Jobit.API.Jobit.Domain.Repositories;
 using Jobit.API.Jobit.Domain.Services;
 using Jobit.API.Jobit.Persistence;
@@ -18,7 +19,9 @@ var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 
-builder.Services.AddControllers();
+//builder.Services.AddControllers(); //--
+builder.Services.AddControllers().AddJsonOptions(x =>
+    x.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.IgnoreCycles);
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 
@@ -38,7 +41,7 @@ builder.Services.AddSwaggerGen(options =>
     options.EnableAnnotations();
 });
 
-// Add Database Connection
+// Add Database Connection (Here!)
 var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
 builder.Services.AddDbContext<AppDatabaseContext>(
     options => options.UseSqlite(connectionString)
@@ -61,10 +64,15 @@ builder.Services.AddMvcCore().AddApiExplorer();
 builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
 
 //Jobit Injection Configuration
+//PostType
 builder.Services.AddScoped<IPostTypeRepository, PostTypeRepository>();
 builder.Services.AddScoped<IPostTypeService, PostTypeService>();
+//Job
 builder.Services.AddScoped<IJobRepository, JobRepository>();
 builder.Services.AddScoped<IJobService, JobService>();
+//Project
+builder.Services.AddScoped<IProjectRepository, ProjectRepository>();
+builder.Services.AddScoped<IProjectService, ProjectService>();
 
 
 //Security Injection Configuration

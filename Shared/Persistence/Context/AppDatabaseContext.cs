@@ -13,8 +13,10 @@ public class AppDatabaseContext : DbContext
 
     public DbSet<User> Users { get; set; }
     public DbSet<Company> Companies { get; set; }
-    public DbSet<PostType> PostTypes { get; set; }
+    public DbSet<PostType>? PostTypes { get; set; }
     public DbSet<Job> Jobs { get; set; }
+    public DbSet<Project> Projects { get; set; }
+    
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
@@ -45,6 +47,10 @@ public class AppDatabaseContext : DbContext
         modelBuilder.Entity<User>().Property(p => p.Password).IsRequired().HasMaxLength(200);
         modelBuilder.Entity<User>().Property(p => p.ProfilePhotoUrl).IsRequired().HasMaxLength(200);
         modelBuilder.Entity<User>().Property(p => p.Email).IsRequired().HasMaxLength(200);
+        modelBuilder.Entity<User>()
+            .HasMany(p => p.Projects)
+            .WithOne(p => p.User)
+            .HasForeignKey(p => p.UserId);
         // builder.Entity<User>().Property(p => p.Birthday).IsRequired();
         
         //PostTypes
@@ -63,7 +69,16 @@ public class AppDatabaseContext : DbContext
         modelBuilder.Entity<Job>().Property(p => p.Salary);
         modelBuilder.Entity<Job>().Property(p => p.Available).IsRequired();
         
-        //
+        //Projects 
+        modelBuilder.Entity<Project>().ToTable("Projects");
+        modelBuilder.Entity<Project>().HasKey(p => p.UserId);
+        modelBuilder.Entity<Project>().Property(p => p.UserId).IsRequired().ValueGeneratedOnAdd();
+        modelBuilder.Entity<Project>().Property(p => p.ProjectName).IsRequired();
+        modelBuilder.Entity<Project>().Property(p => p.ProjectUrl).IsRequired();
+        modelBuilder.Entity<Project>().Property(p => p.Description).IsRequired();
+        modelBuilder.Entity<Project>().Property(p => p.CodeSource).IsRequired();
+        
+        
         
         modelBuilder.UseSnakeCase();
     }

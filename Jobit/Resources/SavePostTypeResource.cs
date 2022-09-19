@@ -2,5 +2,5 @@ namespace Jobit.API.Jobit.Resources;
 
 public class SavePostTypeResource
 {
-    public string? name;
+    public string? Name { get; set; }
 }

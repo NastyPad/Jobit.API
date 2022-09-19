@@ -9,6 +9,9 @@ public class ModelToResourceProfile : Profile
     public ModelToResourceProfile()
     {
         CreateMap<PostType, PostTypeResource>();
+        CreateMap<PostType, SavePostTypeResource>();
         CreateMap<Job, JobResource>();
+        CreateMap<Project, ProjectResource>();
+        CreateMap<Project, SaveProjectResource>();
     }
 }
