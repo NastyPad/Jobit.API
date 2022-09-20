@@ -15,13 +15,23 @@ public class JobRepository : BaseRepository, IJobRepository
         return await databaseContext.Jobs.ToListAsync();
     }
 
-    public async Task AddJobAsync(Job job)
+    public async Task AddJobAsync(Job newJob)
     {
-        throw new NotImplementedException();
+        await databaseContext.Jobs.AddAsync(newJob);
     }
 
-    public async Task<Job> FindByJobIdAsync(int jobId)
+    public void UpdateJobAsync(Job updateJob)
     {
-        throw new NotImplementedException();
+        databaseContext.Jobs.Update(updateJob);
+    }
+
+    public void DeleteJobAsync(Job deleteJob)
+    {
+        databaseContext.Jobs.Remove(deleteJob);
+    }
+
+    public async Task<Job?> FindByJobIdAsync(long jobId)
+    {
+        return await databaseContext.Jobs.FindAsync(jobId);
     }
 }

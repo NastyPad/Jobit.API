@@ -1,3 +1,4 @@
+using System.ComponentModel.DataAnnotations.Schema;
 using Jobit.API.Security.Domain.Models;
 using Jobit.API.Security.Domain.Repositories;
 using Jobit.API.Security.Persistence.Repositories;
@@ -13,6 +14,7 @@ public class Project
     public string? ProjectUrl { get; set; }
     
     //Relationships and foreing keys
+    [ForeignKey("user_id")]
     public long UserId { get; set; }
     public User User { get; set; }
     

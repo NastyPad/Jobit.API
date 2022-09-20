@@ -1,6 +1,7 @@
 using AutoMapper;
 using Jobit.API.Jobit.Domain.Models;
 using Jobit.API.Jobit.Resources;
+using Microsoft.EntityFrameworkCore;
 
 namespace Jobit.API.Jobit.Mapping;
 
@@ -11,7 +12,9 @@ public class ModelToResourceProfile : Profile
         CreateMap<PostType, PostTypeResource>();
         CreateMap<PostType, SavePostTypeResource>();
         CreateMap<Job, JobResource>();
+        CreateMap<Job, SaveJobResource>();
         CreateMap<Project, ProjectResource>();
         CreateMap<Project, SaveProjectResource>();
+        CreateMap<Project, UpdateProjectResource>();
     }
 }

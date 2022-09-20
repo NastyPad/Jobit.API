@@ -46,4 +46,23 @@ public class ProjectController : ControllerBase
         var newProjectResponse = _mapper.Map<Project, ProjectResource>(await _projectService.FindProjectByProjectIdAsync(project.ProjectId));
         return Ok(new ProjectResponse("Successfully added"));
     }
+
+
+    [HttpPut("{projectId}")]
+    public async Task<IActionResult> PutProjectAsync(long projectId, [FromBody, SwaggerRequestBody("Updated Project")] UpdateProjectResource updatedProjectResource)
+    {
+        var updateProjectMapped = _mapper.Map<UpdateProjectResource, Project>(updatedProjectResource);
+        return Ok(await _projectService.UpdateProjectAsync(projectId, updateProjectMapped));
+    }
+
+    [HttpDelete("{projectId}")]
+    public async Task<IActionResult> DeleteProjectAsync(long projectId)
+    {
+        var toDeleteProject = _projectService.FindProjectByProjectIdAsync(projectId);
+
+        var result = await _projectService.DeleteProjectAsync(projectId);
+        if (!result.Success)
+            return BadRequest(result);
+        return Ok(toDeleteProject);
+    }
 }

@@ -21,6 +21,7 @@ public class AppDatabaseContext : DbContext
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         //These are from models
+        //Note: When you are trying to add foreign keys. You'll need to add them in the entity which has bigger cardinal.
         base.OnModelCreating(modelBuilder);
         //Companies
         modelBuilder.Entity<Company>().ToTable("Companies");
@@ -71,8 +72,8 @@ public class AppDatabaseContext : DbContext
         
         //Projects 
         modelBuilder.Entity<Project>().ToTable("Projects");
-        modelBuilder.Entity<Project>().HasKey(p => p.UserId);
-        modelBuilder.Entity<Project>().Property(p => p.UserId).IsRequired().ValueGeneratedOnAdd();
+        modelBuilder.Entity<Project>().HasKey(p => p.ProjectId);
+        modelBuilder.Entity<Project>().Property(p => p.ProjectId).IsRequired().ValueGeneratedOnAdd();
         modelBuilder.Entity<Project>().Property(p => p.ProjectName).IsRequired();
         modelBuilder.Entity<Project>().Property(p => p.ProjectUrl).IsRequired();
         modelBuilder.Entity<Project>().Property(p => p.Description).IsRequired();

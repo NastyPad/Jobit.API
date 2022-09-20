@@ -30,4 +30,36 @@ public class JobController : ControllerBase
         var resources = _mapper.Map<IEnumerable<Job>, IEnumerable<JobResource>>(jobs);
         return resources;
     }
+
+    [HttpPost]
+    public async Task<IActionResult> PostJobAsync([FromBody, SwaggerRequestBody("Job")] SaveJobResource newJob)
+    {
+        var newJobMapped = _mapper.Map<SaveJobResource, Job>(newJob);
+        var result = await _jobService.AddJobAsync(newJobMapped);
+        if (!result.Success)
+            return BadRequest(result.Message);
+        var newJobResponse = _mapper.Map<Job, JobResource>(result.Resource);
+        return Ok(newJobResponse);
+    }
+    
+    [HttpPut("{jobId}")]
+    public async Task<IActionResult> PutJobAsync(long jobId, [FromBody, SwaggerRequestBody("Job")] UpdateJobResource updateJob)
+    {
+        var updatedJobMapped = _mapper.Map<UpdateJobResource, Job>(updateJob);
+        var result = await _jobService.UpdateJobAsync(jobId, updatedJobMapped);
+        if (!result.Success)
+            return BadRequest(result.Message);
+        var updatedJobResponse = _mapper.Map<Job, JobResource>(result.Resource);
+        return Ok(updatedJobResponse);
+    }
+    
+    [HttpDelete("{jobId}")]
+    public async Task<IActionResult> PutJobAsync(long jobId)
+    {
+        var result = await _jobService.DeleteJobAsync(jobId);
+        if (!result.Success)
+            return BadRequest(result.Message);
+        var deletedJobResponse = _mapper.Map<Job, JobResource>(result.Resource);
+        return Ok(deletedJobResponse);
+    }
 }

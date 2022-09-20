@@ -1,6 +1,6 @@
 namespace Jobit.API.Shared.Domain.Services.Communication;
 
-public class BaseResponse<T> //Template (really usefull)
+public class BaseResponse<T> //Template (really useful)
 {   
     //Constructor - 1
     protected BaseResponse(T resource)

@@ -11,6 +11,7 @@ public class Job
     public double Salary { get; set; }
     public bool Available { get; set; }
     
+    //Relationship
     public int CompanyId { get; set; } //Foreign-key
     public Company Company { get; set; }
 }
