@@ -5,8 +5,8 @@ public class BaseResponse<T> //Template (really useful)
     //Constructor - 1
     protected BaseResponse(T resource)
     {
-        Success = false;
-        Resource = default;
+        Success = true;
+        Resource = resource;
         Message = string.Empty;
     }
     

@@ -15,4 +15,6 @@ public class User
     
     //Relationships
     public IList<Project> Projects { get; set; }
+    public IList<Notification> Notifications { get; set; }
+    public IList<Post> Posts { get; set; }
 }

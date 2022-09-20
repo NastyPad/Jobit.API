@@ -4,4 +4,7 @@ public class PostType
 {
     public short PostTypeId { get; set; }
     public string? Name { get; set; }
+    
+    //Relationships
+    public IList<Post>? Posts;
 }

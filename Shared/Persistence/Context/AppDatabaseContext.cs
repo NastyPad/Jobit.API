@@ -52,6 +52,14 @@ public class AppDatabaseContext : DbContext
             .HasMany(p => p.Projects)
             .WithOne(p => p.User)
             .HasForeignKey(p => p.UserId);
+        modelBuilder.Entity<User>()
+            .HasMany(p => p.Notifications)
+            .WithOne(p => p.User)
+            .HasForeignKey(p => p.UserId);
+        modelBuilder.Entity<User>()
+            .HasMany(p => p.Posts)
+            .WithOne(p => p.User)
+            .HasForeignKey(p => p.UserId);
         // builder.Entity<User>().Property(p => p.Birthday).IsRequired();
         
         //PostTypes
@@ -59,6 +67,10 @@ public class AppDatabaseContext : DbContext
         modelBuilder.Entity<PostType>().HasKey(p => p.PostTypeId);
         modelBuilder.Entity<PostType>().Property(p => p.PostTypeId).IsRequired().ValueGeneratedOnAdd();
         modelBuilder.Entity<PostType>().Property(p => p.Name).IsRequired().HasMaxLength(30);
+        modelBuilder.Entity<PostType>()
+            .HasMany(p => p.Posts)
+            .WithOne(p => p.PostType)
+            .HasForeignKey(p => p.PostTypeId);
         
         //Jobs 
         modelBuilder.Entity<Job>().ToTable("Jobs");
@@ -66,7 +78,6 @@ public class AppDatabaseContext : DbContext
         modelBuilder.Entity<Job>().Property(p => p.JobId).IsRequired().ValueGeneratedOnAdd();
         modelBuilder.Entity<Job>().Property(p => p.JobName).IsRequired();
         modelBuilder.Entity<Job>().Property(p => p.Description);
-        modelBuilder.Entity<Job>().Property(p => p.CompanyName).IsRequired();
         modelBuilder.Entity<Job>().Property(p => p.Salary);
         modelBuilder.Entity<Job>().Property(p => p.Available).IsRequired();
         
@@ -79,8 +90,23 @@ public class AppDatabaseContext : DbContext
         modelBuilder.Entity<Project>().Property(p => p.Description).IsRequired();
         modelBuilder.Entity<Project>().Property(p => p.CodeSource).IsRequired();
         
+        //Notifications
+        modelBuilder.Entity<Notification>().ToTable("Notifications");
+        modelBuilder.Entity<Notification>().HasKey(p => p.NotificationId);
+        modelBuilder.Entity<Notification>().Property(p => p.NotificationId);
+        modelBuilder.Entity<Notification>().Property(p => p.NotificationDate);
+        modelBuilder.Entity<Notification>().Property(p => p.Content);
+        modelBuilder.Entity<Notification>().Property(p => p.UserId);
+            
+        //Posts
+        modelBuilder.Entity<Post>().ToTable("Posts");
+        modelBuilder.Entity<Post>().HasKey(p => p.PostId);
+        modelBuilder.Entity<Post>().Property(p => p.PostId);
+        modelBuilder.Entity<Post>().Property(p => p.Description);
+        modelBuilder.Entity<Post>().Property(p => p.UserId);
+        modelBuilder.Entity<Post>().Property(p => p.PostTypeId);
         
-        
+
         modelBuilder.UseSnakeCase();
     }
 }

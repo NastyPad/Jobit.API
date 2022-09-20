@@ -13,6 +13,7 @@ public class ModelToResourceProfile : Profile
         CreateMap<PostType, SavePostTypeResource>();
         CreateMap<Job, JobResource>();
         CreateMap<Job, SaveJobResource>();
+        CreateMap<Job, UpdateJobResource>();
         CreateMap<Project, ProjectResource>();
         CreateMap<Project, SaveProjectResource>();
         CreateMap<Project, UpdateProjectResource>();

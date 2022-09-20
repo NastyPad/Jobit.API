@@ -32,6 +32,8 @@ public class JobController : ControllerBase
     }
 
     [HttpPost]
+    [SwaggerResponse(200, "The operation was successful", typeof(JobResource))]
+    [SwaggerResponse(500, "The job data is not valid")]
     public async Task<IActionResult> PostJobAsync([FromBody, SwaggerRequestBody("Job")] SaveJobResource newJob)
     {
         var newJobMapped = _mapper.Map<SaveJobResource, Job>(newJob);
@@ -43,7 +45,7 @@ public class JobController : ControllerBase
     }
     
     [HttpPut("{jobId}")]
-    public async Task<IActionResult> PutJobAsync(long jobId, [FromBody, SwaggerRequestBody("Job")] UpdateJobResource updateJob)
+    public async Task<IActionResult> PutJobAsync(long jobId, [FromBody, SwaggerRequestBody("Updated Job")] UpdateJobResource updateJob)
     {
         var updatedJobMapped = _mapper.Map<UpdateJobResource, Job>(updateJob);
         var result = await _jobService.UpdateJobAsync(jobId, updatedJobMapped);
@@ -54,7 +56,7 @@ public class JobController : ControllerBase
     }
     
     [HttpDelete("{jobId}")]
-    public async Task<IActionResult> PutJobAsync(long jobId)
+    public async Task<IActionResult> DeleteJobAsync(long jobId)
     {
         var result = await _jobService.DeleteJobAsync(jobId);
         if (!result.Success)

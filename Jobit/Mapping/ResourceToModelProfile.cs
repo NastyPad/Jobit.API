@@ -12,6 +12,7 @@ public class ResourceToModelProfile : Profile
         CreateMap<SavePostTypeResource, PostType>();
         CreateMap<JobResource, Job>();
         CreateMap<SaveJobResource, Job>();
+        CreateMap<UpdateJobResource, Job>();
         CreateMap<ProjectResource, Project>();
         CreateMap<SaveProjectResource, Project>();
         CreateMap<UpdateProjectResource, Project>();
