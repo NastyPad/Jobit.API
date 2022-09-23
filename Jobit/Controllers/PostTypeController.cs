@@ -47,14 +47,14 @@ public class PostTypeController : ControllerBase
     }
     
     [HttpPut("{id}")]
-    public async Task<PostTypeResponse> PutPostTypeAsync(int id, [FromBody] SavePostTypeResource updatedPostType)
+    public async Task<PostTypeResponse> PutPostTypeAsync(short id, [FromBody] SavePostTypeResource updatedPostType)
     {
         var updatedPostTypeMapped = _mapper.Map<SavePostTypeResource, PostType>(updatedPostType);
         return await _postTypeService.UpdatePostTypeAsync(id, updatedPostTypeMapped);
     }
     
     [HttpDelete("{id}")]
-    public async Task<PostTypeResponse> DeletePostTypeAsync(int id)
+    public async Task<PostTypeResponse> DeletePostTypeAsync(short id)
     {
         return await _postTypeService.DeletePostTypeAsync(id);
     }

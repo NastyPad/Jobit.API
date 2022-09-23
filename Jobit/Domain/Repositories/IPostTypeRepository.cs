@@ -8,6 +8,6 @@ public interface IPostTypeRepository
     Task<IEnumerable<PostType>> ListPostTypesAsync();
     Task AddPostTypeAsync(PostType newPostType);
     void UpdatePostType(PostType updatedPostType);
-    Task<PostType?> FindPostTypeByPostTypeId(int postTypeId);
+    Task<PostType?> FindPostTypeByPostTypeId(short postTypeId);
     void DeletePostType(PostType toDeletePostType);
 }

@@ -30,13 +30,13 @@ public class PostTypeRepository : BaseRepository, IPostTypeRepository
         databaseContext.PostTypes.Update(updatedPostType);
     }
 
-    public async Task<PostType?> FindPostTypeByPostTypeId(int postTypeId)
+    public async Task<PostType?> FindPostTypeByPostTypeId(short postTypeId)
     {
         return await databaseContext.PostTypes
             .FirstOrDefaultAsync(p => p.PostTypeId == postTypeId);
     }
 
-    public void DeletePostTypeByPostTypeId(int postTypeId)
+    public void DeletePostTypeByPostTypeId(short postTypeId)
     {
         throw new NotImplementedException();
     }

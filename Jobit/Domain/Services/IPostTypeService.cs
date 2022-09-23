@@ -9,6 +9,6 @@ public interface IPostTypeService
 { 
     Task<IEnumerable<PostType>> ListPostTypesAsync();
     Task AddPostTypeAsync(PostType newPostType);
-    Task<PostTypeResponse> UpdatePostTypeAsync(int id, PostType updatedPostType);
-    Task<PostTypeResponse> DeletePostTypeAsync(int postTypeId);
+    Task<PostTypeResponse> UpdatePostTypeAsync(short postTypeId, PostType updatedPostType);
+    Task<PostTypeResponse> DeletePostTypeAsync(short postTypeId);
 }

@@ -9,7 +9,7 @@ public class Post
    
     //Relationships
     public long UserId { get; set; } //Foreign Keys
-    public int PostTypeId { get; set; } //Foreign Keys
+    public short PostTypeId { get; set; } //Foreign Keys
 
     public PostType PostType;
     public User User;

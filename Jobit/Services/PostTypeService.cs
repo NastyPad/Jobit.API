@@ -30,7 +30,7 @@ public class PostTypeService : IPostTypeService
     }
 
     //Change this to async.
-    public async Task<PostTypeResponse> UpdatePostTypeAsync(int postTypeId, PostType updatedPostType)
+    public async Task<PostTypeResponse> UpdatePostTypeAsync(short postTypeId, PostType updatedPostType)
     {
         var existencePostType = await _postTypeRepository.FindPostTypeByPostTypeId(postTypeId);
         if(existencePostType == null)
@@ -42,7 +42,7 @@ public class PostTypeService : IPostTypeService
         return new PostTypeResponse("Successfully updated.");
     }
 
-    public async Task<PostTypeResponse> DeletePostTypeAsync(int postTypeId)
+    public async Task<PostTypeResponse> DeletePostTypeAsync(short postTypeId)
     {
         var existingPostType = await _postTypeRepository.FindPostTypeByPostTypeId(postTypeId);
         if (existingPostType == null)
