@@ -106,6 +106,15 @@ public class AppDatabaseContext : DbContext
         modelBuilder.Entity<Post>().Property(p => p.UserId);
         modelBuilder.Entity<Post>().Property(p => p.PostTypeId);
         
+        //JobRequest
+        modelBuilder.Entity<JobRequest>().ToTable("JobRequest");
+        modelBuilder.Entity<JobRequest>().HasKey(p => p.RequestId);
+        modelBuilder.Entity<JobRequest>().Property(p => p.RequestId);
+        modelBuilder.Entity<JobRequest>().Property(p => p.JobId);
+        modelBuilder.Entity<JobRequest>().Property(p => p.UserId);
+        modelBuilder.Entity<JobRequest>().Property(p => p.CompanyId);
+       
+        
 
         modelBuilder.UseSnakeCase();
     }
