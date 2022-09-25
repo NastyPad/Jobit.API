@@ -13,4 +13,5 @@ public class Job
     //Relationship
     public int CompanyId { get; set; } //Foreign-key
     public Company? Company { get; set; }
+    public IList<JobRequest> JobRequests { get; set; }
 }

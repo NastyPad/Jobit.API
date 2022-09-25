@@ -16,5 +16,8 @@ public class ResourceToModelProfile : Profile
         CreateMap<ProjectResource, Project>();
         CreateMap<SaveProjectResource, Project>();
         CreateMap<UpdateProjectResource, Project>();
+        CreateMap<JobRequestResource, JobRequest>();
+        CreateMap<UpdateJobRequestResource, JobRequest>();
+        CreateMap<SaveJobRequestResource, JobRequest>();
     }
 }

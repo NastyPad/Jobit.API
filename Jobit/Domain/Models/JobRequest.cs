@@ -9,10 +9,9 @@ public class JobRequest
     
     //Foreign Keys
     public long UserId { get; set; }
-    public long CompanyId { get; set; }
     public long JobId { get; set; }
+    
     //Relationship
     public User? User { get; set; }
-    public Company? Company { get; set; }
     public Job? Job { get; set; }
 }

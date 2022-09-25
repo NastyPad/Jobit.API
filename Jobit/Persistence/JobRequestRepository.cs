@@ -2,6 +2,7 @@ using Jobit.API.Jobit.Domain.Models;
 using Jobit.API.Jobit.Domain.Repositories;
 using Jobit.API.Shared.Persistence.Context;
 using Jobit.API.Shared.Persistence.Repositories;
+using Microsoft.EntityFrameworkCore;
 
 namespace Jobit.API.Jobit.Persistence;
 
@@ -11,28 +12,28 @@ public class JobRequestRepository : BaseRepository, IJobRequestRepository
     {
     }
 
-    public async Task<IEnumerable<JobRequest>> ListHiringUserApplicationAsync()
+    public async Task<IEnumerable<JobRequest>> ListJobRequestAsync()
     {
-        throw new NotImplementedException();
+        return await databaseContext.JobRequests.ToListAsync();
     }
 
-    public async Task<JobRequest> FindHiringUserApplicationByRequestId()
+    public async Task<JobRequest> FindJobRequestByRequestIdAsync(long requestId)
     {
-        throw new NotImplementedException();
+        return await databaseContext.JobRequests.FindAsync(requestId);
     }
 
-    public async Task AddHiringUserApplication()
+    public async Task AddJobRequestAsync(JobRequest jobRequest)
     {
-        throw new NotImplementedException();
+        await databaseContext.JobRequests.AddAsync(jobRequest);
     }
 
-    public void UpdateHiringUserApplication()
+    public void UpdateJobRequest(JobRequest jobRequest)
     {
-        throw new NotImplementedException();
+        databaseContext.JobRequests.Update(jobRequest);
     }
 
-    public void DeleteHiringUserApplication()
+    public void DeleteJobRequest(JobRequest jobRequest)
     {
-        throw new NotImplementedException();
+        databaseContext.JobRequests.Remove(jobRequest);
     }
 }

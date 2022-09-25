@@ -16,7 +16,8 @@ public class AppDatabaseContext : DbContext
     public DbSet<PostType>? PostTypes { get; set; }
     public DbSet<Job> Jobs { get; set; }
     public DbSet<Project> Projects { get; set; }
-    
+    public DbSet<JobRequest> JobRequests { get; set; }
+
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
@@ -37,7 +38,7 @@ public class AppDatabaseContext : DbContext
             .HasMany(p => p.Jobs)
             .WithOne(p => p.Company)
             .HasForeignKey(p => p.CompanyId);
-        
+
         //Users
         modelBuilder.Entity<User>().ToTable("Users");
         modelBuilder.Entity<User>().HasKey(p => p.UserId);
@@ -60,7 +61,11 @@ public class AppDatabaseContext : DbContext
             .HasMany(p => p.Posts)
             .WithOne(p => p.User)
             .HasForeignKey(p => p.UserId);
-        // builder.Entity<User>().Property(p => p.Birthday).IsRequired();
+        modelBuilder.Entity<User>()
+            .HasMany(p => p.JobRequests)
+            .WithOne(p => p.User)
+            .HasForeignKey(p => p.UserId);
+            // builder.Entity<User>().Property(p => p.Birthday).IsRequired();
         
         //PostTypes
         modelBuilder.Entity<PostType>().ToTable("PostTypes");
@@ -80,6 +85,11 @@ public class AppDatabaseContext : DbContext
         modelBuilder.Entity<Job>().Property(p => p.Description);
         modelBuilder.Entity<Job>().Property(p => p.Salary);
         modelBuilder.Entity<Job>().Property(p => p.Available).IsRequired();
+        modelBuilder.Entity<Job>().Property(p => p.CompanyId).IsRequired();
+        modelBuilder.Entity<Job>()
+            .HasMany(p => p.JobRequests)
+            .WithOne(p => p.Job)
+            .HasForeignKey(p => p.JobId);
         
         //Projects 
         modelBuilder.Entity<Project>().ToTable("Projects");
@@ -112,9 +122,7 @@ public class AppDatabaseContext : DbContext
         modelBuilder.Entity<JobRequest>().Property(p => p.RequestId);
         modelBuilder.Entity<JobRequest>().Property(p => p.JobId);
         modelBuilder.Entity<JobRequest>().Property(p => p.UserId);
-        modelBuilder.Entity<JobRequest>().Property(p => p.CompanyId);
-       
-        
+
 
         modelBuilder.UseSnakeCase();
     }
