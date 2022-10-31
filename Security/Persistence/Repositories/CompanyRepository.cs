@@ -23,8 +23,19 @@ public class CompanyRepository : BaseRepository, ICompanyRepository
         await databaseContext.Companies.AddAsync(company);
     }
 
-    public async Task<Company> FindByCompanyIdAsync(int companyId)
+    public async Task<Company> FindCompanyByCompanyIdAsync(int companyId)
     {
         return await databaseContext.Companies.FindAsync(companyId);
     }
+
+    public void DeleteCompanyAsync(Company company)
+    {
+        databaseContext.Companies.Remove(company);
+    }
+
+    public void UpdateCompanyAsync(Company company)
+    {
+        databaseContext.Companies.Update(company);
+    }
+    
 }

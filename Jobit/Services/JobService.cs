@@ -13,21 +13,19 @@ public class JobService : IJobService
     private readonly IJobRepository _jobRepository;
     private readonly ICompanyRepository _companyRepository;
     private readonly IUnitOfWork _unitOfWork;
-    private readonly IMapper _mapper;
 
-    public JobService(IJobRepository jobRepository, ICompanyRepository companyRepository,IUnitOfWork unitOfWork, IMapper mapper)
+    public JobService(IJobRepository jobRepository, ICompanyRepository companyRepository,IUnitOfWork unitOfWork)
     {
         _companyRepository = companyRepository;
         _jobRepository = jobRepository;
         _unitOfWork = unitOfWork;
-        _mapper = mapper;
     }
 
     public async Task<IEnumerable<Job>> ListJobsAsync()
     {
         var jobs = await _jobRepository.ListJobsAsync();
         jobs.ToList().ForEach(
-             job => job.Company =  _companyRepository.FindByCompanyIdAsync(job.CompanyId).Result
+             job => job.Company =  _companyRepository.FindCompanyByCompanyIdAsync(job.CompanyId).Result
              );
         return jobs.AsEnumerable();
     }

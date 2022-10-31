@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "D:\\Github\\Own\\Jobit.API\\Jobit.API.csproj": {}
+    "D:\\Github\\Own\\.NET\\Jobit.API\\Jobit.API.csproj": {}
   },
   "projects": {
-    "D:\\Github\\Own\\Jobit.API\\Jobit.API.csproj": {
+    "D:\\Github\\Own\\.NET\\Jobit.API\\Jobit.API.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\Github\\Own\\Jobit.API\\Jobit.API.csproj",
+        "projectUniqueName": "D:\\Github\\Own\\.NET\\Jobit.API\\Jobit.API.csproj",
         "projectName": "Jobit.API",
-        "projectPath": "D:\\Github\\Own\\Jobit.API\\Jobit.API.csproj",
+        "projectPath": "D:\\Github\\Own\\.NET\\Jobit.API\\Jobit.API.csproj",
         "packagesPath": "C:\\Users\\Leonardo-Workstation\\.nuget\\packages\\",
-        "outputPath": "D:\\Github\\Own\\Jobit.API\\obj\\",
+        "outputPath": "D:\\Github\\Own\\.NET\\Jobit.API\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\Leonardo-Workstation\\AppData\\Roaming\\NuGet\\NuGet.Config"

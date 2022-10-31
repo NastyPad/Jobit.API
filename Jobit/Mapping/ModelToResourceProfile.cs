@@ -20,5 +20,6 @@ public class ModelToResourceProfile : Profile
         CreateMap<JobRequest, JobRequestResource>();
         CreateMap<JobRequest, UpdateJobRequestResource>();
         CreateMap<JobRequest, SaveJobRequestResource>();
+        CreateMap<Notification, NotificationResource>();
     }
 }

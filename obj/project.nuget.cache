@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "J98Ff5sdMdQHUinHQOWe1MKdv9IxmUeEMSfjzPZaubJpos51YhiNSLEqfENCINWF8bnh5NMV0z3F1EyEi47Srg==",
+  "dgSpecHash": "mPXkFzHWKbXn1uYoHfPv/qvPepclzzhqXgSuDMcp3UwAVCopYoO7KFKMtjZu4ksh8dk3QbHwf2z8p2hMPp919Q==",
   "success": true,
-  "projectFilePath": "D:\\Github\\Own\\Jobit.API\\Jobit.API.csproj",
+  "projectFilePath": "D:\\Github\\Own\\.NET\\Jobit.API\\Jobit.API.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Leonardo-Workstation\\.nuget\\packages\\automapper\\11.0.1\\automapper.11.0.1.nupkg.sha512",
     "C:\\Users\\Leonardo-Workstation\\.nuget\\packages\\automapper.extensions.microsoft.dependencyinjection\\11.0.0\\automapper.extensions.microsoft.dependencyinjection.11.0.0.nupkg.sha512",

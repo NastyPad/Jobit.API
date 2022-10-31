@@ -10,7 +10,7 @@ public class BaseResponse<T> //Template (really useful)
         Message = string.Empty;
     }
     
-    //Constructor - 1
+    //Constructor - 2
     protected BaseResponse(string message)
     {
         Success = false;

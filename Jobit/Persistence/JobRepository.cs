@@ -30,7 +30,7 @@ public class JobRepository : BaseRepository, IJobRepository
         databaseContext.Jobs.Remove(deleteJob);
     }
 
-    public async Task<Job?> FindByJobIdAsync(long jobId)
+    public async Task<Job> FindByJobIdAsync(long jobId)
     {
         return await databaseContext.Jobs.FindAsync(jobId);
     }

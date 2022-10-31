@@ -76,6 +76,9 @@ builder.Services.AddScoped<IProjectService, ProjectService>();
 //JobRequest
 builder.Services.AddScoped<IJobRequestRepository, JobRequestRepository>();
 builder.Services.AddScoped<IJobRequestService, JobRequestService>();
+//Notifications
+builder.Services.AddScoped<INotificationRepository, NotificationRepository>();
+builder.Services.AddScoped<INotificationService, NotificationService>();
 
 //Security Injection Configuration
 builder.Services.AddScoped<IUserRepository, UserRespository>();

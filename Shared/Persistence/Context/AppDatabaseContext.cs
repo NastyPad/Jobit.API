@@ -17,6 +17,7 @@ public class AppDatabaseContext : DbContext
     public DbSet<Job> Jobs { get; set; }
     public DbSet<Project> Projects { get; set; }
     public DbSet<JobRequest> JobRequests { get; set; }
+    public DbSet<Notification> Notifications { get; set; }
 
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -112,7 +113,7 @@ public class AppDatabaseContext : DbContext
         modelBuilder.Entity<Post>().ToTable("Posts");
         modelBuilder.Entity<Post>().HasKey(p => p.PostId);
         modelBuilder.Entity<Post>().Property(p => p.PostId);
-        modelBuilder.Entity<Post>().Property(p => p.Description);
+        modelBuilder.Entity<Post>().Property(p => p.Content);
         modelBuilder.Entity<Post>().Property(p => p.UserId);
         modelBuilder.Entity<Post>().Property(p => p.PostTypeId);
         
@@ -123,7 +124,13 @@ public class AppDatabaseContext : DbContext
         modelBuilder.Entity<JobRequest>().Property(p => p.JobId);
         modelBuilder.Entity<JobRequest>().Property(p => p.UserId);
 
-
+        //Notification
+        modelBuilder.Entity<Notification>().ToTable("Notification");
+        modelBuilder.Entity<Notification>().HasKey(p => p.NotificationId);
+        modelBuilder.Entity<Notification>().Property(p => p.NotificationDate);
+        modelBuilder.Entity<Notification>().Property(p => p.UserId);
+        modelBuilder.Entity<Notification>().Property(p => p.Content);
+            
         modelBuilder.UseSnakeCase();
     }
 }

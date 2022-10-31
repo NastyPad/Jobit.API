@@ -20,6 +20,11 @@ public class CompanyService : ICompanyService
         return await _companyRepository.ListCompaniesAsync();
     }
 
+    public Task<Company> GetCompanyByCompanyId(long companyId)
+    {
+        throw new NotImplementedException();
+    }
+
     public async Task RegisterCompanyAsync(RegisterCompanyRequest registerCompanyRequest)
     {
         throw new NotImplementedException();

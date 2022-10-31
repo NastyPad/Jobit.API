@@ -25,6 +25,6 @@ public class UserRespository : BaseRepository, IUserRepository
 
     public async Task<User> FindByUserIdAsync(long userId)
     {
-        return (await databaseContext.Users.FindAsync(userId))!;
+        return await databaseContext.Users.FindAsync(userId);
     }
 }
