@@ -6,40 +6,22 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="b90fa917-02c1-4760-94fc-22cf39476b8a" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/Jobit/Controllers/NotificationController.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Jobit/Domain/Services/Communication/NotificationResponse.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Jobit/Domain/Services/INotificationService.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Jobit/Persistence/NotificationRepository.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Jobit/Resources/NotificationResource.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Jobit/Resources/PostResource.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Jobit/Resources/SaveNotificationResource.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Jobit/Resources/UpdateNotificationResource.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Jobit/Services/NotificationService.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Jobit/Controllers/UserProfileController.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/jobit.db" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Jobit.API.dir/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Jobit.API.dir/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Jobit/Domain/Models/Post.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Jobit/Domain/Models/Post.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Jobit/Domain/Repositories/INotificationRepository.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Jobit/Domain/Repositories/INotificationRepository.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Jobit/Mapping/ModelToResourceProfile.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Jobit/Mapping/ModelToResourceProfile.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Jobit/Controllers/ProjectController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Jobit/Controllers/ProjectController.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Jobit/Mapping/ResourceToModelProfile.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Jobit/Mapping/ResourceToModelProfile.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Jobit/Persistence/JobRepository.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Jobit/Persistence/JobRepository.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Jobit/Services/JobService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Jobit/Services/JobService.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Program.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Program.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Security/Domain/Repositories/ICompanyRepository.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Security/Domain/Repositories/ICompanyRepository.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Security/Domain/Services/ICompanyService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Security/Domain/Services/ICompanyService.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Security/Persistence/Repositories/CompanyRepository.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Security/Persistence/Repositories/CompanyRepository.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Security/Persistence/Repositories/UserRespository.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Security/Persistence/Repositories/UserRespository.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Security/Services/CompanyService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Security/Services/CompanyService.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Shared/Domain/Services/Communication/BaseResponse.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Shared/Domain/Services/Communication/BaseResponse.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Shared/Persistence/Context/AppDatabaseContext.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Shared/Persistence/Context/AppDatabaseContext.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Security/Controllers/UsersController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Security/Controllers/UsersController.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/bin/Debug/net6.0/Jobit.API.dll" beforeDir="false" afterPath="$PROJECT_DIR$/bin/Debug/net6.0/Jobit.API.dll" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/Debug/net6.0/Jobit.API.exe" beforeDir="false" afterPath="$PROJECT_DIR$/bin/Debug/net6.0/Jobit.API.exe" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/bin/Debug/net6.0/Jobit.API.pdb" beforeDir="false" afterPath="$PROJECT_DIR$/bin/Debug/net6.0/Jobit.API.pdb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/jobit.db" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/obj/Debug/net6.0/Jobit.API.GeneratedMSBuildEditorConfig.editorconfig" beforeDir="false" afterPath="$PROJECT_DIR$/obj/Debug/net6.0/Jobit.API.GeneratedMSBuildEditorConfig.editorconfig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/obj/Debug/net6.0/Jobit.API.assets.cache" beforeDir="false" afterPath="$PROJECT_DIR$/obj/Debug/net6.0/Jobit.API.assets.cache" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/obj/Debug/net6.0/Jobit.API.csproj.AssemblyReference.cache" beforeDir="false" afterPath="$PROJECT_DIR$/obj/Debug/net6.0/Jobit.API.csproj.AssemblyReference.cache" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/obj/Debug/net6.0/Jobit.API.csproj.CoreCompileInputs.cache" beforeDir="false" afterPath="$PROJECT_DIR$/obj/Debug/net6.0/Jobit.API.csproj.CoreCompileInputs.cache" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/obj/Debug/net6.0/Jobit.API.csproj.FileListAbsolute.txt" beforeDir="false" afterPath="$PROJECT_DIR$/obj/Debug/net6.0/Jobit.API.csproj.FileListAbsolute.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/obj/Debug/net6.0/Jobit.API.dll" beforeDir="false" afterPath="$PROJECT_DIR$/obj/Debug/net6.0/Jobit.API.dll" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/obj/Debug/net6.0/Jobit.API.genruntimeconfig.cache" beforeDir="false" afterPath="$PROJECT_DIR$/obj/Debug/net6.0/Jobit.API.genruntimeconfig.cache" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/obj/Debug/net6.0/Jobit.API.pdb" beforeDir="false" afterPath="$PROJECT_DIR$/obj/Debug/net6.0/Jobit.API.pdb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/obj/Debug/net6.0/apphost.exe" beforeDir="false" afterPath="$PROJECT_DIR$/obj/Debug/net6.0/apphost.exe" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/obj/Debug/net6.0/ref/Jobit.API.dll" beforeDir="false" afterPath="$PROJECT_DIR$/obj/Debug/net6.0/ref/Jobit.API.dll" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/obj/Debug/net6.0/refint/Jobit.API.dll" beforeDir="false" afterPath="$PROJECT_DIR$/obj/Debug/net6.0/refint/Jobit.API.dll" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/obj/Jobit.API.csproj.nuget.dgspec.json" beforeDir="false" afterPath="$PROJECT_DIR$/obj/Jobit.API.csproj.nuget.dgspec.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/obj/project.assets.json" beforeDir="false" afterPath="$PROJECT_DIR$/obj/project.assets.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/obj/project.nuget.cache" beforeDir="false" afterPath="$PROJECT_DIR$/obj/project.nuget.cache" afterDir="false" />
@@ -72,7 +54,8 @@
     &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;editor.preferences.fonts.default&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;RiderNetFileTemplatesSettingsId&quot;,
     &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
 }</component>
@@ -118,7 +101,8 @@
       <updated>1664234564683</updated>
       <workItem from="1664234587727" duration="404000" />
       <workItem from="1667086821966" duration="3178000" />
-      <workItem from="1667152863881" duration="29331000" />
+      <workItem from="1667152863881" duration="39860000" />
+      <workItem from="1667456770899" duration="2714000" />
     </task>
     <servers />
   </component>

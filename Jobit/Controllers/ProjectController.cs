@@ -19,7 +19,7 @@ public class ProjectController : ControllerBase
 {
     private readonly IProjectService _projectService;
     private readonly IMapper _mapper;
-
+    
     public ProjectController(IProjectService projectService, IMapper mapper)
     {
         _projectService = projectService;

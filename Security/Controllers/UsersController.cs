@@ -30,8 +30,9 @@ public class UsersController : ControllerBase
       return Ok(resources);
    }
    
+   [AllowAnonymous]
    [HttpGet("{id}")]
-   public async Task<IActionResult> GetById(int id)
+   public async Task<IActionResult> GetUserById(int id)
    {
       var user = await _userService.GetByUserIdAsync(id);
       var resource = _mapper.Map<User, UserResource>(user);
