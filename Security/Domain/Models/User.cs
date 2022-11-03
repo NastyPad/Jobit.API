@@ -18,4 +18,6 @@ public class User
     public IList<Notification> Notifications { get; set; }
     public IList<Post> Posts { get; set; }
     public IList<JobRequest> JobRequests { get; set; }
+    public IList<TechSkill> TechSkills { get; set; }
+    public UserProfile UserProfile { get; set; }
 }

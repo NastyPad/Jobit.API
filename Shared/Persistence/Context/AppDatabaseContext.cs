@@ -66,8 +66,12 @@ public class AppDatabaseContext : DbContext
             .HasMany(p => p.JobRequests)
             .WithOne(p => p.User)
             .HasForeignKey(p => p.UserId);
-            // builder.Entity<User>().Property(p => p.Birthday).IsRequired();
-        
+        // builder.Entity<User>().Property(p => p.Birthday).IsRequired();
+        modelBuilder.Entity<User>()
+            .HasOne(p => p.UserProfile)
+            .WithOne(p => p.User)
+            .HasForeignKey<UserProfile>(p => p.UserId);
+
         //PostTypes
         modelBuilder.Entity<PostType>().ToTable("PostTypes");
         modelBuilder.Entity<PostType>().HasKey(p => p.PostTypeId);
@@ -77,7 +81,7 @@ public class AppDatabaseContext : DbContext
             .HasMany(p => p.Posts)
             .WithOne(p => p.PostType)
             .HasForeignKey(p => p.PostTypeId);
-        
+
         //Jobs 
         modelBuilder.Entity<Job>().ToTable("Jobs");
         modelBuilder.Entity<Job>().HasKey(p => p.JobId);
@@ -91,7 +95,7 @@ public class AppDatabaseContext : DbContext
             .HasMany(p => p.JobRequests)
             .WithOne(p => p.Job)
             .HasForeignKey(p => p.JobId);
-        
+
         //Projects 
         modelBuilder.Entity<Project>().ToTable("Projects");
         modelBuilder.Entity<Project>().HasKey(p => p.ProjectId);
@@ -100,7 +104,7 @@ public class AppDatabaseContext : DbContext
         modelBuilder.Entity<Project>().Property(p => p.ProjectUrl).IsRequired();
         modelBuilder.Entity<Project>().Property(p => p.Description).IsRequired();
         modelBuilder.Entity<Project>().Property(p => p.CodeSource).IsRequired();
-        
+
         //Notifications
         modelBuilder.Entity<Notification>().ToTable("Notifications");
         modelBuilder.Entity<Notification>().HasKey(p => p.NotificationId);
@@ -108,7 +112,7 @@ public class AppDatabaseContext : DbContext
         modelBuilder.Entity<Notification>().Property(p => p.NotificationDate);
         modelBuilder.Entity<Notification>().Property(p => p.Content);
         modelBuilder.Entity<Notification>().Property(p => p.UserId);
-            
+
         //Posts
         modelBuilder.Entity<Post>().ToTable("Posts");
         modelBuilder.Entity<Post>().HasKey(p => p.PostId);
@@ -116,21 +120,41 @@ public class AppDatabaseContext : DbContext
         modelBuilder.Entity<Post>().Property(p => p.Content);
         modelBuilder.Entity<Post>().Property(p => p.UserId);
         modelBuilder.Entity<Post>().Property(p => p.PostTypeId);
-        
+
         //JobRequest
-        modelBuilder.Entity<JobRequest>().ToTable("JobRequest");
+        modelBuilder.Entity<JobRequest>().ToTable("JobRequests");
         modelBuilder.Entity<JobRequest>().HasKey(p => p.RequestId);
         modelBuilder.Entity<JobRequest>().Property(p => p.RequestId);
         modelBuilder.Entity<JobRequest>().Property(p => p.JobId);
         modelBuilder.Entity<JobRequest>().Property(p => p.UserId);
 
         //Notification
-        modelBuilder.Entity<Notification>().ToTable("Notification");
+        modelBuilder.Entity<Notification>().ToTable("Notifications");
         modelBuilder.Entity<Notification>().HasKey(p => p.NotificationId);
         modelBuilder.Entity<Notification>().Property(p => p.NotificationDate);
         modelBuilder.Entity<Notification>().Property(p => p.UserId);
         modelBuilder.Entity<Notification>().Property(p => p.Content);
+
+        //UserProfile
+        modelBuilder.Entity<UserProfile>().ToTable("UserProfiles");
+        modelBuilder.Entity<UserProfile>().HasKey(p => p.UserId);
+        modelBuilder.Entity<UserProfile>().Property(p => p.UserId);
+        modelBuilder.Entity<UserProfile>().Property(p => p.Description);
+        modelBuilder.Entity<UserProfile>().Property(p => p.IsPrivate);
+
+        //TechSkills
+        modelBuilder.Entity<TechSkill>().ToTable("TechSkills");
+        modelBuilder.Entity<TechSkill>().HasKey(p => p.TechSkillId);
+        modelBuilder.Entity<TechSkill>().Property(p => p.TechSkillId);
+        modelBuilder.Entity<TechSkill>().Property(p => p.TechName);
+        modelBuilder.Entity<TechSkill>().Property(p => p.MoreThanAYear);
+        modelBuilder.Entity<TechSkill>().Property(p => p.ExperienceYears);
+        modelBuilder.Entity<TechSkill>() //Many to many! Code first
+            .HasMany(p => p.Users)
+            .WithMany(p => p.TechSkills)
+            .UsingEntity(builder => builder.ToTable("TechPerUser"));
             
-        modelBuilder.UseSnakeCase();
+
+            modelBuilder.UseSnakeCase();
     }
 }
