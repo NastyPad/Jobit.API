@@ -15,27 +15,26 @@ public class ProjectRepository : BaseRepository, IProjectRepository
 
     public async Task<IEnumerable<Project>> ListProjectsAsync()
     {
-        return await databaseContext.Projects.ToListAsync(); //Como?
+        return await _databaseContext.Projects.ToListAsync(); //Como?
     }
 
     public async Task AddProjectAsync(Project newProject)
     {
-        await databaseContext.Projects.AddAsync(newProject);
+        await _databaseContext.Projects.AddAsync(newProject);
     }
 
     public void UpdateProject(Project updatedProject)
     {
-        
-        databaseContext.Projects.Update(updatedProject);
+        _databaseContext.Projects.Update(updatedProject);
     }
 
     public void DeleteProject(Project toDeleteProject)
     {
-        databaseContext.Projects.Remove(toDeleteProject);
+        _databaseContext.Projects.Remove(toDeleteProject);
     }
 
     public async Task<Project> FindProjectByProjectIdAsync(long projectId)
     {
-        return await databaseContext.Projects.FirstOrDefaultAsync(p => p.ProjectId == projectId);
+        return await _databaseContext.Projects.FirstOrDefaultAsync(p => p.ProjectId == projectId);
     }
 }

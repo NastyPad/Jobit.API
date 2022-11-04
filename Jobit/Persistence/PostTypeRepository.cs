@@ -16,23 +16,23 @@ public class PostTypeRepository : BaseRepository, IPostTypeRepository
 
     public async Task<IEnumerable<PostType>> ListPostTypesAsync()
     {
-        return await databaseContext.PostTypes.ToListAsync();
+        return await _databaseContext.PostTypes.ToListAsync();
     }
     
     public async Task AddPostTypeAsync(PostType newPostType)
     {
-        await databaseContext.PostTypes.AddAsync(newPostType);
-        await databaseContext.SaveChangesAsync();
+        await _databaseContext.PostTypes.AddAsync(newPostType);
+        await _databaseContext.SaveChangesAsync();
     }
 
     public void UpdatePostType(PostType updatedPostType)
     {
-        databaseContext.PostTypes.Update(updatedPostType);
+        _databaseContext.PostTypes.Update(updatedPostType);
     }
 
     public async Task<PostType?> FindPostTypeByPostTypeId(short postTypeId)
     {
-        return await databaseContext.PostTypes
+        return await _databaseContext.PostTypes
             .FirstOrDefaultAsync(p => p.PostTypeId == postTypeId);
     }
 
@@ -43,6 +43,6 @@ public class PostTypeRepository : BaseRepository, IPostTypeRepository
 
     public void DeletePostType(PostType postType)
     {
-        databaseContext.PostTypes.Remove(postType);
+        _databaseContext.PostTypes.Remove(postType);
     }
 }

@@ -15,26 +15,26 @@ public class NotificationRepository: BaseRepository, INotificationRepository
 
     public async Task<IEnumerable<Notification>> ListNotificationAsync()
     {
-        return await databaseContext.Notifications.ToListAsync();
+        return await _databaseContext.Notifications.ToListAsync();
     }
 
     public async Task<Notification> FindNotificationByNotificationId(long notificationId)
     {
-        return await databaseContext.Notifications.FindAsync(notificationId);
+        return await _databaseContext.Notifications.FindAsync(notificationId);
     }
 
     public async Task AddNotification(Notification notification)
     {
-        await databaseContext.Notifications.AddAsync(notification);
+        await _databaseContext.Notifications.AddAsync(notification);
     }
 
     public void DeleteNotification(Notification notification)
     {
-        databaseContext.Notifications.Remove(notification);
+        _databaseContext.Notifications.Remove(notification);
     }
 
     public void UpdateNotification(Notification notification)
     {
-        databaseContext.Notifications.Update(notification);
+        _databaseContext.Notifications.Update(notification);
     }
 }
