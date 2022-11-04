@@ -5,7 +5,27 @@
     <projectFile profileName="Jobit.API">Jobit.API.csproj</projectFile>
   </component>
   <component name="ChangeListManager">
+<<<<<<< HEAD
     <list default="true" id="b90fa917-02c1-4760-94fc-22cf39476b8a" name="Changes" comment="" />
+=======
+    <list default="true" id="b90fa917-02c1-4760-94fc-22cf39476b8a" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/Jobit/Domain/Models/TechSkill.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Jobit/Domain/Models/UserProfile.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.Jobit.API.dir/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Jobit.API.dir/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Security/Domain/Models/User.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Security/Domain/Models/User.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Shared/Persistence/Context/AppDatabaseContext.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Shared/Persistence/Context/AppDatabaseContext.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/obj/Debug/net6.0/Jobit.API.AssemblyInfo.cs" beforeDir="false" afterPath="$PROJECT_DIR$/obj/Debug/net6.0/Jobit.API.AssemblyInfo.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/obj/Debug/net6.0/Jobit.API.GeneratedMSBuildEditorConfig.editorconfig" beforeDir="false" afterPath="$PROJECT_DIR$/obj/Debug/net6.0/Jobit.API.GeneratedMSBuildEditorConfig.editorconfig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/obj/Debug/net6.0/Jobit.API.assets.cache" beforeDir="false" afterPath="$PROJECT_DIR$/obj/Debug/net6.0/Jobit.API.assets.cache" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/obj/Debug/net6.0/Jobit.API.csproj.AssemblyReference.cache" beforeDir="false" afterPath="$PROJECT_DIR$/obj/Debug/net6.0/Jobit.API.csproj.AssemblyReference.cache" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/obj/Jobit.API.csproj.nuget.dgspec.json" beforeDir="false" afterPath="$PROJECT_DIR$/obj/Jobit.API.csproj.nuget.dgspec.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/obj/Jobit.API.csproj.nuget.g.props" beforeDir="false" afterPath="$PROJECT_DIR$/obj/Jobit.API.csproj.nuget.g.props" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/obj/project.assets.json" beforeDir="false" afterPath="$PROJECT_DIR$/obj/project.assets.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/obj/project.nuget.cache" beforeDir="false" afterPath="$PROJECT_DIR$/obj/project.nuget.cache" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/obj/project.packagespec.json" beforeDir="false" afterPath="$PROJECT_DIR$/obj/project.packagespec.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/obj/rider.project.restore.info" beforeDir="false" afterPath="$PROJECT_DIR$/obj/rider.project.restore.info" afterDir="false" />
+    </list>
+>>>>>>> 18ea43fb4df2f8dcb9137965282408b09e47097e
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -79,7 +99,12 @@
       <workItem from="1664234587727" duration="404000" />
       <workItem from="1667086821966" duration="3178000" />
       <workItem from="1667152863881" duration="39860000" />
+<<<<<<< HEAD
       <workItem from="1667456770899" duration="2861000" />
+=======
+      <workItem from="1667456770899" duration="2714000" />
+      <workItem from="1667507178282" duration="5437000" />
+>>>>>>> 18ea43fb4df2f8dcb9137965282408b09e47097e
     </task>
     <servers />
   </component>
