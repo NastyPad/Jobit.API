@@ -5,30 +5,7 @@
     <projectFile profileName="Jobit.API">Jobit.API.csproj</projectFile>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="b90fa917-02c1-4760-94fc-22cf39476b8a" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/Jobit/Controllers/UserProfileController.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/jobit.db" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.Jobit.API.dir/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Jobit.API.dir/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Jobit/Controllers/ProjectController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Jobit/Controllers/ProjectController.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Jobit/Mapping/ResourceToModelProfile.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Jobit/Mapping/ResourceToModelProfile.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Security/Controllers/UsersController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Security/Controllers/UsersController.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/Debug/net6.0/Jobit.API.dll" beforeDir="false" afterPath="$PROJECT_DIR$/bin/Debug/net6.0/Jobit.API.dll" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/Debug/net6.0/Jobit.API.exe" beforeDir="false" afterPath="$PROJECT_DIR$/bin/Debug/net6.0/Jobit.API.exe" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/Debug/net6.0/Jobit.API.pdb" beforeDir="false" afterPath="$PROJECT_DIR$/bin/Debug/net6.0/Jobit.API.pdb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/obj/Debug/net6.0/Jobit.API.csproj.AssemblyReference.cache" beforeDir="false" afterPath="$PROJECT_DIR$/obj/Debug/net6.0/Jobit.API.csproj.AssemblyReference.cache" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/obj/Debug/net6.0/Jobit.API.csproj.CoreCompileInputs.cache" beforeDir="false" afterPath="$PROJECT_DIR$/obj/Debug/net6.0/Jobit.API.csproj.CoreCompileInputs.cache" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/obj/Debug/net6.0/Jobit.API.dll" beforeDir="false" afterPath="$PROJECT_DIR$/obj/Debug/net6.0/Jobit.API.dll" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/obj/Debug/net6.0/Jobit.API.pdb" beforeDir="false" afterPath="$PROJECT_DIR$/obj/Debug/net6.0/Jobit.API.pdb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/obj/Debug/net6.0/apphost.exe" beforeDir="false" afterPath="$PROJECT_DIR$/obj/Debug/net6.0/apphost.exe" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/obj/Debug/net6.0/ref/Jobit.API.dll" beforeDir="false" afterPath="$PROJECT_DIR$/obj/Debug/net6.0/ref/Jobit.API.dll" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/obj/Debug/net6.0/refint/Jobit.API.dll" beforeDir="false" afterPath="$PROJECT_DIR$/obj/Debug/net6.0/refint/Jobit.API.dll" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/obj/Jobit.API.csproj.nuget.dgspec.json" beforeDir="false" afterPath="$PROJECT_DIR$/obj/Jobit.API.csproj.nuget.dgspec.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/obj/project.assets.json" beforeDir="false" afterPath="$PROJECT_DIR$/obj/project.assets.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/obj/project.nuget.cache" beforeDir="false" afterPath="$PROJECT_DIR$/obj/project.nuget.cache" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/obj/project.packagespec.json" beforeDir="false" afterPath="$PROJECT_DIR$/obj/project.packagespec.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/obj/rider.project.restore.info" beforeDir="false" afterPath="$PROJECT_DIR$/obj/rider.project.restore.info" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/obj/staticwebassets.pack.sentinel" beforeDir="false" afterPath="$PROJECT_DIR$/obj/staticwebassets.pack.sentinel" afterDir="false" />
-    </list>
+    <list default="true" id="b90fa917-02c1-4760-94fc-22cf39476b8a" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -102,7 +79,7 @@
       <workItem from="1664234587727" duration="404000" />
       <workItem from="1667086821966" duration="3178000" />
       <workItem from="1667152863881" duration="39860000" />
-      <workItem from="1667456770899" duration="2714000" />
+      <workItem from="1667456770899" duration="2861000" />
     </task>
     <servers />
   </component>
