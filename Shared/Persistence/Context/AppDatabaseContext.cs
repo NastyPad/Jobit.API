@@ -153,8 +153,7 @@ public class AppDatabaseContext : DbContext
             .HasMany(p => p.Users)
             .WithMany(p => p.TechSkills)
             .UsingEntity(builder => builder.ToTable("TechPerUser"));
-            
-
+        
             modelBuilder.UseSnakeCase();
     }
 }
