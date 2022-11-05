@@ -6,7 +6,7 @@ using Jobit.API.Shared.Domain.Repositories;
 
 namespace Jobit.API.Jobit.Services;
 
-public class TechSkillService: ITechSkillService
+public class TechSkillService : ITechSkillService
 {
     private readonly ITechSkillRepository _techSkillRepository;
     private readonly IUnitOfWork _unitOfWork;
@@ -17,28 +17,76 @@ public class TechSkillService: ITechSkillService
         _unitOfWork = unitOfWork;
     }
 
-    public Task<IEnumerable<TechSkill>> LisTechSkillsAsync()
+    public async Task<IEnumerable<TechSkill>> ListTechSkillsAsync()
     {
-        throw new NotImplementedException();
+        return await _techSkillRepository.ListTechSkillAsync();
     }
 
-    public Task<TechSkillResponse> FindTechSkillByTechSkillIdAsync(long techSkillId)
+    public async Task<TechSkillResponse> FindTechSkillByTechSkillIdAsync(long techSkillId)
     {
-        throw new NotImplementedException();
+        var existingTechSkill = await _techSkillRepository.FindTechSkillByTechSkillIdAsync(techSkillId);
+        if (existingTechSkill == null)
+            return new TechSkillResponse("Not found");
+        try
+        {
+            return new TechSkillResponse(existingTechSkill);
+        }
+        catch (Exception exception)
+        {
+            return new TechSkillResponse($"An error has ocurred:{exception.Message}");
+        }
     }
 
-    public Task<TechSkillResponse> AddTechSkillAsync(TechSkill newTechSkill)
+    public async Task<TechSkillResponse> AddTechSkillAsync(TechSkill newTechSkill)
     {
-        throw new NotImplementedException();
+        try
+        {
+            await _techSkillRepository.AddTechSkillAsync(newTechSkill);
+            await _unitOfWork.CompleteAsync();
+            return new TechSkillResponse(newTechSkill);
+        }
+        catch (Exception exception)
+        {
+            return new TechSkillResponse($"An error has ocurred:{exception.Message}");
+        }
     }
 
-    public Task<TechSkillResponse> UpdateTechSkillAsync(long techSkillId, TechSkill updatedTechSkill)
+    public async Task<TechSkillResponse> UpdateTechSkillAsync(long techSkillId, TechSkill updatedTechSkill)
     {
-        throw new NotImplementedException();
+        var existingTechSkill = await _techSkillRepository.FindTechSkillByTechSkillIdAsync(techSkillId);
+        if (existingTechSkill == null)
+            return new TechSkillResponse("Not found");
+        
+        // Updating TechSkill attributes
+        existingTechSkill.SetTechSkill(updatedTechSkill);
+        
+        try
+        {
+            _techSkillRepository.UpdateTechSkill(existingTechSkill);
+            await _unitOfWork.CompleteAsync();
+            return new TechSkillResponse(existingTechSkill);
+        }
+        catch (Exception exception)
+        {
+            return new TechSkillResponse($"An error has ocurred:{exception.Message}");
+        }
     }
 
-    public Task<TechSkillResponse> DeleteTechSkillAsync(long techSkillId)
+    public async Task<TechSkillResponse> DeleteTechSkillAsync(long techSkillId)
     {
-        throw new NotImplementedException();
+        var existingTechSkill = await _techSkillRepository.FindTechSkillByTechSkillIdAsync(techSkillId);
+        if (existingTechSkill == null)
+            return new TechSkillResponse("Not found");
+
+        try
+        {
+            _techSkillRepository.DeleteTechSkill(existingTechSkill);
+            await _unitOfWork.CompleteAsync();
+            return new TechSkillResponse(existingTechSkill);
+        }
+        catch (Exception exception)
+        {
+            return new TechSkillResponse($"An error has ocurred:{exception.Message}");
+        }
     }
 }

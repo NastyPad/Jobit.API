@@ -5,11 +5,11 @@ namespace Jobit.API.Jobit.Domain.Services.Communication;
 
 public class TechSkillResponse: BaseResponse<TechSkill>
 {
-    protected TechSkillResponse(TechSkill resource) : base(resource)
+    public TechSkillResponse(TechSkill resource) : base(resource)
     {
     }
 
-    protected TechSkillResponse(string message) : base(message)
+    public TechSkillResponse(string message) : base(message)
     {
     }
 }

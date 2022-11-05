@@ -8,6 +8,6 @@ public class BaseRepository
 
     public BaseRepository(AppDatabaseContext databaseContext)
     {
-        databaseContext = databaseContext;
+        _databaseContext = databaseContext;
     }
 }

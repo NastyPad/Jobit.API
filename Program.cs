@@ -79,6 +79,9 @@ builder.Services.AddScoped<IJobRequestService, JobRequestService>();
 //Notifications
 builder.Services.AddScoped<INotificationRepository, NotificationRepository>();
 builder.Services.AddScoped<INotificationService, NotificationService>();
+//TechSkills
+builder.Services.AddScoped<ITechSkillRepository, TechSkillRepository>();
+builder.Services.AddScoped<ITechSkillService, TechSkillService>();
 
 //Security Injection Configuration
 builder.Services.AddScoped<IUserRepository, UserRespository>();

@@ -1,4 +1,5 @@
 using Jobit.API.Jobit.Domain.Models;
+using Jobit.API.Jobit.Domain.Models.Intermediate;
 
 namespace Jobit.API.Security.Domain.Models;
 //Models are from database!
@@ -18,6 +19,7 @@ public class User
     public IList<Notification> Notifications { get; set; }
     public IList<Post> Posts { get; set; }
     public IList<JobRequest> JobRequests { get; set; }
-    public IList<TechSkill> TechSkills { get; set; }
-    public UserProfile UserProfile { get; set; }
+    public IList<TechSkill> TechSkills { get; set; } // Cause by intermediate table
+    public UserProfile UserProfile { get; set; } // 
+    public IList<UserTechSkill> UserTechSkills { get; set; }
 }

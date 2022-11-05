@@ -12,14 +12,14 @@ public class TechSkillRepository: BaseRepository, ITechSkillRepository
     {
     }
 
-    public async Task<IEnumerable<TechSkill>> ListProjectsAsync()
+    public async Task<IEnumerable<TechSkill>> ListTechSkillAsync()
     { 
         return await _databaseContext.TechSkills.ToListAsync();
     }
 
     public async Task<TechSkill?> FindTechSkillByTechSkillIdAsync(long techSkillId)
     {
-        return (await _databaseContext.TechSkills.FindAsync(techSkillId))!;
+        return await _databaseContext.TechSkills.FindAsync(techSkillId);
     }
 
     public async Task AddTechSkillAsync(TechSkill newTechSkill)

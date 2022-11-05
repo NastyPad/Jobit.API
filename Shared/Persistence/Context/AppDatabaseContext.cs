@@ -1,4 +1,5 @@
 using Jobit.API.Jobit.Domain.Models;
+using Jobit.API.Jobit.Domain.Models.Intermediate;
 using Jobit.API.Security.Domain.Models;
 using Jobit.API.Shared.Extensions;
 using Microsoft.EntityFrameworkCore;
@@ -148,13 +149,19 @@ public class AppDatabaseContext : DbContext
         modelBuilder.Entity<TechSkill>().HasKey(p => p.TechSkillId);
         modelBuilder.Entity<TechSkill>().Property(p => p.TechSkillId);
         modelBuilder.Entity<TechSkill>().Property(p => p.TechName);
-        modelBuilder.Entity<TechSkill>().Property(p => p.MoreThanAYear);
-        modelBuilder.Entity<TechSkill>().Property(p => p.ExperienceYears);
         modelBuilder.Entity<TechSkill>() //Many to many! Code first
             .HasMany(p => p.Users)
             .WithMany(p => p.TechSkills)
             .UsingEntity(builder => builder.ToTable("TechPerUser"));
-        
-            modelBuilder.UseSnakeCase();
+
+        //Intermediate Tables
+        modelBuilder.Entity<UserTechSkill>().ToTable("UserTechSkill");
+        modelBuilder.Entity<UserTechSkill>().HasKey(p => p.UserId);
+        modelBuilder.Entity<UserTechSkill>().Property(p => p.UserId);
+        modelBuilder.Entity<UserTechSkill>().Property(p => p.TechSkillId);
+        modelBuilder.Entity<UserTechSkill>().Property(p => p.ExperienceYears);
+        modelBuilder.Entity<UserTechSkill>().Property(p => p.MoreThanAYear);
+
+        modelBuilder.UseSnakeCase();
     }
 }
