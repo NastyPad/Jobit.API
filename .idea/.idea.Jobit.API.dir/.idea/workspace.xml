@@ -5,6 +5,9 @@
     <projectFile profileName="Jobit.API">Jobit.API.csproj</projectFile>
   </component>
   <component name="ChangeListManager">
+<<<<<<< HEAD
+    <list default="true" id="b90fa917-02c1-4760-94fc-22cf39476b8a" name="Changes" comment="" />
+=======
     <list default="true" id="b90fa917-02c1-4760-94fc-22cf39476b8a" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Jobit.API.dir/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Jobit.API.dir/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Shared/Persistence/Context/AppDatabaseContext.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Shared/Persistence/Context/AppDatabaseContext.cs" afterDir="false" />
@@ -27,6 +30,7 @@
       <change beforePath="$PROJECT_DIR$/obj/rider.project.restore.info" beforeDir="false" afterPath="$PROJECT_DIR$/obj/rider.project.restore.info" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/obj/staticwebassets.pack.sentinel" beforeDir="false" afterPath="$PROJECT_DIR$/obj/staticwebassets.pack.sentinel" afterDir="false" />
     </list>
+>>>>>>> 18ea43fb4df2f8dcb9137965282408b09e47097e
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -100,10 +104,18 @@
       <workItem from="1664234587727" duration="404000" />
       <workItem from="1667086821966" duration="3178000" />
       <workItem from="1667152863881" duration="39860000" />
+<<<<<<< HEAD
+      <workItem from="1667456770899" duration="2861000" />
+=======
       <workItem from="1667456770899" duration="2714000" />
+<<<<<<< HEAD
       <workItem from="1667507178282" duration="5555000" />
       <workItem from="1667577422880" duration="2226000" />
       <workItem from="1667602631577" duration="622000" />
+=======
+      <workItem from="1667507178282" duration="5437000" />
+>>>>>>> 18ea43fb4df2f8dcb9137965282408b09e47097e
+>>>>>>> 26afdb0dec9bcd47ab4befe73703d332f6b04825
     </task>
     <servers />
   </component>

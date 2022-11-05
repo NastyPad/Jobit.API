@@ -18,6 +18,7 @@ public class AppDatabaseContext : DbContext
     public DbSet<Project> Projects { get; set; }
     public DbSet<JobRequest> JobRequests { get; set; }
     public DbSet<Notification> Notifications { get; set; }
+    public DbSet<TechSkill> TechSkills { get; set; }
 
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)

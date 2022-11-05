@@ -15,27 +15,27 @@ public class CompanyRepository : BaseRepository, ICompanyRepository
 
     public async Task<IEnumerable<Company>> ListCompaniesAsync()
     {
-        return await databaseContext.Companies.ToListAsync();
+        return await _databaseContext.Companies.ToListAsync();
     }
 
     public async Task AddCompanyAsync(Company company)
     {
-        await databaseContext.Companies.AddAsync(company);
+        await _databaseContext.Companies.AddAsync(company);
     }
 
     public async Task<Company> FindCompanyByCompanyIdAsync(int companyId)
     {
-        return await databaseContext.Companies.FindAsync(companyId);
+        return await _databaseContext.Companies.FindAsync(companyId);
     }
 
     public void DeleteCompanyAsync(Company company)
     {
-        databaseContext.Companies.Remove(company);
+        _databaseContext.Companies.Remove(company);
     }
 
     public void UpdateCompanyAsync(Company company)
     {
-        databaseContext.Companies.Update(company);
+        _databaseContext.Companies.Update(company);
     }
     
 }

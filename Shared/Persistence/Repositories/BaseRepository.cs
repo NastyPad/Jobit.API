@@ -4,10 +4,10 @@ namespace Jobit.API.Shared.Persistence.Repositories;
 
 public class BaseRepository
 {
-    protected readonly AppDatabaseContext databaseContext;
+    protected readonly AppDatabaseContext _databaseContext;
 
     public BaseRepository(AppDatabaseContext databaseContext)
     {
-        this.databaseContext = databaseContext;
+        databaseContext = databaseContext;
     }
 }

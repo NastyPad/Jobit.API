@@ -14,26 +14,26 @@ public class JobRequestRepository : BaseRepository, IJobRequestRepository
 
     public async Task<IEnumerable<JobRequest>> ListJobRequestAsync()
     {
-        return await databaseContext.JobRequests.ToListAsync();
+        return await _databaseContext.JobRequests.ToListAsync();
     }
 
     public async Task<JobRequest> FindJobRequestByRequestIdAsync(long requestId)
     {
-        return await databaseContext.JobRequests.FindAsync(requestId);
+        return await _databaseContext.JobRequests.FindAsync(requestId);
     }
 
     public async Task AddJobRequestAsync(JobRequest jobRequest)
     {
-        await databaseContext.JobRequests.AddAsync(jobRequest);
+        await _databaseContext.JobRequests.AddAsync(jobRequest);
     }
 
     public void UpdateJobRequest(JobRequest jobRequest)
     {
-        databaseContext.JobRequests.Update(jobRequest);
+        _databaseContext.JobRequests.Update(jobRequest);
     }
 
     public void DeleteJobRequest(JobRequest jobRequest)
     {
-        databaseContext.JobRequests.Remove(jobRequest);
+        _databaseContext.JobRequests.Remove(jobRequest);
     }
 }

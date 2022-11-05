@@ -15,16 +15,16 @@ public class UserRespository : BaseRepository, IUserRepository
 
     public async Task<IEnumerable<User>> ListUsersAsync()
     {
-        return await databaseContext.Users.ToListAsync();
+        return await _databaseContext.Users.ToListAsync();
     }
 
     public async Task AddAsync(User user)
     {
-        await databaseContext.Users.AddAsync(user);
+        await _databaseContext.Users.AddAsync(user);
     }
 
     public async Task<User> FindByUserIdAsync(long userId)
     {
-        return await databaseContext.Users.FindAsync(userId);
+        return await _databaseContext.Users.FindAsync(userId);
     }
 }
