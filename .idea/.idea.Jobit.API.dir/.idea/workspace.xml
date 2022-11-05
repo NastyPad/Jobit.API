@@ -9,21 +9,26 @@
     <list default="true" id="b90fa917-02c1-4760-94fc-22cf39476b8a" name="Changes" comment="" />
 =======
     <list default="true" id="b90fa917-02c1-4760-94fc-22cf39476b8a" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/Jobit/Domain/Models/TechSkill.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Jobit/Domain/Models/UserProfile.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Jobit.API.dir/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Jobit.API.dir/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Security/Domain/Models/User.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Security/Domain/Models/User.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Shared/Persistence/Context/AppDatabaseContext.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Shared/Persistence/Context/AppDatabaseContext.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/obj/Debug/net6.0/Jobit.API.AssemblyInfo.cs" beforeDir="false" afterPath="$PROJECT_DIR$/obj/Debug/net6.0/Jobit.API.AssemblyInfo.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/obj/Debug/net6.0/Jobit.API.GeneratedMSBuildEditorConfig.editorconfig" beforeDir="false" afterPath="$PROJECT_DIR$/obj/Debug/net6.0/Jobit.API.GeneratedMSBuildEditorConfig.editorconfig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/obj/Debug/net6.0/Jobit.API.assets.cache" beforeDir="false" afterPath="$PROJECT_DIR$/obj/Debug/net6.0/Jobit.API.assets.cache" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/obj/Debug/net6.0/Jobit.API.csproj.AssemblyReference.cache" beforeDir="false" afterPath="$PROJECT_DIR$/obj/Debug/net6.0/Jobit.API.csproj.AssemblyReference.cache" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/Debug/net6.0/Jobit.API.dll" beforeDir="false" afterPath="$PROJECT_DIR$/bin/Debug/net6.0/Jobit.API.dll" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/Debug/net6.0/Jobit.API.pdb" beforeDir="false" afterPath="$PROJECT_DIR$/bin/Debug/net6.0/Jobit.API.pdb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/jobit.db-shm" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/jobit.db-wal" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/obj/Debug/net6.0/Jobit.API.MvcApplicationPartsAssemblyInfo.cs" beforeDir="false" afterPath="$PROJECT_DIR$/obj/Debug/net6.0/Jobit.API.MvcApplicationPartsAssemblyInfo.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/obj/Debug/net6.0/Jobit.API.csproj.CoreCompileInputs.cache" beforeDir="false" afterPath="$PROJECT_DIR$/obj/Debug/net6.0/Jobit.API.csproj.CoreCompileInputs.cache" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/obj/Debug/net6.0/Jobit.API.csproj.FileListAbsolute.txt" beforeDir="false" afterPath="$PROJECT_DIR$/obj/Debug/net6.0/Jobit.API.csproj.FileListAbsolute.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/obj/Debug/net6.0/Jobit.API.dll" beforeDir="false" afterPath="$PROJECT_DIR$/obj/Debug/net6.0/Jobit.API.dll" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/obj/Debug/net6.0/Jobit.API.genruntimeconfig.cache" beforeDir="false" afterPath="$PROJECT_DIR$/obj/Debug/net6.0/Jobit.API.genruntimeconfig.cache" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/obj/Debug/net6.0/Jobit.API.pdb" beforeDir="false" afterPath="$PROJECT_DIR$/obj/Debug/net6.0/Jobit.API.pdb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/obj/Debug/net6.0/ref/Jobit.API.dll" beforeDir="false" afterPath="$PROJECT_DIR$/obj/Debug/net6.0/ref/Jobit.API.dll" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/obj/Debug/net6.0/refint/Jobit.API.dll" beforeDir="false" afterPath="$PROJECT_DIR$/obj/Debug/net6.0/refint/Jobit.API.dll" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/obj/Jobit.API.csproj.nuget.dgspec.json" beforeDir="false" afterPath="$PROJECT_DIR$/obj/Jobit.API.csproj.nuget.dgspec.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/obj/Jobit.API.csproj.nuget.g.props" beforeDir="false" afterPath="$PROJECT_DIR$/obj/Jobit.API.csproj.nuget.g.props" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/obj/project.assets.json" beforeDir="false" afterPath="$PROJECT_DIR$/obj/project.assets.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/obj/project.nuget.cache" beforeDir="false" afterPath="$PROJECT_DIR$/obj/project.nuget.cache" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/obj/project.packagespec.json" beforeDir="false" afterPath="$PROJECT_DIR$/obj/project.packagespec.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/obj/rider.project.restore.info" beforeDir="false" afterPath="$PROJECT_DIR$/obj/rider.project.restore.info" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/obj/staticwebassets.pack.sentinel" beforeDir="false" afterPath="$PROJECT_DIR$/obj/staticwebassets.pack.sentinel" afterDir="false" />
     </list>
 >>>>>>> 18ea43fb4df2f8dcb9137965282408b09e47097e
     <option name="SHOW_DIALOG" value="false" />
@@ -103,8 +108,14 @@
       <workItem from="1667456770899" duration="2861000" />
 =======
       <workItem from="1667456770899" duration="2714000" />
+<<<<<<< HEAD
+      <workItem from="1667507178282" duration="5555000" />
+      <workItem from="1667577422880" duration="2226000" />
+      <workItem from="1667602631577" duration="622000" />
+=======
       <workItem from="1667507178282" duration="5437000" />
 >>>>>>> 18ea43fb4df2f8dcb9137965282408b09e47097e
+>>>>>>> 26afdb0dec9bcd47ab4befe73703d332f6b04825
     </task>
     <servers />
   </component>
