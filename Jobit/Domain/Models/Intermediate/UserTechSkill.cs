@@ -11,6 +11,7 @@ public class UserTechSkill
     // Relationships - Objects
     public TechSkill TechSkill;
     public User User;
+    public UserProfile UserProfile;
     
     public bool MoreThanAYear { get; set; }
     public int ExperienceYears { get; set; }

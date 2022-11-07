@@ -25,7 +25,7 @@ public class ProjectService: IProjectService
     {
         var projects = await _projectRepository.ListProjectsAsync();
         projects.ToList()
-            .ForEach(project => project.User = _userRepository.FindByUserIdAsync(project.UserId).Result);
+            .ForEach(project => project.User = _userRepository.FindUserByUserIdAsync(project.UserId).Result);
         
         return projects.AsEnumerable();
     }

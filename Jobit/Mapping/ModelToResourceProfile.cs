@@ -1,5 +1,6 @@
 using AutoMapper;
 using Jobit.API.Jobit.Domain.Models;
+using Jobit.API.Jobit.Domain.Models.Intermediate;
 using Jobit.API.Jobit.Resources;
 using Microsoft.EntityFrameworkCore;
 
@@ -15,5 +16,7 @@ public class ModelToResourceProfile : Profile
         CreateMap<JobRequest, JobRequestResource>();
         CreateMap<Notification, NotificationResource>();
         CreateMap<TechSkill, TechSkillResource>();
+        CreateMap<UserProfile, UserProfileResource>();
+        CreateMap<UserTechSkill, UserTechSkillResource>();
     }
 }

@@ -31,7 +31,7 @@ public class JobRequestService : IJobRequestService
         jobRequests.ToList().ForEach(jobRequest =>
         {
             jobRequest.Job = _jobRepository.FindByJobIdAsync(jobRequest.JobId).Result;
-            jobRequest.User = _userRepository.FindByUserIdAsync(jobRequest.UserId).Result;
+            jobRequest.User = _userRepository.FindUserByUserIdAsync(jobRequest.UserId).Result;
         });
         return jobRequests.AsEnumerable();
     }

@@ -1,9 +1,11 @@
 using AutoMapper;
 using Jobit.API.Security.Domain.Models;
 using Jobit.API.Security.Domain.Services;
+using Jobit.API.Security.Domain.Services.Communication;
 using Jobit.API.Security.Resources;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Swashbuckle.AspNetCore.Annotations;
 
 namespace Jobit.API.Security.Controllers;
 
@@ -32,11 +34,19 @@ public class UsersController : ControllerBase
    
    [AllowAnonymous]
    [HttpGet("{id}")]
-   public async Task<IActionResult> GetUserById(int id)
+   public async Task<IActionResult> GetUserByIdAsync(int id)
    {
       var user = await _userService.GetByUserIdAsync(id);
       var resource = _mapper.Map<User, UserResource>(user);
 
       return Ok(resource);
+   }
+
+   [AllowAnonymous]
+   [HttpPost]
+   public async Task<IActionResult> RegisterUserAsync([FromBody, SwaggerRequestBody("User to register")] RegisterUserRequest registerUserRequest)
+   {
+      await _userService.RegisterUserAsync(registerUserRequest);
+      return Ok(new { message = "Registration successful" });
    }
 }

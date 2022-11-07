@@ -7,5 +7,5 @@ public interface IUserRepository
 {
     Task<IEnumerable<User>> ListUsersAsync();
     Task AddAsync(User user);
-    Task<User> FindByUserIdAsync(long userId);
+    Task<User> FindUserByUserIdAsync(long userId);
 }

@@ -30,7 +30,7 @@ public class TechSkillController: ControllerBase
         var mappedTechSkills = _mapper.Map<IEnumerable<TechSkill>, IEnumerable<TechSkillResource>>(techSKills);
         return mappedTechSkills;
     }
-
+    
     
     
 }

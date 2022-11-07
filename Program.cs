@@ -82,6 +82,14 @@ builder.Services.AddScoped<INotificationService, NotificationService>();
 //TechSkills
 builder.Services.AddScoped<ITechSkillRepository, TechSkillRepository>();
 builder.Services.AddScoped<ITechSkillService, TechSkillService>();
+//UserProfiles
+builder.Services.AddScoped<IUserProfileRepository, UserProfileRepository>();
+builder.Services.AddScoped<IUserProfileService, UserProfileService>();
+//UserTechSkills
+builder.Services.AddScoped<IUserTechSkillRepository, UserTechSkillRepository>();
+//builder.Services.AddScoped<IUserTechSkillService, UserTechSkillService>();
+
+
 
 //Security Injection Configuration
 builder.Services.AddScoped<IUserRepository, UserRespository>();

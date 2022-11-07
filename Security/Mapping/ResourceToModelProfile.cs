@@ -1,5 +1,6 @@
 using AutoMapper;
 using Jobit.API.Security.Domain.Models;
+using Jobit.API.Security.Domain.Services.Communication;
 using Jobit.API.Security.Resources;
 
 namespace Jobit.API.Security.Mapping;
@@ -10,5 +11,6 @@ public class ResourceToModelProfile : Profile
     {
         CreateMap<UserResource, User>();
         CreateMap<CompanyResource, Company>();
+        CreateMap<RegisterUserRequest, User>();
     }
 }

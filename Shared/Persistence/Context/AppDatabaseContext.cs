@@ -20,6 +20,9 @@ public class AppDatabaseContext : DbContext
     public DbSet<JobRequest> JobRequests { get; set; }
     public DbSet<Notification> Notifications { get; set; }
     public DbSet<TechSkill> TechSkills { get; set; }
+    public DbSet<UserProfile> UserProfiles { get; set; }
+    public DbSet<UserTechSkill> UserTechSkills { get; set; }    
+
 
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -50,7 +53,6 @@ public class AppDatabaseContext : DbContext
         modelBuilder.Entity<User>().Property(p => p.Firstname).IsRequired().HasMaxLength(40);
         modelBuilder.Entity<User>().Property(p => p.Lastname).IsRequired().HasMaxLength(40);
         modelBuilder.Entity<User>().Property(p => p.Password).IsRequired().HasMaxLength(200);
-        modelBuilder.Entity<User>().Property(p => p.ProfilePhotoUrl).IsRequired().HasMaxLength(200);
         modelBuilder.Entity<User>().Property(p => p.Email).IsRequired().HasMaxLength(200);
         modelBuilder.Entity<User>()
             .HasMany(p => p.Projects)
@@ -68,11 +70,17 @@ public class AppDatabaseContext : DbContext
             .HasMany(p => p.JobRequests)
             .WithOne(p => p.User)
             .HasForeignKey(p => p.UserId);
-        // builder.Entity<User>().Property(p => p.Birthday).IsRequired();
         modelBuilder.Entity<User>()
             .HasOne(p => p.UserProfile)
             .WithOne(p => p.User)
             .HasForeignKey<UserProfile>(p => p.UserId);
+        modelBuilder.Entity<User>()
+            .HasMany(p => p.TechSkills)
+            .WithMany(p => p.Users)
+            .UsingEntity("UserTechSkills");
+        modelBuilder.Entity<User>()
+            .HasMany(p => p.UserTechSkills)
+            .WithOne(p => p.User);
 
         //PostTypes
         modelBuilder.Entity<PostType>().ToTable("PostTypes");
@@ -140,28 +148,40 @@ public class AppDatabaseContext : DbContext
         //UserProfile
         modelBuilder.Entity<UserProfile>().ToTable("UserProfiles");
         modelBuilder.Entity<UserProfile>().HasKey(p => p.UserId);
-        modelBuilder.Entity<UserProfile>().Property(p => p.UserId);
-        modelBuilder.Entity<UserProfile>().Property(p => p.Description);
-        modelBuilder.Entity<UserProfile>().Property(p => p.IsPrivate);
-
+        modelBuilder.Entity<UserProfile>().Property(p => p.UserId).IsRequired();
+        modelBuilder.Entity<UserProfile>().Property(p => p.Description).IsRequired().HasMaxLength(500);
+        modelBuilder.Entity<UserProfile>().Property(p => p.IsPrivate).IsRequired();
+        modelBuilder.Entity<UserProfile>().Property(p => p.ProfilePhotoUrl).IsRequired();
+        modelBuilder.Entity<UserProfile>()
+            .HasMany(p => p.UserTechSkills)
+            .WithOne(p => p.UserProfile);
+        
+        
         //TechSkills
         modelBuilder.Entity<TechSkill>().ToTable("TechSkills");
         modelBuilder.Entity<TechSkill>().HasKey(p => p.TechSkillId);
         modelBuilder.Entity<TechSkill>().Property(p => p.TechSkillId);
-        modelBuilder.Entity<TechSkill>().Property(p => p.TechName);
-        modelBuilder.Entity<TechSkill>() //Many to many! Code first
-            .HasMany(p => p.Users)
-            .WithMany(p => p.TechSkills)
-            .UsingEntity(builder => builder.ToTable("TechPerUser"));
+        modelBuilder.Entity<TechSkill>().Property(p => p.TechName); //Many to many! Code first
 
         //Intermediate Tables
         modelBuilder.Entity<UserTechSkill>().ToTable("UserTechSkill");
-        modelBuilder.Entity<UserTechSkill>().HasKey(p => p.UserId);
+        modelBuilder.Entity<UserTechSkill>().HasKey(p => p.UserId );
         modelBuilder.Entity<UserTechSkill>().Property(p => p.UserId);
         modelBuilder.Entity<UserTechSkill>().Property(p => p.TechSkillId);
         modelBuilder.Entity<UserTechSkill>().Property(p => p.ExperienceYears);
         modelBuilder.Entity<UserTechSkill>().Property(p => p.MoreThanAYear);
+        //Here is many to many for User - TechSkills with additional columns.
+        modelBuilder.Entity<UserTechSkill>()
+            .HasOne(p => p.User)
+            .WithMany(p => p.UserTechSkills)
+            .HasForeignKey(p => p.UserId);
+        modelBuilder.Entity<UserTechSkill>()
+            .HasOne(p => p.TechSkill)
+            .WithMany(p => p.UserTechSkills)
+            .HasForeignKey(p => p.TechSkillId);
+
 
         modelBuilder.UseSnakeCase();
     }
+    
 }

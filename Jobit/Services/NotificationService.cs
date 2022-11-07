@@ -30,7 +30,7 @@ public class NotificationService: INotificationService
         listNotificationAsync.ForEach(
             notification =>
             { 
-                notification.User = _userRepository.FindByUserIdAsync(notification.UserId).Result;
+                notification.User = _userRepository.FindUserByUserIdAsync(notification.UserId).Result;
             });
         
         return listNotificationAsync;

@@ -23,8 +23,9 @@ public class UserRespository : BaseRepository, IUserRepository
         await _databaseContext.Users.AddAsync(user);
     }
 
-    public async Task<User> FindByUserIdAsync(long userId)
+    public async Task<User> FindUserByUserIdAsync(long userId)
     {
         return await _databaseContext.Users.FindAsync(userId);
     }
+    
 }

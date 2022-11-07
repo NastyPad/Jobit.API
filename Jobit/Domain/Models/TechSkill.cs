@@ -1,3 +1,4 @@
+using Jobit.API.Jobit.Domain.Models.Intermediate;
 using Jobit.API.Security.Domain.Models;
 
 namespace Jobit.API.Jobit.Domain.Models;
@@ -8,6 +9,7 @@ public class TechSkill
     public String? TechName { get; set; }
     public String? PhotoUrl { get; set; }
     public IList<User> Users { get; set; }
+    public IList<UserTechSkill> UserTechSkills { get; set; }
 
     public void SetTechSkill(TechSkill techSkill)
     {
