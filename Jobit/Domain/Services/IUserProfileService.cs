@@ -7,6 +7,7 @@ public interface IUserProfileService
 {
     Task<IEnumerable<UserProfile>> ListUserProfilesAsync();
     Task<UserProfileResponse> FindUserProfileByUserIdAsync(long userId);
+    Task SetUserProfileObjects(UserProfile toSetUserProfile);
     Task<UserProfileResponse> AddUserProfileAsync(UserProfile newUserProfile);
     Task<UserProfileResponse> UpdatedUserProfileAsync(long userId, UserProfile updateUserProfile);
     Task<UserProfileResponse> DeleteUserProfileAsync(long userId);

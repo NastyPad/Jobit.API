@@ -12,7 +12,8 @@ public class UserProfile
     public String? Description { get; set; }
     public bool IsPrivate { get; set; }
     public String? ProfilePhotoUrl { get; set; }
-    public IList<UserTechSkill> UserTechSkills { get; set; }
+    public IList<UserProfileTechSkill> UserProfileTechSkills { get; set; }
+    //public IList<TechSkill> TechSkills { get; set; }
 
 
     //Relationships - Foreignkey

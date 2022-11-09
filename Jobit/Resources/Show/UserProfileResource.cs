@@ -10,5 +10,5 @@ public class UserProfileResource
     public bool IsPrivate { get; set; }
     public String? Description { get; set; }
     public String? ProfilePhotoUrl { get; set; }
-    public IList<UserTechSkillResource> UserTechSkills { get; set; }
+    public IList<UserProfileTechSkillResource> UserProfileTechSkills { get; set; }
 }

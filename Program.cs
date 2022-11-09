@@ -86,7 +86,7 @@ builder.Services.AddScoped<ITechSkillService, TechSkillService>();
 builder.Services.AddScoped<IUserProfileRepository, UserProfileRepository>();
 builder.Services.AddScoped<IUserProfileService, UserProfileService>();
 //UserTechSkills
-builder.Services.AddScoped<IUserTechSkillRepository, UserTechSkillRepository>();
+builder.Services.AddScoped<IUserProfileTechSkillRepository, UserProfileTechSkillRepository>();
 //builder.Services.AddScoped<IUserTechSkillService, UserTechSkillService>();
 
 

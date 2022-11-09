@@ -21,7 +21,7 @@ public class AppDatabaseContext : DbContext
     public DbSet<Notification> Notifications { get; set; }
     public DbSet<TechSkill> TechSkills { get; set; }
     public DbSet<UserProfile> UserProfiles { get; set; }
-    public DbSet<UserTechSkill> UserTechSkills { get; set; }    
+    public DbSet<UserProfileTechSkill> UserTechSkills { get; set; }    
 
 
 
@@ -74,13 +74,6 @@ public class AppDatabaseContext : DbContext
             .HasOne(p => p.UserProfile)
             .WithOne(p => p.User)
             .HasForeignKey<UserProfile>(p => p.UserId);
-        modelBuilder.Entity<User>()
-            .HasMany(p => p.TechSkills)
-            .WithMany(p => p.Users)
-            .UsingEntity("UserTechSkills");
-        modelBuilder.Entity<User>()
-            .HasMany(p => p.UserTechSkills)
-            .WithOne(p => p.User);
 
         //PostTypes
         modelBuilder.Entity<PostType>().ToTable("PostTypes");
@@ -153,10 +146,9 @@ public class AppDatabaseContext : DbContext
         modelBuilder.Entity<UserProfile>().Property(p => p.IsPrivate).IsRequired();
         modelBuilder.Entity<UserProfile>().Property(p => p.ProfilePhotoUrl).IsRequired();
         modelBuilder.Entity<UserProfile>()
-            .HasMany(p => p.UserTechSkills)
+            .HasMany(p => p.UserProfileTechSkills)
             .WithOne(p => p.UserProfile);
-        
-        
+
         //TechSkills
         modelBuilder.Entity<TechSkill>().ToTable("TechSkills");
         modelBuilder.Entity<TechSkill>().HasKey(p => p.TechSkillId);
@@ -164,20 +156,20 @@ public class AppDatabaseContext : DbContext
         modelBuilder.Entity<TechSkill>().Property(p => p.TechName); //Many to many! Code first
 
         //Intermediate Tables
-        modelBuilder.Entity<UserTechSkill>().ToTable("UserTechSkill");
-        modelBuilder.Entity<UserTechSkill>().HasKey(p => p.UserId );
-        modelBuilder.Entity<UserTechSkill>().Property(p => p.UserId);
-        modelBuilder.Entity<UserTechSkill>().Property(p => p.TechSkillId);
-        modelBuilder.Entity<UserTechSkill>().Property(p => p.ExperienceYears);
-        modelBuilder.Entity<UserTechSkill>().Property(p => p.MoreThanAYear);
+        modelBuilder.Entity<UserProfileTechSkill>().ToTable("UserProfileTechSkills");
+        modelBuilder.Entity<UserProfileTechSkill>().HasKey(p => new { p.UserId, p.TechSkillId});
+        modelBuilder.Entity<UserProfileTechSkill>().Property(p => p.UserId);
+        modelBuilder.Entity<UserProfileTechSkill>().Property(p => p.TechSkillId);
+        modelBuilder.Entity<UserProfileTechSkill>().Property(p => p.ExperienceYears);
+        modelBuilder.Entity<UserProfileTechSkill>().Property(p => p.MoreThanAYear);
         //Here is many to many for User - TechSkills with additional columns.
-        modelBuilder.Entity<UserTechSkill>()
-            .HasOne(p => p.User)
-            .WithMany(p => p.UserTechSkills)
+        modelBuilder.Entity<UserProfileTechSkill>()
+            .HasOne(p => p.UserProfile)
+            .WithMany(p => p.UserProfileTechSkills)
             .HasForeignKey(p => p.UserId);
-        modelBuilder.Entity<UserTechSkill>()
+        modelBuilder.Entity<UserProfileTechSkill>()
             .HasOne(p => p.TechSkill)
-            .WithMany(p => p.UserTechSkills)
+            .WithMany(p => p.UserProfileTechSkills)
             .HasForeignKey(p => p.TechSkillId);
 
 

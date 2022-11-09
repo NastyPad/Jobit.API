@@ -2,27 +2,28 @@ using Jobit.API.Jobit.Domain.Models;
 using Jobit.API.Jobit.Domain.Repositories;
 using Jobit.API.Jobit.Domain.Services;
 using Jobit.API.Jobit.Domain.Services.Communication;
-using Jobit.API.Security.Domain.Models;
 using Jobit.API.Security.Domain.Repositories;
-using Jobit.API.Security.Domain.Services;
-using Jobit.API.Security.Domain.Services.Communication;
 using Jobit.API.Shared.Domain.Repositories;
 
 namespace Jobit.API.Jobit.Services;
 
-public class UserProfileService: IUserProfileService
+public class UserProfileService : IUserProfileService
 {
-    private readonly IUserTechSkillRepository _userTechSkillRepository;
+    private readonly IUserProfileTechSkillRepository _userProfileTechSkillRepository;
     private readonly IUserProfileRepository _userProfileRepository;
+    private readonly ITechSkillRepository _techSkillRepository;
     private readonly IUserRepository _userRepository;
     private readonly IUnitOfWork _unitOfWork;
 
-    public UserProfileService(IUserProfileRepository userProfileRepository, IUserRepository userRepository, IUserTechSkillRepository userTechSkillRepository, IUnitOfWork unitOfWork)
+    public UserProfileService(IUserProfileRepository userProfileRepository, ITechSkillRepository techSkillRepository,
+        IUserRepository userRepository, IUserProfileTechSkillRepository userProfileTechSkillRepository,
+        IUnitOfWork unitOfWork)
     {
+        _techSkillRepository = techSkillRepository;
         _userRepository = userRepository;
         _userProfileRepository = userProfileRepository;
         _unitOfWork = unitOfWork;
-        _userTechSkillRepository = userTechSkillRepository;
+        _userProfileTechSkillRepository = userProfileTechSkillRepository;
     }
 
 
@@ -32,10 +33,10 @@ public class UserProfileService: IUserProfileService
         userProfiles.ToList().ForEach(
             (userProfile) =>
             {
-                userProfile.UserTechSkills = _userTechSkillRepository.ListUserTechSkillByUserIdAsync(userProfile.UserId).Result.ToList();
+                SetUserProfileObjects(userProfile);
             }
         );
-        
+
         return userProfiles.AsEnumerable();
     }
 
@@ -46,12 +47,28 @@ public class UserProfileService: IUserProfileService
             return new UserProfileResponse("Not found");
         try
         {
+            await SetUserProfileObjects(existingUserProfile);
+            
             return new UserProfileResponse(existingUserProfile);
         }
         catch (Exception exception)
         {
             return new UserProfileResponse($"An error has ocurred:{exception.Message}");
         }
+    }
+
+    public Task SetUserProfileObjects(UserProfile toSetUserProfile)
+    {
+        toSetUserProfile.UserProfileTechSkills = _userProfileTechSkillRepository
+            .ListUserProfileTechSkillByUserIdAsync(toSetUserProfile.UserId).Result.ToList();
+        toSetUserProfile.UserProfileTechSkills.ToList().ForEach(
+            (userProfileTechSkill) =>
+            {
+                userProfileTechSkill.TechSkill = _techSkillRepository
+                    .FindTechSkillByTechSkillIdAsync(userProfileTechSkill.TechSkillId).Result;
+            }
+        );
+        return Task.CompletedTask;
     }
 
     public async Task<UserProfileResponse> AddUserProfileAsync(UserProfile newUserProfile)

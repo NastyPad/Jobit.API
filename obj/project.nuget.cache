@@ -1,10 +1,6 @@
 {
   "version": 2,
-<<<<<<< HEAD
   "dgSpecHash": "bsEF5A0bY4cHXbLEhGtAMm8lRJM/vtDDmTioKC6Kt8nSrIKxgwERgXzdDMMsi8vw8TMUQpfw/vLugHe//2Rxhw==",
-=======
-  "dgSpecHash": "lKBoqSS2mAomdE359O7muDcTmQBcsQ7fohkEX5z0PhMARwLlhi3acc7ZYWOdHfu95IzZkmckCHk+DTuMLcqpxA==",
->>>>>>> 392995a07da56dbd610e4da1e4e3ad0b6c786313
   "success": true,
   "projectFilePath": "D:\\Github\\Own\\.NET\\Jobit.API\\Jobit.API.csproj",
   "expectedPackageFiles": [
@@ -90,5 +86,12 @@
     "C:\\Users\\Leonardo-Workstation\\.nuget\\packages\\system.threading.tasks\\4.3.0\\system.threading.tasks.4.3.0.nupkg.sha512",
     "C:\\Users\\Leonardo-Workstation\\.nuget\\packages\\system.windows.extensions\\4.7.0\\system.windows.extensions.4.7.0.nupkg.sha512"
   ],
-  "logs": []
+  "logs": [
+    {
+      "code": "Undefined",
+      "level": "Warning",
+      "warningLevel": 1,
+      "message": "Problem reading the cache file D:\\Github\\Own\\.NET\\Jobit.API\\obj\\project.nuget.cache : Invalid property identifier character: <. Path 'version', line 3, position 0."
+    }
+  ]
 }

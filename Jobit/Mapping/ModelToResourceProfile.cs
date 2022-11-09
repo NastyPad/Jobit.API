@@ -17,6 +17,6 @@ public class ModelToResourceProfile : Profile
         CreateMap<Notification, NotificationResource>();
         CreateMap<TechSkill, TechSkillResource>();
         CreateMap<UserProfile, UserProfileResource>();
-        CreateMap<UserTechSkill, UserTechSkillResource>();
+        CreateMap<UserProfileTechSkill, UserProfileTechSkillResource>();
     }
 }

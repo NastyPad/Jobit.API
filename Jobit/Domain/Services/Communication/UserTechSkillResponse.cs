@@ -3,13 +3,14 @@ using Jobit.API.Shared.Domain.Services.Communication;
 
 namespace Jobit.API.Jobit.Domain.Services.Communication;
 
-public class UserTechSkillResponse : BaseResponse<UserTechSkill>
+public class UserProfileTechSkillResponse : BaseResponse<UserProfileTechSkill>
 {
-    protected UserTechSkillResponse(UserTechSkill resource) : base(resource)
+    public UserProfileTechSkillResponse(UserProfileTechSkill resource) : base(resource)
     {
     }
 
-    protected UserTechSkillResponse(string message) : base(message)
+    public UserProfileTechSkillResponse(string message) : base(message)
     {
     }
+    
 }

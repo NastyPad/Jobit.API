@@ -17,7 +17,7 @@ public class TechSkillRepository: BaseRepository, ITechSkillRepository
         return await _databaseContext.TechSkills.ToListAsync();
     }
 
-    public async Task<TechSkill?> FindTechSkillByTechSkillIdAsync(long techSkillId)
+    public async Task<TechSkill> FindTechSkillByTechSkillIdAsync(long techSkillId)
     {
         return await _databaseContext.TechSkills.FindAsync(techSkillId);
     }
