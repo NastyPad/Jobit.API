@@ -89,6 +89,10 @@ builder.Services.AddScoped<IUserProfileService, UserProfileService>();
 builder.Services.AddScoped<IUserProfileTechSkillRepository, UserProfileTechSkillRepository>();
 //builder.Services.AddScoped<IUserTechSkillService, UserTechSkillService>();
 
+//Educations
+builder.Services.AddScoped<IEducationRepository, EducationRepository>();
+builder.Services.AddScoped<IEducationService, EducationService>();
+
 
 
 //Security Injection Configuration

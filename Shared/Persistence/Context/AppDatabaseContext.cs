@@ -21,7 +21,8 @@ public class AppDatabaseContext : DbContext
     public DbSet<Notification> Notifications { get; set; }
     public DbSet<TechSkill> TechSkills { get; set; }
     public DbSet<UserProfile> UserProfiles { get; set; }
-    public DbSet<UserProfileTechSkill> UserTechSkills { get; set; }    
+    public DbSet<UserProfileTechSkill> UserTechSkills { get; set; }
+    public DbSet<Education> Educations { get; set; }
 
 
 
@@ -171,7 +172,13 @@ public class AppDatabaseContext : DbContext
             .HasOne(p => p.TechSkill)
             .WithMany(p => p.UserProfileTechSkills)
             .HasForeignKey(p => p.TechSkillId);
-
+        
+        //Educations
+        modelBuilder.Entity<Education>().ToTable("Education");
+        modelBuilder.Entity<Education>().HasKey(p => p.EducationId);
+        modelBuilder.Entity<Education>().Property(p => p.EducationId).IsRequired().ValueGeneratedOnAdd();
+        modelBuilder.Entity<Education>().Property(p => p.EducationName);
+        modelBuilder.Entity<Education>().Property(p => p.PhotoUrl);
 
         modelBuilder.UseSnakeCase();
     }
