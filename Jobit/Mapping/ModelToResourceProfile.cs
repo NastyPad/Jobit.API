@@ -19,5 +19,6 @@ public class ModelToResourceProfile : Profile
         CreateMap<UserProfile, UserProfileResource>();
         CreateMap<UserProfileTechSkill, UserProfileTechSkillResource>();
         CreateMap<Education, EducationResource>();
+        CreateMap<UserProfileEducation, UserProfileEducationResource>();
     }
 }

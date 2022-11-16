@@ -62,4 +62,13 @@ public class EducationController: ControllerBase
         return Ok(newEducationResponse);
     }
 
+    [HttpDelete("{educationId}")]
+    public async Task<IActionResult> DeleteEducation(long educationId)
+    {
+        var result = await _educationService.DeleteEducationAsync(educationId);
+        if (!result.Success)
+            return BadRequest(result.Message);
+        return Ok(new {message = "Successfully deleted element."});
+    }
+
 }

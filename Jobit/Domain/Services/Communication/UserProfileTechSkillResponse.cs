@@ -3,7 +3,7 @@ using Jobit.API.Shared.Domain.Services.Communication;
 
 namespace Jobit.API.Jobit.Domain.Services.Communication;
 
-public class UserProfileTechSkillResponse : BaseResponse<UserProfileTechSkill>
+public class UserProfileTechSkillResponse: BaseResponse<UserProfileTechSkill>
 {
     public UserProfileTechSkillResponse(UserProfileTechSkill resource) : base(resource)
     {
@@ -12,5 +12,4 @@ public class UserProfileTechSkillResponse : BaseResponse<UserProfileTechSkill>
     public UserProfileTechSkillResponse(string message) : base(message)
     {
     }
-    
 }

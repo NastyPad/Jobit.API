@@ -14,31 +14,31 @@ public class UserProfileTechSkillRepository: BaseRepository, IUserProfileTechSki
 
     public async Task<UserProfileTechSkill> FindUserTechSkillByUserIdAndTechSkillIdAsync(long userId, long techSkillId)
     {
-        return await _databaseContext.UserTechSkills.FindAsync(userId, techSkillId);
+        return await _databaseContext.UserProfileTechSkills.FindAsync(userId, techSkillId);
     }
 
     public async Task<IEnumerable<UserProfileTechSkill>> ListUserProfileTechSkillByUserIdAsync(long userId)
     {
-        return await _databaseContext.UserTechSkills.Where(u => u.UserId == userId).ToListAsync();
+        return await _databaseContext.UserProfileTechSkills.Where(u => u.UserId == userId).ToListAsync();
+    }
+    
+    public async Task<IEnumerable<UserProfileTechSkill>> ListUserTechSkillByTechSkillIdAsync(long techSkillId)
+    {
+        return await _databaseContext.UserProfileTechSkills.Where(u => u.TechSkillId == techSkillId).ToListAsync();
     }
 
-    public Task<IEnumerable<UserProfileTechSkill>> ListUserTechSkillByTechSkillIdAsync(long techSkillId)
+    public async Task AddUserProfileTechSkill(UserProfileTechSkill newUserProfileTechSkill)
     {
-        throw new NotImplementedException();
+        await _databaseContext.UserProfileTechSkills.AddAsync(newUserProfileTechSkill);
     }
 
-    public Task AddUserTechSkill(UserProfileTechSkill newUserProfileTechSkill)
+    public void UpdateUserProfileTechSkill(UserProfileTechSkill updatedUserProfileTechSkill)
     {
-        throw new NotImplementedException();
+        _databaseContext.UserProfileTechSkills.Update(updatedUserProfileTechSkill);
     }
 
-    public void UpdateUserTechSkill(UserProfileTechSkill updatedUserProfileTechSkill)
+    public void DeleteUserProfileTechSkill(UserProfileTechSkill toDeleteUserProfileTechSkill)
     {
-        throw new NotImplementedException();
-    }
-
-    public void DeleteUserTechSkill(UserProfileTechSkill toDeleteUserProfileTechSkill)
-    {
-        throw new NotImplementedException();
+        _databaseContext.UserProfileTechSkills.Remove(toDeleteUserProfileTechSkill);
     }
 }

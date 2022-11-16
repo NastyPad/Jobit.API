@@ -18,7 +18,7 @@ public class UserProfileTechSkill
     public Boolean MoreThanAYear { get; set; }
     public int ExperienceYears { get; set; }
 
-    public void SetUserTechSkill(UserProfileTechSkill userProfileTechSkill)
+    public void SetUserProfileTechSkill(UserProfileTechSkill userProfileTechSkill)
     {
         MoreThanAYear = userProfileTechSkill.MoreThanAYear;
         ExperienceYears = userProfileTechSkill.ExperienceYears;

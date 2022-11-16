@@ -1,3 +1,5 @@
+using Jobit.API.Jobit.Domain.Models.Intermediate;
+
 namespace Jobit.API.Jobit.Domain.Models;
 
 public class Education
@@ -6,7 +8,7 @@ public class Education
     public String EducationName { get; set; }
     public String PhotoUrl { get; set; }
     public String AbbreviatedEducationName { get; set; }
-
+    public IList<UserProfileEducation> UserProfileEducations { get; set; }
 
     public void setEducation(Education education)
     {

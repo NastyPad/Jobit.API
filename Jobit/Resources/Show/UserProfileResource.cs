@@ -11,4 +11,5 @@ public class UserProfileResource
     public String? Description { get; set; }
     public String? ProfilePhotoUrl { get; set; }
     public IList<UserProfileTechSkillResource> UserProfileTechSkills { get; set; }
+    public IList<UserProfileEducationResource> UserProfileEducations { get; set; }
 }

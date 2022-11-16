@@ -1,5 +1,6 @@
 using AutoMapper;
 using Jobit.API.Jobit.Domain.Models;
+using Jobit.API.Jobit.Domain.Models.Intermediate;
 using Jobit.API.Jobit.Domain.Services;
 using Jobit.API.Jobit.Resources;
 using Jobit.API.Security.Domain.Repositories;
@@ -39,5 +40,16 @@ public class UserProfileController: ControllerBase
         var userProfile = await _userProfileService.FindUserProfileByUserIdAsync(userId);
         var userProfileMapped = _mapper.Map<UserProfile, UserProfileResource>(userProfile.Resource);
         return Ok(userProfileMapped);
+    }
+
+    [HttpPut("{userId}")]
+    public async Task<IActionResult> PutUserProfile(long userId, [FromBody, SwaggerRequestBody("Updated UserProfile")] UpdatedUserProfileResource updateUserProfile)
+    {
+        var mappedUserProfile = _mapper.Map<UpdatedUserProfileResource, UserProfile>(updateUserProfile);
+        var result = await _userProfileService.UpdatedUserProfileAsync(userId, mappedUserProfile);
+        if (!result.Success)
+            return BadRequest(result.Message);
+        var updatedUserProfileResponse = _mapper.Map<UserProfile, UserProfileResource>(result.Resource);
+        return Ok(updatedUserProfileResponse);
     }
 }

@@ -12,15 +12,17 @@ public class UserProfileService : IUserProfileService
     private readonly IUserProfileTechSkillRepository _userProfileTechSkillRepository;
     private readonly IUserProfileRepository _userProfileRepository;
     private readonly ITechSkillRepository _techSkillRepository;
-    private readonly IUserRepository _userRepository;
+    private readonly IEducationRepository _educationRepository;
+    private readonly IUserProfileEducationRepository _userProfileEducationRepository;
     private readonly IUnitOfWork _unitOfWork;
 
-    public UserProfileService(IUserProfileRepository userProfileRepository, ITechSkillRepository techSkillRepository,
-        IUserRepository userRepository, IUserProfileTechSkillRepository userProfileTechSkillRepository,
+    public UserProfileService(IEducationRepository educationRepository,IUserProfileRepository userProfileRepository, ITechSkillRepository techSkillRepository,
+        IUserProfileEducationRepository userProfileEducationRepository, IUserProfileTechSkillRepository userProfileTechSkillRepository,
         IUnitOfWork unitOfWork)
     {
+        _educationRepository = educationRepository;
         _techSkillRepository = techSkillRepository;
-        _userRepository = userRepository;
+        _userProfileEducationRepository = userProfileEducationRepository;
         _userProfileRepository = userProfileRepository;
         _unitOfWork = unitOfWork;
         _userProfileTechSkillRepository = userProfileTechSkillRepository;
@@ -59,6 +61,7 @@ public class UserProfileService : IUserProfileService
 
     public Task SetUserProfileObjects(UserProfile toSetUserProfile)
     {
+        //Set UserProfileTechSkills
         toSetUserProfile.UserProfileTechSkills = _userProfileTechSkillRepository
             .ListUserProfileTechSkillByUserIdAsync(toSetUserProfile.UserId).Result.ToList();
         toSetUserProfile.UserProfileTechSkills.ToList().ForEach(
@@ -66,6 +69,16 @@ public class UserProfileService : IUserProfileService
             {
                 userProfileTechSkill.TechSkill = _techSkillRepository
                     .FindTechSkillByTechSkillIdAsync(userProfileTechSkill.TechSkillId).Result;
+            }
+        );
+        //Set UserProfileEducations
+        toSetUserProfile.UserProfileEducations = _userProfileEducationRepository
+            .ListUserProfileEducationsByUserIdAsync(toSetUserProfile.UserId).Result.ToList();
+        toSetUserProfile.UserProfileEducations.ToList().ForEach(
+            (userProfileEducation) =>
+            {
+                userProfileEducation.Education = _educationRepository
+                    .FindEducationByInstitutionIdAsync(userProfileEducation.EducationId).Result;
             }
         );
         return Task.CompletedTask;
@@ -87,7 +100,22 @@ public class UserProfileService : IUserProfileService
 
     public async Task<UserProfileResponse> UpdatedUserProfileAsync(long userId, UserProfile updateUserProfile)
     {
-        throw new NotImplementedException();
+        var existingUserProfile = await _userProfileRepository.FindUserProfileByUserIdAsync(userId);
+        if (existingUserProfile == null)
+            return new UserProfileResponse("User does not exist.");
+
+        existingUserProfile.SetUserProfile(updateUserProfile);
+        
+        try
+        {
+            _userProfileRepository.UpdateUserProfile(existingUserProfile);
+            await _unitOfWork.CompleteAsync();
+            return new UserProfileResponse(existingUserProfile);
+        }
+        catch (Exception exception)
+        {
+            return new UserProfileResponse($"An error has ocurred: {exception.Message}");
+        }
     }
 
     public async Task<UserProfileResponse> DeleteUserProfileAsync(long userId)

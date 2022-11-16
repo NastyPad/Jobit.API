@@ -10,18 +10,24 @@ public class UserProfile
     public String? Username { get; set; }
     public String? Gender { get; set; }
     public String? Description { get; set; }
-    public bool IsPrivate { get; set; }
+    public Boolean IsPrivate { get; set; }
     public String? ProfilePhotoUrl { get; set; }
     public IList<UserProfileTechSkill> UserProfileTechSkills { get; set; }
+
+    public IList<UserProfileEducation> UserProfileEducations { get; set; }
     //public IList<TechSkill> TechSkills { get; set; }
 
 
-    //Relationships - Foreignkey
+    //Relationships - Foreignkey and PrimaryKey
     public long UserId { get; set; }
     
     //Relatiionships - Object
     public User User { get; set; }
 
+
+    public UserProfile()
+    {
+    }
 
     public UserProfile(long userId, String description, String profilePhotoUrl, bool isPrivate, String gender)
     {
@@ -48,5 +54,16 @@ public class UserProfile
     {
         Description = "";
         IsPrivate = true;
+    }
+
+    public void SetUserProfile(UserProfile userProfile)
+    {
+        Username = userProfile.Username;
+        Firstname = userProfile.Firstname;
+        Lastname = userProfile.Lastname;
+        ProfilePhotoUrl = userProfile.ProfilePhotoUrl;
+        Description = userProfile.Description;
+        IsPrivate = userProfile.IsPrivate;
+        Gender = userProfile.Gender;
     }
 }

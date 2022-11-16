@@ -1,4 +1,3 @@
-using System.Configuration;
 using System.Text.Json.Serialization;
 using Jobit.API.Jobit.Domain.Repositories;
 using Jobit.API.Jobit.Domain.Services;
@@ -85,13 +84,17 @@ builder.Services.AddScoped<ITechSkillService, TechSkillService>();
 //UserProfiles
 builder.Services.AddScoped<IUserProfileRepository, UserProfileRepository>();
 builder.Services.AddScoped<IUserProfileService, UserProfileService>();
-//UserTechSkills
-builder.Services.AddScoped<IUserProfileTechSkillRepository, UserProfileTechSkillRepository>();
-//builder.Services.AddScoped<IUserTechSkillService, UserTechSkillService>();
-
 //Educations
 builder.Services.AddScoped<IEducationRepository, EducationRepository>();
 builder.Services.AddScoped<IEducationService, EducationService>();
+
+//Intermediate Tables Repositories and Services
+//UserProfileTechSkills
+builder.Services.AddScoped<IUserProfileTechSkillRepository, UserProfileTechSkillRepository>();
+builder.Services.AddScoped<IUserProfileTechSkillService, UserProfileTechSkillService>();
+//UserProfileEducation
+builder.Services.AddScoped<IUserProfileEducationRepository, UserProfileEducationRepository>();
+builder.Services.AddScoped<IUserProfileEducationService, UserProfileEducationService>();
 
 
 

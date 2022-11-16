@@ -21,8 +21,10 @@ public class AppDatabaseContext : DbContext
     public DbSet<Notification> Notifications { get; set; }
     public DbSet<TechSkill> TechSkills { get; set; }
     public DbSet<UserProfile> UserProfiles { get; set; }
-    public DbSet<UserProfileTechSkill> UserTechSkills { get; set; }
+    
     public DbSet<Education> Educations { get; set; }
+    public DbSet<UserProfileTechSkill> UserProfileTechSkills { get; set; }
+    public DbSet<UserProfileEducation> UserProfileEducations { get; set; }
 
 
 
@@ -157,6 +159,7 @@ public class AppDatabaseContext : DbContext
         modelBuilder.Entity<TechSkill>().Property(p => p.TechName); //Many to many! Code first
 
         //Intermediate Tables
+        //UserProfileTechSkills
         modelBuilder.Entity<UserProfileTechSkill>().ToTable("UserProfileTechSkills");
         modelBuilder.Entity<UserProfileTechSkill>().HasKey(p => new { p.UserId, p.TechSkillId});
         modelBuilder.Entity<UserProfileTechSkill>().Property(p => p.UserId);
@@ -173,12 +176,32 @@ public class AppDatabaseContext : DbContext
             .WithMany(p => p.UserProfileTechSkills)
             .HasForeignKey(p => p.TechSkillId);
         
+        //UserProfileEducation
+        modelBuilder.Entity<UserProfileEducation>().ToTable("UserProfileEducations");
+        modelBuilder.Entity<UserProfileEducation>().HasKey(p => p.UserProfileEducationId);
+        modelBuilder.Entity<UserProfileEducation>().Property(p => p.UserProfileEducationId).IsRequired().ValueGeneratedOnAdd();
+        modelBuilder.Entity<UserProfileEducation>().Property(p => p.EducationId);
+        modelBuilder.Entity<UserProfileEducation>().Property(p => p.UserId);
+        modelBuilder.Entity<UserProfileEducation>().Property(p => p.FinishDateTime);
+        modelBuilder.Entity<UserProfileEducation>().Property(p => p.StartDateTime);
+        modelBuilder.Entity<UserProfileEducation>()
+            .HasOne(p => p.UserProfile)
+            .WithMany(p => p.UserProfileEducations)
+            .HasForeignKey(p => p.UserId);
+        modelBuilder.Entity<UserProfileEducation>()
+            .HasOne(p => p.Education)
+            .WithMany(p => p.UserProfileEducations)
+            .HasForeignKey(p => p.EducationId);
+        
+        
         //Educations
         modelBuilder.Entity<Education>().ToTable("Education");
         modelBuilder.Entity<Education>().HasKey(p => p.EducationId);
         modelBuilder.Entity<Education>().Property(p => p.EducationId).IsRequired().ValueGeneratedOnAdd();
         modelBuilder.Entity<Education>().Property(p => p.EducationName);
         modelBuilder.Entity<Education>().Property(p => p.PhotoUrl);
+        
+        
 
         modelBuilder.UseSnakeCase();
     }
