@@ -21,11 +21,10 @@ public class AppDatabaseContext : DbContext
     public DbSet<Notification> Notifications { get; set; }
     public DbSet<TechSkill> TechSkills { get; set; }
     public DbSet<UserProfile> UserProfiles { get; set; }
-    
     public DbSet<Education> Educations { get; set; }
     public DbSet<UserProfileTechSkill> UserProfileTechSkills { get; set; }
     public DbSet<UserProfileEducation> UserProfileEducations { get; set; }
-
+    public DbSet<Career> Careers { get; set; }
 
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -202,6 +201,12 @@ public class AppDatabaseContext : DbContext
         modelBuilder.Entity<Education>().Property(p => p.PhotoUrl);
         
         
+        //Careers 
+        modelBuilder.Entity<Career>().ToTable("Careers");
+        modelBuilder.Entity<Career>().HasKey(p => p.CareerId);
+        modelBuilder.Entity<Career>().Property(p => p.CareerId).IsRequired().ValueGeneratedOnAdd();
+        modelBuilder.Entity<Career>().Property(p => p.CareerName);
+        modelBuilder.Entity<Career>().Property(p => p.Description);
 
         modelBuilder.UseSnakeCase();
     }

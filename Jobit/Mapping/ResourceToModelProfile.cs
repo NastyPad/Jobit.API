@@ -33,5 +33,8 @@ public class ResourceToModelProfile : Profile
         
         CreateMap<UpdatedUserProfileEducation, UserProfileEducation>();
         CreateMap<SaveUserProfileEducation, UserProfileEducation>();
+
+        CreateMap<UpdateCareerResource, Career>();
+        CreateMap<SaveCareerResource, Career>();
     }
 }

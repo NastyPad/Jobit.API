@@ -8,6 +8,7 @@ public class UserProfileEducation
     public long CareerId { get; set; }
     public Education? Education { get; set; }
     public UserProfile? UserProfile { get; set; }
+    public Career? Career { get; set; }
     public DateTime StartDateTime { get; set;  }
     public DateTime FinishDateTime { get; set; }
     
@@ -17,6 +18,7 @@ public class UserProfileEducation
     {
         UserId = userProfileEducation.UserId;
         EducationId = userProfileEducation.EducationId;
+        CareerId = userProfileEducation.CareerId;
         StartDateTime = userProfileEducation.StartDateTime;
         FinishDateTime = userProfileEducation.FinishDateTime;
     }

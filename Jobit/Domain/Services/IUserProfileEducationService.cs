@@ -10,4 +10,6 @@ public interface IUserProfileEducationService
     Task<UserProfileEducationResponse> AddUserProfileEducationAsync(UserProfileEducation newUserProfileEducation);
     Task<UserProfileEducationResponse> UpdateUserProfileEducationAsync(long userProfileEducationId, UserProfileEducation updatedUserProfileEducation);
     Task<UserProfileEducationResponse> DeleteUserProfileEducationAsync(long userProfileEducationId);
+    Task SetUserProfileEducationObjects(UserProfileEducation toSetUserProfileEducation);
+
 }

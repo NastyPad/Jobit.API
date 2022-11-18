@@ -1,3 +1,7 @@
+using AutoMapper;
+using Jobit.API.Jobit.Domain.Models;
+using Jobit.API.Jobit.Domain.Services;
+using Jobit.API.Jobit.Resources;
 using Microsoft.AspNetCore.Mvc;
 using Swashbuckle.AspNetCore.Annotations;
 
@@ -9,22 +13,62 @@ namespace Jobit.API.Jobit.Controllers;
 [SwaggerTag("Show careers")]
 public class CareerController : ControllerBase
 {
-    private readonly Object[] Careers =
+    private readonly ICareerService _careerService;
+    private readonly IMapper _mapper;
+
+    public CareerController(ICareerService careerService, IMapper mapper)
     {
-        new { id = 1, name = "Software Engineer"},
-        new { id = 2, name = "Informatics Engineer"},
-        new { id = 3, name = "Wow"},
-        new { id = 4, name = "Wow"},
-        new { id = 5, name = "Wow"},
-        new { id = 6, name = "Wow"},
-        new { id = 7, name = "Wow"},
-        new { id = 8, name = "Wow"},
-        new { id = 9, name = "Wow"},
-    };
-    [HttpGet]
-    public Task<object[]> GetAllCareers()
-    {
-        return Task.FromResult(Careers);
+        _careerService = careerService;
+        _mapper = mapper;
     }
 
+    [HttpGet]
+    public async Task<IEnumerable<Career>> GetAllCareers()
+    {
+        return await _careerService.ListAllCareersAsync();
+    }
+
+    [HttpGet("{careerId}")]
+    public async Task<IActionResult> GetCareerByCareerId(long careerId)
+    {
+        var result = await _careerService.FindCareerByCareerIdAsync(careerId);
+        if (!result.Success)
+            return BadRequest(result.Message);
+        var careerMapped = _mapper.Map<Career, CareerResource>(result.Resource);
+        return Ok(careerMapped);
+    }
+
+    [HttpPost]
+    public async Task<IActionResult> PostCareer(
+        [FromBody, SwaggerRequestBody("New Post Career")]
+        SaveCareerResource newCareer)
+    {
+        var careerMapped = _mapper.Map<SaveCareerResource, Career>(newCareer);
+        var result = await _careerService.AddCareerAsync(careerMapped);
+        if (!result.Success)
+            return BadRequest(result.Message);
+        var careerResponse = _mapper.Map<Career, CareerResource>(result.Resource);
+        return Ok(new { message = "Successfully added.", result = careerResponse });
+    }
+
+    [HttpPut("{careerId}")]
+    public async Task<IActionResult> PutCareer(long careerId,
+        [FromBody, SwaggerRequestBody("Updated Post Career")] UpdateCareerResource updatedCareer)
+    {
+        var careerMapped = _mapper.Map<UpdateCareerResource, Career>(updatedCareer);
+        var result = await _careerService.UpdateCareerAsync(careerId, careerMapped);
+        if (!result.Success)
+            return BadRequest(result.Message);
+        var careerResponse = _mapper.Map<Career, CareerResource>(result.Resource);
+        return Ok(new { message = "Successfully updated.", result = careerResponse });
+    }
+
+    [HttpDelete("{careerId}")]
+    public async Task<IActionResult> DeleteCareer(long careerId)
+    {
+        var result = await _careerService.DeleteCareerAsync(careerId);
+        if (!result.Success)
+            return BadRequest(result.Message);
+        return Ok(new { message = "Successfully deleted." });
+    }
 }

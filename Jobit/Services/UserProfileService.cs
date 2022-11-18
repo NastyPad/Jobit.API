@@ -81,6 +81,7 @@ public class UserProfileService : IUserProfileService
                     .FindEducationByInstitutionIdAsync(userProfileEducation.EducationId).Result;
             }
         );
+        
         return Task.CompletedTask;
     }
 

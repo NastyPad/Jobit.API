@@ -87,6 +87,9 @@ builder.Services.AddScoped<IUserProfileService, UserProfileService>();
 //Educations
 builder.Services.AddScoped<IEducationRepository, EducationRepository>();
 builder.Services.AddScoped<IEducationService, EducationService>();
+//Career
+builder.Services.AddScoped<ICareerRepository, CareerRepository>();
+builder.Services.AddScoped<ICareerService, CareerService>();
 
 //Intermediate Tables Repositories and Services
 //UserProfileTechSkills

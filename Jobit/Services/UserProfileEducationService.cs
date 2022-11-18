@@ -9,18 +9,29 @@ namespace Jobit.API.Jobit.Services;
 public class UserProfileEducationService : IUserProfileEducationService
 {
     private readonly IUserProfileEducationRepository _userProfileEducationRepository;
+    private readonly IEducationRepository _educationRepository;
+    private readonly ICareerRepository _careerRepository;
     private readonly IUnitOfWork _unitOfWork;
 
     public UserProfileEducationService(IUserProfileEducationRepository userProfileEducationRepository,
-        IUnitOfWork unitOfWork)
+        IEducationRepository educationRepository, ICareerRepository careerRepository, IUnitOfWork unitOfWork)
     {
         _userProfileEducationRepository = userProfileEducationRepository;
+        _educationRepository = educationRepository;
+        _careerRepository = careerRepository;
         _unitOfWork = unitOfWork;
     }
 
     public async Task<IEnumerable<UserProfileEducation>> ListUserProfileEducationsByUserIdAsync(long userId)
     {
-        return await _userProfileEducationRepository.ListUserProfileEducationsByUserIdAsync(userId);
+        var userProfileEducations =
+            await _userProfileEducationRepository.ListUserProfileEducationsByUserIdAsync(userId);
+        userProfileEducations.ToList().ForEach((userProfileEducation) =>
+            { 
+                SetUserProfileEducationObjects(userProfileEducation);
+            }
+        );
+        return userProfileEducations;
     }
 
     public async Task<UserProfileEducationResponse> FindUserProfileEducationByUserProfileEducationId(
@@ -31,6 +42,9 @@ public class UserProfileEducationService : IUserProfileEducationService
                 userProfileEducationId);
         if (existingUserProfileEducation != null)
             return new UserProfileEducationResponse("This user profile education does not exist.");
+
+        await SetUserProfileEducationObjects(existingUserProfileEducation);
+
         return new UserProfileEducationResponse(existingUserProfileEducation);
     }
 
@@ -87,5 +101,14 @@ public class UserProfileEducationService : IUserProfileEducationService
         {
             return new UserProfileEducationResponse($"An error has occurred: {exception.Message}");
         }
+    }
+
+    public Task SetUserProfileEducationObjects(UserProfileEducation toSetUserProfileEducation)
+    {
+        toSetUserProfileEducation.Career =
+            _careerRepository.FindCareerByCareerIdAsync(toSetUserProfileEducation.CareerId).Result;
+        toSetUserProfileEducation.Education = _educationRepository
+            .FindEducationByInstitutionIdAsync(toSetUserProfileEducation.EducationId).Result;
+        return Task.CompletedTask;
     }
 }
