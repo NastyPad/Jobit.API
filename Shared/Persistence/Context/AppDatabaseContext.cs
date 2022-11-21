@@ -26,7 +26,8 @@ public class AppDatabaseContext : DbContext
     public DbSet<UserProfileEducation> UserProfileEducations { get; set; }
     public DbSet<Career> Careers { get; set; }
 
-
+    public DbSet<Chat> Chats { get; set; }
+    public DbSet<Message> Messages { get; set; }
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         //These are from models
@@ -101,6 +102,18 @@ public class AppDatabaseContext : DbContext
             .WithOne(p => p.Job)
             .HasForeignKey(p => p.JobId);
 
+
+        //Chats----------------------------------
+        modelBuilder.Entity<Chat>().ToTable("Chats");
+        modelBuilder.Entity<Chat>().HasKey(p => p.ChatId);
+        modelBuilder.Entity<Chat>().Property(p => p.ChatId).IsRequired().ValueGeneratedOnAdd();
+        modelBuilder.Entity<Chat>().Property(p => p.RecruiterId).IsRequired();
+        modelBuilder.Entity<Chat>().Property(p => p.ApplicantId).IsRequired();
+        modelBuilder.Entity<Chat>()
+            .HasMany(p => p.Messages)
+            .WithOne(p => p.Chat)
+            .HasForeignKey(p => p.ChatId);
+
         //Projects 
         modelBuilder.Entity<Project>().ToTable("Projects");
         modelBuilder.Entity<Project>().HasKey(p => p.ProjectId);
@@ -132,6 +145,14 @@ public class AppDatabaseContext : DbContext
         modelBuilder.Entity<JobRequest>().Property(p => p.RequestId);
         modelBuilder.Entity<JobRequest>().Property(p => p.JobId);
         modelBuilder.Entity<JobRequest>().Property(p => p.UserId);
+
+        //Message--------------------------------------------------------------
+        modelBuilder.Entity<Message>().ToTable("Messages");
+        modelBuilder.Entity<Message>().HasKey(p => p.MessageId);
+        modelBuilder.Entity<Message>().Property(p => p.MessageId);
+        modelBuilder.Entity<Message>().Property(p => p.WhoSend);
+        modelBuilder.Entity<Message>().Property(p => p.Content).IsRequired().HasMaxLength(500);
+        modelBuilder.Entity<Message>().Property(p => p.ChatId);
 
         //Notification
         modelBuilder.Entity<Notification>().ToTable("Notifications");

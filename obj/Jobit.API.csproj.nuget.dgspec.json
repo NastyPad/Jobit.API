@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "D:\\Github\\Own\\.NET\\Jobit.API\\Jobit.API.csproj": {}
+    "C:\\Users\\Elizabeth\\StudioProjects\\Nueva carpeta (2)\\Jobit.API\\Jobit.API.csproj": {}
   },
   "projects": {
-    "D:\\Github\\Own\\.NET\\Jobit.API\\Jobit.API.csproj": {
+    "C:\\Users\\Elizabeth\\StudioProjects\\Nueva carpeta (2)\\Jobit.API\\Jobit.API.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\Github\\Own\\.NET\\Jobit.API\\Jobit.API.csproj",
+        "projectUniqueName": "C:\\Users\\Elizabeth\\StudioProjects\\Nueva carpeta (2)\\Jobit.API\\Jobit.API.csproj",
         "projectName": "Jobit.API",
-        "projectPath": "D:\\Github\\Own\\.NET\\Jobit.API\\Jobit.API.csproj",
-        "packagesPath": "C:\\Users\\Leonardo-Workstation\\.nuget\\packages\\",
-        "outputPath": "D:\\Github\\Own\\.NET\\Jobit.API\\obj\\",
+        "projectPath": "C:\\Users\\Elizabeth\\StudioProjects\\Nueva carpeta (2)\\Jobit.API\\Jobit.API.csproj",
+        "packagesPath": "C:\\Users\\Elizabeth\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Elizabeth\\StudioProjects\\Nueva carpeta (2)\\Jobit.API\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\Leonardo-Workstation\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\Elizabeth\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [

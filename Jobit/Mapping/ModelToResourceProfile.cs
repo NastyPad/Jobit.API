@@ -21,5 +21,8 @@ public class ModelToResourceProfile : Profile
         CreateMap<Education, EducationResource>();
         CreateMap<UserProfileEducation, UserProfileEducationResource>();
         CreateMap<Career, CareerResource>();
+
+        CreateMap<Chat, ChatResource>();
+        CreateMap<Message, MessageResource>();
     }
 }

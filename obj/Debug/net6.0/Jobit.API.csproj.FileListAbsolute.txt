@@ -350,3 +350,13 @@ C:\Users\Leonardo\Documents\Github\Clones\Jobit.API\obj\Debug\net6.0\refint\Jobi
 C:\Users\Leonardo\Documents\Github\Clones\Jobit.API\obj\Debug\net6.0\Jobit.API.pdb
 C:\Users\Leonardo\Documents\Github\Clones\Jobit.API\obj\Debug\net6.0\Jobit.API.genruntimeconfig.cache
 C:\Users\Leonardo\Documents\Github\Clones\Jobit.API\obj\Debug\net6.0\ref\Jobit.API.dll
+C:\Users\Elizabeth\StudioProjects\Nueva carpeta (2)\Jobit.API\obj\Debug\net6.0\Jobit.API.csproj.AssemblyReference.cache
+C:\Users\Elizabeth\StudioProjects\Nueva carpeta (2)\Jobit.API\obj\Debug\net6.0\Jobit.API.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Elizabeth\StudioProjects\Nueva carpeta (2)\Jobit.API\obj\Debug\net6.0\Jobit.API.AssemblyInfoInputs.cache
+C:\Users\Elizabeth\StudioProjects\Nueva carpeta (2)\Jobit.API\obj\Debug\net6.0\Jobit.API.AssemblyInfo.cs
+C:\Users\Elizabeth\StudioProjects\Nueva carpeta (2)\Jobit.API\obj\Debug\net6.0\Jobit.API.csproj.CoreCompileInputs.cache
+C:\Users\Elizabeth\StudioProjects\Nueva carpeta (2)\Jobit.API\obj\Debug\net6.0\Jobit.API.MvcApplicationPartsAssemblyInfo.cs
+C:\Users\Elizabeth\StudioProjects\Nueva carpeta (2)\Jobit.API\obj\Debug\net6.0\Jobit.API.MvcApplicationPartsAssemblyInfo.cache
+C:\Users\Elizabeth\StudioProjects\Nueva carpeta (2)\Jobit.API\obj\Debug\net6.0\Jobit.API.dll
+C:\Users\Elizabeth\StudioProjects\Nueva carpeta (2)\Jobit.API\obj\Debug\net6.0\refint\Jobit.API.dll
+C:\Users\Elizabeth\StudioProjects\Nueva carpeta (2)\Jobit.API\obj\Debug\net6.0\Jobit.API.pdb

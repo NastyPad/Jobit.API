@@ -99,7 +99,11 @@ builder.Services.AddScoped<IUserProfileTechSkillService, UserProfileTechSkillSer
 builder.Services.AddScoped<IUserProfileEducationRepository, UserProfileEducationRepository>();
 builder.Services.AddScoped<IUserProfileEducationService, UserProfileEducationService>();
 
+builder.Services.AddScoped<IChatRepository, ChatRepository>();
+builder.Services.AddScoped<IChatService, ChatService>();
 
+builder.Services.AddScoped<IMessageRepository, MessageRepository>();
+builder.Services.AddScoped<IMessageService, MessageService>();
 
 //Security Injection Configuration
 builder.Services.AddScoped<IUserRepository, UserRespository>();

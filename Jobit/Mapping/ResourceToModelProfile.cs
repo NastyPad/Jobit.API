@@ -36,5 +36,11 @@ public class ResourceToModelProfile : Profile
 
         CreateMap<UpdateCareerResource, Career>();
         CreateMap<SaveCareerResource, Career>();
+
+        CreateMap<UpdateChatResource, Chat>();
+        CreateMap<SaveChatResource, Chat>();
+
+        CreateMap<UpdateMessageResource, Message>();
+        CreateMap<SaveMessageResource, Message>();
     }
 }
