@@ -24,9 +24,6 @@ public class ProjectService: IProjectService
     public async Task<IEnumerable<Project>> ListProjectsAsync()
     {
         var projects = await _projectRepository.ListProjectsAsync();
-        projects.ToList()
-            .ForEach(project => project.User = _userRepository.FindUserByUserIdAsync(project.UserId).Result);
-        
         return projects.AsEnumerable();
     }
 
@@ -51,7 +48,6 @@ public class ProjectService: IProjectService
         existingProject.CodeSource = updatedProject.CodeSource;
         existingProject.ProjectName = updatedProject.ProjectName;
         existingProject.ProjectUrl = updatedProject.ProjectUrl;
-        existingProject.User = updatedProject.User;
         _projectRepository.UpdateProject(existingProject);
         await _unitOfWork.CompleteAsync();
         return new ProjectResponse("Successfully updated!");

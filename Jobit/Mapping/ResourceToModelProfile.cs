@@ -11,8 +11,8 @@ public class ResourceToModelProfile : Profile
     {
         CreateMap<SavePostTypeResource, PostType>();
         
-        CreateMap<UpdateJobResource, Job>();
-        CreateMap<SaveJobResource, Job>();
+        CreateMap<UpdateJobResource, PostJob>();
+        CreateMap<SaveJobResource, PostJob>();
         
         CreateMap<UpdateProjectResource, Project>();
         CreateMap<SaveProjectResource, Project>();
@@ -26,15 +26,17 @@ public class ResourceToModelProfile : Profile
         CreateMap<UpdatedEducationResource, Education>();
         CreateMap<SaveEducationResource, Education>();
         
-        CreateMap<UpdatedUserProfileResource, UserProfile>();
+        CreateMap<UpdatedUserProfileResource, ApplicantProfile>();
 
-        CreateMap<UpdateUserProfileTechSkillResource, UserProfile>();
-        CreateMap<SaveUserProfileTechSkillResource, UserProfile>();
+        CreateMap<UpdateUserProfileTechSkillResource, ApplicantProfile>();
+        CreateMap<SaveUserProfileTechSkillResource, ApplicantProfile>();
         
-        CreateMap<UpdatedUserProfileEducation, UserProfileEducation>();
-        CreateMap<SaveUserProfileEducation, UserProfileEducation>();
+        CreateMap<UpdatedUserProfileEducation, ApplicantProfileEducation>();
+        CreateMap<SaveApplicantProfileEducationResource, ApplicantProfileEducation>();
 
         CreateMap<UpdateCareerResource, Career>();
         CreateMap<SaveCareerResource, Career>();
+
+        //CreateMap<>();
     }
 }

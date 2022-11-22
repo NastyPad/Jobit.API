@@ -13,18 +13,21 @@ public class AppDatabaseContext : DbContext
     }
 
     public DbSet<User> Users { get; set; }
+    public DbSet<Applicant> Applicants { get; set; }
+    public DbSet<Recruiter> Recruiters { get; set; }
     public DbSet<Company> Companies { get; set; }
     public DbSet<PostType>? PostTypes { get; set; }
-    public DbSet<Job> Jobs { get; set; }
+    public DbSet<PostJob> Jobs { get; set; }
     public DbSet<Project> Projects { get; set; }
     public DbSet<JobRequest> JobRequests { get; set; }
     public DbSet<Notification> Notifications { get; set; }
     public DbSet<TechSkill> TechSkills { get; set; }
-    public DbSet<UserProfile> UserProfiles { get; set; }
+    public DbSet<ApplicantProfile> ApplicantProfiles { get; set; }
     public DbSet<Education> Educations { get; set; }
-    public DbSet<UserProfileTechSkill> UserProfileTechSkills { get; set; }
-    public DbSet<UserProfileEducation> UserProfileEducations { get; set; }
+    public DbSet<ApplicantProfileTechSkill> ApplicantProfileTechSkills { get; set; }
+    public DbSet<ApplicantProfileEducation> ApplicantProfileEducations { get; set; }
     public DbSet<Career> Careers { get; set; }
+    public DbSet<RecruiterProfile> RecruiterProfiles { get; set; }
 
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -32,6 +35,19 @@ public class AppDatabaseContext : DbContext
         //These are from models
         //Note: When you are trying to add foreign keys. You'll need to add them in the entity which has bigger cardinal.
         base.OnModelCreating(modelBuilder);
+        
+        //Users
+        modelBuilder.Entity<User>().ToTable("Users");
+        modelBuilder.Entity<User>().HasKey(p => p.UserId);
+        modelBuilder.Entity<User>().Property(p => p.UserId).IsRequired().ValueGeneratedOnAdd();
+        modelBuilder.Entity<User>().Property(p => p.Username);
+        modelBuilder.Entity<User>().Property(p => p.Firstname);
+        modelBuilder.Entity<User>().Property(p => p.Lastname);
+        modelBuilder.Entity<User>().Property(p => p.Password);
+        modelBuilder.Entity<User>().Property(p => p.Email);
+        modelBuilder.Entity<User>().Property(p => p.Type);
+        
+        
         //Companies
         modelBuilder.Entity<Company>().ToTable("Companies");
         modelBuilder.Entity<Company>().HasKey(p => p.CompanyId);
@@ -41,42 +57,50 @@ public class AppDatabaseContext : DbContext
         modelBuilder.Entity<Company>().Property(p => p.ProfilePhotoUrl).IsRequired().HasMaxLength(200);
         modelBuilder.Entity<Company>().Property(p => p.CompanyEmail).IsRequired().HasMaxLength(200);
         modelBuilder.Entity<Company>().Property(p => p.Description).IsRequired().HasMaxLength(200);
-        //Company->Job Relationship 
-        modelBuilder.Entity<Company>()
-            .HasMany(p => p.Jobs)
-            .WithOne(p => p.Company)
-            .HasForeignKey(p => p.CompanyId);
 
-        //Users
-        modelBuilder.Entity<User>().ToTable("Users");
-        modelBuilder.Entity<User>().HasKey(p => p.UserId);
-        modelBuilder.Entity<User>().Property(p => p.UserId).IsRequired().ValueGeneratedOnAdd();
-        modelBuilder.Entity<User>().Property(p => p.Username).IsRequired().HasMaxLength(30);
-        modelBuilder.Entity<User>().Property(p => p.Firstname).IsRequired().HasMaxLength(40);
-        modelBuilder.Entity<User>().Property(p => p.Lastname).IsRequired().HasMaxLength(40);
-        modelBuilder.Entity<User>().Property(p => p.Password).IsRequired().HasMaxLength(200);
-        modelBuilder.Entity<User>().Property(p => p.Email).IsRequired().HasMaxLength(200);
-        modelBuilder.Entity<User>()
+        //Applicant 
+        modelBuilder.Entity<Applicant>().ToTable("Applicants");
+        modelBuilder.Entity<Applicant>().HasKey(p => p.ApplicantId);
+        modelBuilder.Entity<Applicant>().Property(p => p.ApplicantId).IsRequired().ValueGeneratedOnAdd();;
+        modelBuilder.Entity<Applicant>().Property(p => p.UserId).IsRequired();
+        modelBuilder.Entity<Applicant>().Property(p => p.Username).IsRequired().HasMaxLength(30);
+        modelBuilder.Entity<Applicant>().Property(p => p.Firstname).IsRequired().HasMaxLength(40);
+        modelBuilder.Entity<Applicant>().Property(p => p.Lastname).IsRequired().HasMaxLength(40);
+        modelBuilder.Entity<Applicant>().Property(p => p.Password).IsRequired().HasMaxLength(200);
+        modelBuilder.Entity<Applicant>().Property(p => p.Email).IsRequired().HasMaxLength(200);
+        modelBuilder.Entity<Applicant>()
             .HasMany(p => p.Projects)
-            .WithOne(p => p.User)
-            .HasForeignKey(p => p.UserId);
-        modelBuilder.Entity<User>()
-            .HasMany(p => p.Notifications)
-            .WithOne(p => p.User)
-            .HasForeignKey(p => p.UserId);
-        modelBuilder.Entity<User>()
-            .HasMany(p => p.Posts)
-            .WithOne(p => p.User)
-            .HasForeignKey(p => p.UserId);
-        modelBuilder.Entity<User>()
+            .WithOne(p => p.Applicant)
+            .HasForeignKey(p => p.ApplicantId);
+        modelBuilder.Entity<Applicant>()
             .HasMany(p => p.JobRequests)
-            .WithOne(p => p.User)
-            .HasForeignKey(p => p.UserId);
-        modelBuilder.Entity<User>()
-            .HasOne(p => p.UserProfile)
-            .WithOne(p => p.User)
-            .HasForeignKey<UserProfile>(p => p.UserId);
+            .WithOne(p => p.Applicant)
+            .HasForeignKey(p => p.ApplicantId);
+        modelBuilder.Entity<Applicant>()
+            .HasOne(p => p.ApplicantProfile)
+            .WithOne(p => p.Applicant)
+            .HasForeignKey<ApplicantProfile>(p => p.ApplicantId);
+        modelBuilder.Entity<Applicant>()
+            .HasOne(p => p.User)
+            .WithOne(p => p.Applicant)
+            .HasForeignKey<Applicant>(p => p.UserId); //One to zero... I guess....
+        
 
+        //Recruiters
+        modelBuilder.Entity<Recruiter>().ToTable("Recruiter");
+        modelBuilder.Entity<Recruiter>().HasKey(p => p.RecruiterId);
+        modelBuilder.Entity<Recruiter>().Property(p => p.RecruiterId).IsRequired().ValueGeneratedOnAdd();
+        modelBuilder.Entity<Recruiter>().Property(p => p.UserId);
+        modelBuilder.Entity<Recruiter>().Property(p => p.Username).IsRequired().HasMaxLength(30);
+        modelBuilder.Entity<Recruiter>().Property(p => p.Firstname).IsRequired().HasMaxLength(40);
+        modelBuilder.Entity<Recruiter>().Property(p => p.Lastname).IsRequired().HasMaxLength(40);
+        modelBuilder.Entity<Recruiter>().Property(p => p.Password).IsRequired().HasMaxLength(200);
+        modelBuilder.Entity<Recruiter>().Property(p => p.Email).IsRequired().HasMaxLength(200);
+        modelBuilder.Entity<Recruiter>()
+            .HasOne(p => p.User)
+            .WithOne(p => p.Recruiter)
+            .HasForeignKey<Recruiter>(p => p.UserId);
+        
         //PostTypes
         modelBuilder.Entity<PostType>().ToTable("PostTypes");
         modelBuilder.Entity<PostType>().HasKey(p => p.PostTypeId);
@@ -87,19 +111,19 @@ public class AppDatabaseContext : DbContext
             .WithOne(p => p.PostType)
             .HasForeignKey(p => p.PostTypeId);
 
-        //Jobs 
-        modelBuilder.Entity<Job>().ToTable("Jobs");
-        modelBuilder.Entity<Job>().HasKey(p => p.JobId);
-        modelBuilder.Entity<Job>().Property(p => p.JobId).IsRequired().ValueGeneratedOnAdd();
-        modelBuilder.Entity<Job>().Property(p => p.JobName).IsRequired();
-        modelBuilder.Entity<Job>().Property(p => p.Description);
-        modelBuilder.Entity<Job>().Property(p => p.Salary);
-        modelBuilder.Entity<Job>().Property(p => p.Available).IsRequired();
-        modelBuilder.Entity<Job>().Property(p => p.CompanyId).IsRequired();
-        modelBuilder.Entity<Job>()
+        //PostJobs 
+        modelBuilder.Entity<PostJob>().ToTable("PostJobs");
+        modelBuilder.Entity<PostJob>().HasKey(p => p.PostJobId);
+        modelBuilder.Entity<PostJob>().Property(p => p.PostJobId).IsRequired().ValueGeneratedOnAdd();
+        modelBuilder.Entity<PostJob>().Property(p => p.JobName).IsRequired();
+        modelBuilder.Entity<PostJob>().Property(p => p.Description);
+        modelBuilder.Entity<PostJob>().Property(p => p.Salary);
+        modelBuilder.Entity<PostJob>().Property(p => p.Available).IsRequired();
+        modelBuilder.Entity<PostJob>().Property(p => p.RecruiterId).IsRequired();
+        modelBuilder.Entity<PostJob>()
             .HasMany(p => p.JobRequests)
-            .WithOne(p => p.Job)
-            .HasForeignKey(p => p.JobId);
+            .WithOne(p => p.PostJob)
+            .HasForeignKey(p => p.PostJobId);
 
         //Projects 
         modelBuilder.Entity<Project>().ToTable("Projects");
@@ -113,43 +137,37 @@ public class AppDatabaseContext : DbContext
         //Notifications
         modelBuilder.Entity<Notification>().ToTable("Notifications");
         modelBuilder.Entity<Notification>().HasKey(p => p.NotificationId);
-        modelBuilder.Entity<Notification>().Property(p => p.NotificationId);
+        modelBuilder.Entity<Notification>().Property(p => p.NotificationId).IsRequired().ValueGeneratedOnAdd();
         modelBuilder.Entity<Notification>().Property(p => p.NotificationDate);
         modelBuilder.Entity<Notification>().Property(p => p.Content);
-        modelBuilder.Entity<Notification>().Property(p => p.UserId);
-
-        //Posts
-        modelBuilder.Entity<Post>().ToTable("Posts");
-        modelBuilder.Entity<Post>().HasKey(p => p.PostId);
-        modelBuilder.Entity<Post>().Property(p => p.PostId);
-        modelBuilder.Entity<Post>().Property(p => p.Content);
-        modelBuilder.Entity<Post>().Property(p => p.UserId);
-        modelBuilder.Entity<Post>().Property(p => p.PostTypeId);
 
         //JobRequest
         modelBuilder.Entity<JobRequest>().ToTable("JobRequests");
         modelBuilder.Entity<JobRequest>().HasKey(p => p.RequestId);
         modelBuilder.Entity<JobRequest>().Property(p => p.RequestId);
-        modelBuilder.Entity<JobRequest>().Property(p => p.JobId);
-        modelBuilder.Entity<JobRequest>().Property(p => p.UserId);
+        modelBuilder.Entity<JobRequest>().Property(p => p.PostJobId);
+        modelBuilder.Entity<JobRequest>().Property(p => p.ApplicantId);
+        modelBuilder.Entity<JobRequest>()
+            .HasMany(p => p.Notifications)
+            .WithOne(p => p.JobRequest)
+            .HasForeignKey(p => p.JobRequestId);
 
         //Notification
         modelBuilder.Entity<Notification>().ToTable("Notifications");
         modelBuilder.Entity<Notification>().HasKey(p => p.NotificationId);
         modelBuilder.Entity<Notification>().Property(p => p.NotificationDate);
-        modelBuilder.Entity<Notification>().Property(p => p.UserId);
         modelBuilder.Entity<Notification>().Property(p => p.Content);
 
-        //UserProfile
-        modelBuilder.Entity<UserProfile>().ToTable("UserProfiles");
-        modelBuilder.Entity<UserProfile>().HasKey(p => p.UserId);
-        modelBuilder.Entity<UserProfile>().Property(p => p.UserId).IsRequired();
-        modelBuilder.Entity<UserProfile>().Property(p => p.Description).IsRequired().HasMaxLength(500);
-        modelBuilder.Entity<UserProfile>().Property(p => p.IsPrivate).IsRequired();
-        modelBuilder.Entity<UserProfile>().Property(p => p.ProfilePhotoUrl).IsRequired();
-        modelBuilder.Entity<UserProfile>()
-            .HasMany(p => p.UserProfileTechSkills)
-            .WithOne(p => p.UserProfile);
+        //ApplicantProfile
+        modelBuilder.Entity<ApplicantProfile>().ToTable("ApplicantProfiles");
+        modelBuilder.Entity<ApplicantProfile>().HasKey(p => p.ApplicantId);
+        modelBuilder.Entity<ApplicantProfile>().Property(p => p.ApplicantId).IsRequired();
+        modelBuilder.Entity<ApplicantProfile>().Property(p => p.Description).IsRequired().HasMaxLength(500);
+        modelBuilder.Entity<ApplicantProfile>().Property(p => p.IsPrivate).IsRequired();
+        modelBuilder.Entity<ApplicantProfile>().Property(p => p.ProfilePhotoUrl).IsRequired();
+        modelBuilder.Entity<ApplicantProfile>()
+            .HasMany(p => p.ApplicantProfileTechSkills)
+            .WithOne(p => p.ApplicantProfile);
 
         //TechSkills
         modelBuilder.Entity<TechSkill>().ToTable("TechSkills");
@@ -158,38 +176,38 @@ public class AppDatabaseContext : DbContext
         modelBuilder.Entity<TechSkill>().Property(p => p.TechName); //Many to many! Code first
 
         //Intermediate Tables
-        //UserProfileTechSkills
-        modelBuilder.Entity<UserProfileTechSkill>().ToTable("UserProfileTechSkills");
-        modelBuilder.Entity<UserProfileTechSkill>().HasKey(p => new { p.UserId, p.TechSkillId});
-        modelBuilder.Entity<UserProfileTechSkill>().Property(p => p.UserId);
-        modelBuilder.Entity<UserProfileTechSkill>().Property(p => p.TechSkillId);
-        modelBuilder.Entity<UserProfileTechSkill>().Property(p => p.ExperienceYears);
-        modelBuilder.Entity<UserProfileTechSkill>().Property(p => p.MoreThanAYear);
-        //Here is many to many for User - TechSkills with additional columns.
-        modelBuilder.Entity<UserProfileTechSkill>()
-            .HasOne(p => p.UserProfile)
-            .WithMany(p => p.UserProfileTechSkills)
-            .HasForeignKey(p => p.UserId);
-        modelBuilder.Entity<UserProfileTechSkill>()
+        //ApplicantProfileTechSkills
+        modelBuilder.Entity<ApplicantProfileTechSkill>().ToTable("ApplicantProfileTechSkills");
+        modelBuilder.Entity<ApplicantProfileTechSkill>().HasKey(p => new { p.ApplicantId, p.TechSkillId});
+        modelBuilder.Entity<ApplicantProfileTechSkill>().Property(p => p.ApplicantId);
+        modelBuilder.Entity<ApplicantProfileTechSkill>().Property(p => p.TechSkillId);
+        modelBuilder.Entity<ApplicantProfileTechSkill>().Property(p => p.ExperienceYears);
+        modelBuilder.Entity<ApplicantProfileTechSkill>().Property(p => p.MoreThanAYear);
+        //Here is many to many for Applicant - TechSkills with additional columns.
+        modelBuilder.Entity<ApplicantProfileTechSkill>()
+            .HasOne(p => p.ApplicantProfile)
+            .WithMany(p => p.ApplicantProfileTechSkills)
+            .HasForeignKey(p => p.ApplicantId);
+        modelBuilder.Entity<ApplicantProfileTechSkill>()
             .HasOne(p => p.TechSkill)
-            .WithMany(p => p.UserProfileTechSkills)
+            .WithMany(p => p.ApplicantProfileTechSkills)
             .HasForeignKey(p => p.TechSkillId);
         
-        //UserProfileEducation
-        modelBuilder.Entity<UserProfileEducation>().ToTable("UserProfileEducations");
-        modelBuilder.Entity<UserProfileEducation>().HasKey(p => p.UserProfileEducationId);
-        modelBuilder.Entity<UserProfileEducation>().Property(p => p.UserProfileEducationId).IsRequired().ValueGeneratedOnAdd();
-        modelBuilder.Entity<UserProfileEducation>().Property(p => p.EducationId);
-        modelBuilder.Entity<UserProfileEducation>().Property(p => p.UserId);
-        modelBuilder.Entity<UserProfileEducation>().Property(p => p.FinishDateTime);
-        modelBuilder.Entity<UserProfileEducation>().Property(p => p.StartDateTime);
-        modelBuilder.Entity<UserProfileEducation>()
-            .HasOne(p => p.UserProfile)
-            .WithMany(p => p.UserProfileEducations)
-            .HasForeignKey(p => p.UserId);
-        modelBuilder.Entity<UserProfileEducation>()
+        //ApplicantProfileEducation
+        modelBuilder.Entity<ApplicantProfileEducation>().ToTable("ApplicantProfileEducations");
+        modelBuilder.Entity<ApplicantProfileEducation>().HasKey(p => p.ApplicantProfileEducationId);
+        modelBuilder.Entity<ApplicantProfileEducation>().Property(p => p.ApplicantProfileEducationId).IsRequired().ValueGeneratedOnAdd();
+        modelBuilder.Entity<ApplicantProfileEducation>().Property(p => p.EducationId);
+        modelBuilder.Entity<ApplicantProfileEducation>().Property(p => p.ApplicantId);
+        modelBuilder.Entity<ApplicantProfileEducation>().Property(p => p.FinishDateTime);
+        modelBuilder.Entity<ApplicantProfileEducation>().Property(p => p.StartDateTime);
+        modelBuilder.Entity<ApplicantProfileEducation>()
+            .HasOne(p => p.ApplicantProfile)
+            .WithMany(p => p.ApplicantProfileEducations)
+            .HasForeignKey(p => p.ApplicantId);
+        modelBuilder.Entity<ApplicantProfileEducation>()
             .HasOne(p => p.Education)
-            .WithMany(p => p.UserProfileEducations)
+            .WithMany(p => p.ApplicantProfileEducations)
             .HasForeignKey(p => p.EducationId);
         
         
@@ -207,8 +225,24 @@ public class AppDatabaseContext : DbContext
         modelBuilder.Entity<Career>().Property(p => p.CareerId).IsRequired().ValueGeneratedOnAdd();
         modelBuilder.Entity<Career>().Property(p => p.CareerName);
         modelBuilder.Entity<Career>().Property(p => p.Description);
+        
+        //RecruiterProfile
+        modelBuilder.Entity<RecruiterProfile>().ToTable("RecruiterProfiles");
+        modelBuilder.Entity<RecruiterProfile>().HasKey(p => p.RecruiterId);
+        modelBuilder.Entity<RecruiterProfile>().Property(p => p.RecruiterId);
+        modelBuilder.Entity<ApplicantProfile>().Property(p => p.Description).IsRequired().HasMaxLength(500);
+        modelBuilder.Entity<ApplicantProfile>().Property(p => p.IsPrivate).IsRequired();
+        modelBuilder.Entity<ApplicantProfile>().Property(p => p.ProfilePhotoUrl).IsRequired();
+        
+
+        modelBuilder.Entity<RecruiterProfile>()
+            .HasOne(p => p.Recruiter)
+            .WithOne(p => p.RecruiterProfile)
+            .HasForeignKey<RecruiterProfile>(p => p.RecruiterId);
+        
 
         modelBuilder.UseSnakeCase();
+        
     }
     
 }

@@ -11,15 +11,15 @@ public class ModelToResourceProfile : Profile
     public ModelToResourceProfile()
     {
         CreateMap<PostType, PostTypeResource>();
-        CreateMap<Job, JobResource>();
+        CreateMap<PostJob, JobResource>();
         CreateMap<Project, ProjectResource>();
         CreateMap<JobRequest, JobRequestResource>();
         CreateMap<Notification, NotificationResource>();
         CreateMap<TechSkill, TechSkillResource>();
-        CreateMap<UserProfile, UserProfileResource>();
-        CreateMap<UserProfileTechSkill, UserProfileTechSkillResource>();
+        CreateMap<ApplicantProfile, ApplicantProfileResource>();
+        CreateMap<ApplicantProfileTechSkill, ApplicantProfileTechSkillResource>();
         CreateMap<Education, EducationResource>();
-        CreateMap<UserProfileEducation, UserProfileEducationResource>();
+        CreateMap<ApplicantProfileEducation, ApplicantProfileEducationResource>();
         CreateMap<Career, CareerResource>();
     }
 }

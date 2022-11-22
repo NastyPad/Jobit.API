@@ -27,12 +27,6 @@ public class NotificationService: INotificationService
     {
         var notifications = await _notificationRepository.ListNotificationAsync();
         var listNotificationAsync = notifications.ToList();
-        listNotificationAsync.ForEach(
-            notification =>
-            { 
-                notification.User = _userRepository.FindUserByUserIdAsync(notification.UserId).Result;
-            });
-        
         return listNotificationAsync;
     }
 

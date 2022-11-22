@@ -4,10 +4,10 @@ namespace Jobit.API.Jobit.Domain.Repositories;
 
 public interface IJobRepository
 {
-    Task<IEnumerable<Job>> ListJobsAsync();
-    Task AddJobAsync(Job newJob);
-    void UpdateJobAsync(Job updatedJob);
-    void DeleteJobAsync(Job deleteJob);
-    Task<Job?> FindByJobIdAsync(long jobId);
+    Task<IEnumerable<PostJob>> ListJobsAsync();
+    Task AddJobAsync(PostJob newPostJob);
+    void UpdateJobAsync(PostJob updatedPostJob);
+    void DeleteJobAsync(PostJob deletePostJob);
+    Task<PostJob?> FindByJobIdAsync(long jobId);
     
 }

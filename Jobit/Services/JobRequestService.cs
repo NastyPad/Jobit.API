@@ -30,8 +30,8 @@ public class JobRequestService : IJobRequestService
         var jobRequests = await _jobRequestRepository.ListJobRequestAsync();
         jobRequests.ToList().ForEach(jobRequest =>
         {
-            jobRequest.Job = _jobRepository.FindByJobIdAsync(jobRequest.JobId).Result;
-            jobRequest.User = _userRepository.FindUserByUserIdAsync(jobRequest.UserId).Result;
+            jobRequest.PostJob = _jobRepository.FindByJobIdAsync(jobRequest.PostJobId).Result;
+            //jobRequest.Applicant = _userRepository.FindUserByUserIdAsync(jobRequest.AppplicantId).Result;
         });
         return jobRequests.AsEnumerable();
     }
@@ -71,8 +71,8 @@ public class JobRequestService : IJobRequestService
         if (existingJobRequest == null)
             return new JobRequestResponse("Job request does not exist.");
         
-        existingJobRequest.JobId = jobRequest.JobId;
-        existingJobRequest.UserId = jobRequest.UserId;
+        existingJobRequest.PostJobId = jobRequest.PostJobId;
+        existingJobRequest.ApplicantId = jobRequest.ApplicantId;
         
         try
         {

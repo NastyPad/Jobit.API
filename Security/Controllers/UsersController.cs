@@ -25,7 +25,7 @@ public class UsersController : ControllerBase
    
    [AllowAnonymous]
    [HttpGet]
-   public async Task<IActionResult> GetAll()
+   public async Task<IActionResult> GetAllUsers()
    {
       var users = await _userService.ListUsersAsync();
       var resources = _mapper.Map<IEnumerable<User>, IEnumerable<UserResource>>(users);

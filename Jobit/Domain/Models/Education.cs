@@ -8,7 +8,7 @@ public class Education
     public String EducationName { get; set; }
     public String PhotoUrl { get; set; }
     public String AbbreviatedEducationName { get; set; }
-    public IList<UserProfileEducation> UserProfileEducations { get; set; }
+    public IList<ApplicantProfileEducation> ApplicantProfileEducations { get; set; }
 
     public void setEducation(Education education)
     {

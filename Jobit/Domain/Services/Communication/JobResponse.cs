@@ -3,9 +3,9 @@ using Jobit.API.Shared.Domain.Services.Communication;
 
 namespace Jobit.API.Jobit.Domain.Services.Communication;
 
-public class JobResponse: BaseResponse<Job>
+public class JobResponse: BaseResponse<PostJob>
 {
-    public JobResponse(Job resource) : base(resource)
+    public JobResponse(PostJob resource) : base(resource)
     {
     }
 

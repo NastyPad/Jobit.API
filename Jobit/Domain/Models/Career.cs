@@ -7,7 +7,7 @@ public class Career
     public String? Description { get; set; }
     
     //Relationships
-    public IList<Job> Jobs { get; set; }
+    public IList<PostJob> Jobs { get; set; }
 
     public void SetCareer(Career career)
     {

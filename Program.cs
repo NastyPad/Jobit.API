@@ -3,6 +3,7 @@ using Jobit.API.Jobit.Domain.Repositories;
 using Jobit.API.Jobit.Domain.Services;
 using Jobit.API.Jobit.Persistence;
 using Jobit.API.Jobit.Services;
+using Jobit.API.Security.Domain.Models;
 using Jobit.API.Security.Domain.Repositories;
 using Jobit.API.Security.Domain.Services;
 using Jobit.API.Security.Persistence.Repositories;
@@ -82,8 +83,8 @@ builder.Services.AddScoped<INotificationService, NotificationService>();
 builder.Services.AddScoped<ITechSkillRepository, TechSkillRepository>();
 builder.Services.AddScoped<ITechSkillService, TechSkillService>();
 //UserProfiles
-builder.Services.AddScoped<IUserProfileRepository, UserProfileRepository>();
-builder.Services.AddScoped<IUserProfileService, UserProfileService>();
+builder.Services.AddScoped<IApplicantProfileRepository, ApplicationProfileRepository>();
+builder.Services.AddScoped<IApplicantProfileService, ApplicantProfileService>();
 //Educations
 builder.Services.AddScoped<IEducationRepository, EducationRepository>();
 builder.Services.AddScoped<IEducationService, EducationService>();
@@ -92,20 +93,31 @@ builder.Services.AddScoped<ICareerRepository, CareerRepository>();
 builder.Services.AddScoped<ICareerService, CareerService>();
 
 //Intermediate Tables Repositories and Services
-//UserProfileTechSkills
-builder.Services.AddScoped<IUserProfileTechSkillRepository, UserProfileTechSkillRepository>();
-builder.Services.AddScoped<IUserProfileTechSkillService, UserProfileTechSkillService>();
-//UserProfileEducation
-builder.Services.AddScoped<IUserProfileEducationRepository, UserProfileEducationRepository>();
-builder.Services.AddScoped<IUserProfileEducationService, UserProfileEducationService>();
+//ApplicantProfileTechSkills
+builder.Services.AddScoped<IApplicantProfileTechSkillRepository, ApplicantProfileTechSkillRepository>();
+builder.Services.AddScoped<IApplicantProfileTechSkillService, ApplicantProfileTechSkillService>();
+//ApplicantProfileEducation
+builder.Services.AddScoped<IApplicantProfileEducationRepository, ApplicantProfileEducationRepository>();
+builder.Services.AddScoped<IApplicantProfileEducationService, ApplicantProfileEducationService>();
 
 
 
 //Security Injection Configuration
-builder.Services.AddScoped<IUserRepository, UserRespository>();
+//User
+builder.Services.AddScoped<IUserRepository, UserRepository>();
 builder.Services.AddScoped<IUserService, UserService>();
+//Company
 builder.Services.AddScoped<ICompanyRepository, CompanyRepository>();
 builder.Services.AddScoped<ICompanyService, CompanyService>();
+//Applicant
+builder.Services.AddScoped<IApplicantRepository, ApplicantRepository>();
+builder.Services.AddScoped<IApplicantService, ApplicantService>();
+//Recruiter
+builder.Services.AddScoped<IRecruiterRepository, RecruiterRepository>();
+builder.Services.AddScoped<IRecruiterService, RecruiterService>();
+
+
+
 
 //Automapper Configuration
 builder.Services.AddAutoMapper(

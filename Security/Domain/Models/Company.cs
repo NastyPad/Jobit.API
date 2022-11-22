@@ -12,5 +12,5 @@ public class Company
     public string? Description { get; set; }
 
     //RelationShip
-    public IList<Job> Jobs { get; set; }
+    public IList<PostJob> Jobs { get; set; }
 }

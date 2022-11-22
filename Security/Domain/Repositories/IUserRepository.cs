@@ -5,7 +5,7 @@ namespace Jobit.API.Security.Domain.Repositories;
 
 public interface IUserRepository
 {
-    Task<IEnumerable<User>> ListUsersAsync();
-    Task AddAsync(User user);
+    Task<IEnumerable<User>> ListAllUsersAsync();
+    Task RegisterUserAsync(User user);
     Task<User> FindUserByUserIdAsync(long userId);
 }

@@ -59,7 +59,7 @@ public class TechSkillController : ControllerBase
         var result = await _techSkillService.UpdateTechSkillAsync(techSkillId, mappedTechSkill);
         if (!result.Success)
             return BadRequest(result.Message);
-        var techSkillResponse = _mapper.Map<TechSkill, TechSkillResource>();
-        return Ok();
+        var techSkillResponse = _mapper.Map<TechSkill, TechSkillResource>(result.Resource);
+        return Ok(new { message = "Successfully updated.", result = techSkillResponse });
     }
 }

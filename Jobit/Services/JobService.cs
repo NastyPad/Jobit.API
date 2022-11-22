@@ -21,12 +21,9 @@ public class JobService : IJobService
         _unitOfWork = unitOfWork;
     }
 
-    public async Task<IEnumerable<Job>> ListJobsAsync()
+    public async Task<IEnumerable<PostJob>> ListJobsAsync()
     {
         var jobs = await _jobRepository.ListJobsAsync();
-        jobs.ToList().ForEach(
-             job => job.Company =  _companyRepository.FindCompanyByCompanyIdAsync(job.CompanyId).Result
-             );
         return jobs.AsEnumerable();
     }
 
@@ -45,13 +42,13 @@ public class JobService : IJobService
         }
     }
 
-    public async Task<JobResponse> AddJobAsync(Job newJob)
+    public async Task<JobResponse> AddJobAsync(PostJob newPostJob)
     {
         try
         {
-            await _jobRepository.AddJobAsync(newJob);
+            await _jobRepository.AddJobAsync(newPostJob);
             await _unitOfWork.CompleteAsync();
-            return new JobResponse(newJob);
+            return new JobResponse(newPostJob);
         }
         catch (Exception exception)
         {
@@ -59,23 +56,22 @@ public class JobService : IJobService
         }
     }
 
-    public async Task<JobResponse> UpdateJobAsync(long jobId, Job updateJob)
+    public async Task<JobResponse> UpdateJobAsync(long jobId, PostJob updatePostJob)
     {
         var existingJob = await _jobRepository.FindByJobIdAsync(jobId);
         if (existingJob == null)
             return new JobResponse("Job does not exist.");
         
-        existingJob.Available = updateJob.Available;
-        existingJob.Description = updateJob.Description;
-        existingJob.Salary = updateJob.Salary;
-        existingJob.CompanyId = updateJob.CompanyId;
-        existingJob.JobName = updateJob.JobName;
+        existingJob.Available = updatePostJob.Available;
+        existingJob.Description = updatePostJob.Description;
+        existingJob.Salary = updatePostJob.Salary;
+        existingJob.JobName = updatePostJob.JobName;
         
         try
         {
             _jobRepository.UpdateJobAsync(existingJob);
             await _unitOfWork.CompleteAsync();
-            return new JobResponse(updateJob);
+            return new JobResponse(updatePostJob);
         }
         catch (Exception exception)
         {
