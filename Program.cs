@@ -6,6 +6,7 @@ using Jobit.API.Jobit.Services;
 using Jobit.API.Security.Domain.Models;
 using Jobit.API.Security.Domain.Repositories;
 using Jobit.API.Security.Domain.Services;
+using Jobit.API.Security.Persistence;
 using Jobit.API.Security.Persistence.Repositories;
 using Jobit.API.Security.Services;
 using Jobit.API.Shared.Domain.Repositories;
@@ -64,9 +65,6 @@ builder.Services.AddMvcCore().AddApiExplorer();
 builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
 
 //Jobit Injection Configuration
-//PostType
-builder.Services.AddScoped<IPostTypeRepository, PostTypeRepository>();
-builder.Services.AddScoped<IPostTypeService, PostTypeService>();
 //Job
 builder.Services.AddScoped<IJobRepository, JobRepository>();
 builder.Services.AddScoped<IJobService, JobService>();
@@ -82,9 +80,12 @@ builder.Services.AddScoped<INotificationService, NotificationService>();
 //TechSkills
 builder.Services.AddScoped<ITechSkillRepository, TechSkillRepository>();
 builder.Services.AddScoped<ITechSkillService, TechSkillService>();
-//UserProfiles
+//ApplicantProfile
 builder.Services.AddScoped<IApplicantProfileRepository, ApplicationProfileRepository>();
 builder.Services.AddScoped<IApplicantProfileService, ApplicantProfileService>();
+//RecruiterProfile
+builder.Services.AddScoped<IRecruiterProfileRepository, RecruiterProfileRepository>();
+builder.Services.AddScoped<IRecruiterProfileService, RecruiterProfileService>();
 //Educations
 builder.Services.AddScoped<IEducationRepository, EducationRepository>();
 builder.Services.AddScoped<IEducationService, EducationService>();
@@ -115,6 +116,12 @@ builder.Services.AddScoped<IApplicantService, ApplicantService>();
 //Recruiter
 builder.Services.AddScoped<IRecruiterRepository, RecruiterRepository>();
 builder.Services.AddScoped<IRecruiterService, RecruiterService>();
+//Message
+builder.Services.AddScoped<IMessageRepository, MessageRepository>();
+builder.Services.AddScoped<IMessageService, MessageService>();
+//Chat
+builder.Services.AddScoped<IChatRepository, ChatRepository>();
+builder.Services.AddScoped<IChatService, ChatService>();
 
 
 

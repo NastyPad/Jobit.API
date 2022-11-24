@@ -26,7 +26,7 @@ public class RecruiterProfileRepository : BaseRepository, IRecruiterProfileRepos
 
     public async Task AddRecruiterProfileAsync(RecruiterProfile newRecruiterProfile)
     {
-        await _databaseContext.RecruiterProfiles.FindAsync(newRecruiterProfile);
+        await _databaseContext.RecruiterProfiles.AddAsync(newRecruiterProfile);
     }
 
     public void UpdateRecruiterProfile(RecruiterProfile updatedRecruiterProfile)

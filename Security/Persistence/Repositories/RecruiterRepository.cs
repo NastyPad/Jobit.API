@@ -23,7 +23,7 @@ public class RecruiterRepository : BaseRepository, IRecruiterRepository
         return await _databaseContext.Recruiters.FindAsync(recruiterId);
     }
 
-    public async Task AddRecruiterAsync(Recruiter newRecruiter)
+    public async Task RegisterRecruiterAsync(Recruiter newRecruiter)
     {
         await _databaseContext.Recruiters.AddAsync(newRecruiter);
     }

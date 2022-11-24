@@ -9,8 +9,7 @@ public class ResourceToModelProfile : Profile
 {
     public ResourceToModelProfile()
     {
-        CreateMap<SavePostTypeResource, PostType>();
-        
+
         CreateMap<UpdateJobResource, PostJob>();
         CreateMap<SaveJobResource, PostJob>();
         

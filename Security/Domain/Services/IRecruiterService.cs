@@ -13,4 +13,5 @@ public interface IRecruiterService
     Task<RecruiterResponse> UpdateRecruiterAsync(long recruiterId, Recruiter updatedRecruiter);
     Task<RecruiterResponse> DeleteRecruiterAsync(long recruiterId);
     
+    Task GenerateRecruiterProfileAsync(long applicantId);
 }

@@ -17,5 +17,4 @@ public class UserBase
     //One to many (this class has more or same cardinality)
     //More
     public IList<Notification> Notifications { get; set; }
-    public IList<Post> Posts { get; set; }
 }

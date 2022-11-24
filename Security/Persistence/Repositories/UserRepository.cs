@@ -26,4 +26,9 @@ public class UserRepository: BaseRepository, IUserRepository
     {
         return await _databaseContext.Users.FindAsync(userId);
     }
+
+    public void DeleteUser(User toDeleteUser)
+    {
+        _databaseContext.Users.Remove(toDeleteUser);
+    }
 }

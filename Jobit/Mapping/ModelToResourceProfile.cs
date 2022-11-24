@@ -10,7 +10,6 @@ public class ModelToResourceProfile : Profile
 {
     public ModelToResourceProfile()
     {
-        CreateMap<PostType, PostTypeResource>();
         CreateMap<PostJob, JobResource>();
         CreateMap<Project, ProjectResource>();
         CreateMap<JobRequest, JobRequestResource>();
@@ -21,5 +20,6 @@ public class ModelToResourceProfile : Profile
         CreateMap<Education, EducationResource>();
         CreateMap<ApplicantProfileEducation, ApplicantProfileEducationResource>();
         CreateMap<Career, CareerResource>();
+        CreateMap<RecruiterProfile, RecruiterProfileResource>();
     }
 }

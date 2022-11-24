@@ -41,12 +41,4 @@ public class UsersController : ControllerBase
 
       return Ok(resource);
    }
-
-   [AllowAnonymous]
-   [HttpPost]
-   public async Task<IActionResult> RegisterUserAsync([FromBody, SwaggerRequestBody("User to register")] RegisterUserRequest registerUserRequest)
-   {
-      await _userService.RegisterUserAsync(registerUserRequest);
-      return Ok(new { message = "Registration successful" });
-   }
 }

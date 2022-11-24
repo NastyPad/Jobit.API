@@ -15,38 +15,19 @@ public class ApplicantProfile : ProfileBase
     public long ApplicantId { get; set; }
     
     //Relatiionships - Object
-    public Applicant Applicant { get; set; }
-
-
-    public ApplicantProfile()
-    {
-    }
-
-    public ApplicantProfile(long applicantId, String description, String profilePhotoUrl, bool isPrivate, String gender)
-    {
-        ProfilePhotoUrl = profilePhotoUrl;
-        ApplicantId = applicantId;
-        Description = description;
-        IsPrivate = isPrivate;
-        Gender = gender;
-    }
-
-    public ApplicantProfile(long applicantId, String? username, String? firstname, String? lastname)
+    public Applicant? Applicant { get; set; }
+    
+    public ApplicantProfile(long applicantId, string? firstname, string? lastname, string? username, string? gender = "Not Defined", string? description = "", bool isPrivate = false, string? profilePhotoUrl = "") : base(firstname, lastname, username, gender, description, isPrivate, profilePhotoUrl)
     {
         ApplicantId = applicantId;
-        Username = username;
-        Firstname = firstname;
-        Lastname = lastname;
-        ProfilePhotoUrl = "";
-        Description = "";
-        IsPrivate = false;
-        Gender = "Not Defined";
+        ApplicantProfileTechSkills = new List<ApplicantProfileTechSkill>();
+        ApplicantProfileEducations = new List<ApplicantProfileEducation>();
     }
 
     public void SetDefaultProfile()
     {
         Description = "";
-        IsPrivate = true;
+        IsPrivate = false;
     }
 
     public void SetApplicantProfile(ApplicantProfile applicantProfile)
