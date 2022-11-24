@@ -4,5 +4,5 @@ namespace Jobit.API.Security.Resources;
 
 public class RecruiterResource : UserBaseResource
 {
-    public long RecruitId { get; set; }
+    public long RecruiterId { get; set; }
 }
