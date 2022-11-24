@@ -6,31 +6,31 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Jobit.API.Jobit.Persistence;
 
-public class JobRepository : BaseRepository, IJobRepository
+public class PostJobRepository : BaseRepository, IPostJobRepository
 {
-    public JobRepository(AppDatabaseContext databaseContext) : base(databaseContext) {}
+    public PostJobRepository(AppDatabaseContext databaseContext) : base(databaseContext) {}
 
-    public async Task<IEnumerable<PostJob>> ListJobsAsync()
+    public async Task<IEnumerable<PostJob>> ListPostJobsAsync()
     {
         return await _databaseContext.Jobs.ToListAsync();
     }
 
-    public async Task AddJobAsync(PostJob newPostJob)
+    public async Task AddPostJobAsync(PostJob newPostJob)
     {
         await _databaseContext.Jobs.AddAsync(newPostJob);
     }
 
-    public void UpdateJobAsync(PostJob updatePostJob)
+    public void UpdatePostJobAsync(PostJob updatePostJob)
     {
         _databaseContext.Jobs.Update(updatePostJob);
     }
 
-    public void DeleteJobAsync(PostJob deletePostJob)
+    public void DeletePostJobAsync(PostJob deletePostJob)
     {
         _databaseContext.Jobs.Remove(deletePostJob);
     }
 
-    public async Task<PostJob> FindByJobIdAsync(long jobId)
+    public async Task<PostJob> FindByPostJobIdAsync(long jobId)
     {
         return await _databaseContext.Jobs.FindAsync(jobId);
     }

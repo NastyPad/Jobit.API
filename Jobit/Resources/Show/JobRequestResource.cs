@@ -6,5 +6,5 @@ public class JobRequestResource
 {
     public long RequestId { get; set; }
     public UserResource User { get; set; }
-    public JobResource Job { get; set; }
+    public PostJobResource PostJob { get; set; }
 }

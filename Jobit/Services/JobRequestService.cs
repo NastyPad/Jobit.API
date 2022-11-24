@@ -11,16 +11,16 @@ namespace Jobit.API.Jobit.Services;
 public class JobRequestService : IJobRequestService
 {
     private readonly IJobRequestRepository _jobRequestRepository;
-    private readonly IJobRepository _jobRepository;
+    private readonly IPostJobRepository _postJobRepository;
     private readonly IUserRepository _userRepository;
     private readonly IMapper _mapper;
     private readonly IUnitOfWork _unitOfWork;
     
-    public JobRequestService(IJobRequestRepository jobRequestRepository, IUserRepository userRepository, IJobRepository jobRepository, IMapper mapper, IUnitOfWork unitOfWork )
+    public JobRequestService(IJobRequestRepository jobRequestRepository, IUserRepository userRepository, IPostJobRepository postJobRepository, IMapper mapper, IUnitOfWork unitOfWork )
     {
         _jobRequestRepository = jobRequestRepository;
         _userRepository = userRepository;
-        _jobRepository = jobRepository;
+        _postJobRepository = postJobRepository;
         _mapper = mapper;
         _unitOfWork = unitOfWork;
     }
@@ -30,7 +30,7 @@ public class JobRequestService : IJobRequestService
         var jobRequests = await _jobRequestRepository.ListJobRequestAsync();
         jobRequests.ToList().ForEach(jobRequest =>
         {
-            jobRequest.PostJob = _jobRepository.FindByJobIdAsync(jobRequest.PostJobId).Result;
+            jobRequest.PostJob = _postJobRepository.FindByPostJobIdAsync(jobRequest.PostJobId).Result;
             //jobRequest.Applicant = _userRepository.FindUserByUserIdAsync(jobRequest.AppplicantId).Result;
         });
         return jobRequests.AsEnumerable();

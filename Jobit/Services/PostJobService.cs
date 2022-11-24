@@ -8,45 +8,44 @@ using Jobit.API.Shared.Domain.Repositories;
 
 namespace Jobit.API.Jobit.Services;
 
-public class JobService : IJobService
+public class PostJobService : IPostJobService
 {
-    private readonly IJobRepository _jobRepository;
-    private readonly ICompanyRepository _companyRepository;
+    private readonly IPostJobRepository _postJobRepository;
+    private readonly IRecruiterRepository _recruiterRepository;
     private readonly IUnitOfWork _unitOfWork;
 
-    public JobService(IJobRepository jobRepository, ICompanyRepository companyRepository,IUnitOfWork unitOfWork)
+    public PostJobService(IPostJobRepository postJobRepository, ICompanyRepository companyRepository,
+        IUnitOfWork unitOfWork, IRecruiterRepository recruiterRepository)
     {
-        _companyRepository = companyRepository;
-        _jobRepository = jobRepository;
+        _postJobRepository = postJobRepository;
         _unitOfWork = unitOfWork;
+        _recruiterRepository = recruiterRepository;
     }
 
-    public async Task<IEnumerable<PostJob>> ListJobsAsync()
+    public async Task<IEnumerable<PostJob>> ListPostJobsAsync()
     {
-        var jobs = await _jobRepository.ListJobsAsync();
-        return jobs.AsEnumerable();
+        var postJobs = await _postJobRepository.ListPostJobsAsync();
+        postJobs.ToList().ForEach(async postJob =>
+        {
+            postJob.Recruiter = await _recruiterRepository.FindRecruiterByRecruiterIdAsync(postJob.RecruiterId);
+        });
+        return postJobs.AsEnumerable();
     }
 
-    public async Task<JobResponse> FindByJobIdAsync(int jobId)
+    public async Task<JobResponse> FindByPostJobIdAsync(int jobId)
     {
-        var existingJob = await _jobRepository.FindByJobIdAsync(jobId);
+        var existingJob = await _postJobRepository.FindByPostJobIdAsync(jobId);
         if (existingJob == null)
             return new JobResponse("Job does not exist.");
-        try
-        {
-            return new JobResponse(existingJob);
-        }
-        catch (Exception exception)
-        {
-            return new JobResponse($"An error has occurred: {exception.Message}");
-        }
+        existingJob.Recruiter = await _recruiterRepository.FindRecruiterByRecruiterIdAsync(existingJob.RecruiterId);
+        return new JobResponse(existingJob);
     }
 
-    public async Task<JobResponse> AddJobAsync(PostJob newPostJob)
+    public async Task<JobResponse> AddPostJobAsync(PostJob newPostJob)
     {
         try
         {
-            await _jobRepository.AddJobAsync(newPostJob);
+            await _postJobRepository.AddPostJobAsync(newPostJob);
             await _unitOfWork.CompleteAsync();
             return new JobResponse(newPostJob);
         }
@@ -56,20 +55,20 @@ public class JobService : IJobService
         }
     }
 
-    public async Task<JobResponse> UpdateJobAsync(long jobId, PostJob updatePostJob)
+    public async Task<JobResponse> UpdatePostJobAsync(long jobId, PostJob updatePostJob)
     {
-        var existingJob = await _jobRepository.FindByJobIdAsync(jobId);
+        var existingJob = await _postJobRepository.FindByPostJobIdAsync(jobId);
         if (existingJob == null)
             return new JobResponse("Job does not exist.");
-        
+
         existingJob.Available = updatePostJob.Available;
         existingJob.Description = updatePostJob.Description;
         existingJob.Salary = updatePostJob.Salary;
         existingJob.JobName = updatePostJob.JobName;
-        
+
         try
         {
-            _jobRepository.UpdateJobAsync(existingJob);
+            _postJobRepository.UpdatePostJobAsync(existingJob);
             await _unitOfWork.CompleteAsync();
             return new JobResponse(updatePostJob);
         }
@@ -79,14 +78,14 @@ public class JobService : IJobService
         }
     }
 
-    public async Task<JobResponse> DeleteJobAsync(long jobId)
+    public async Task<JobResponse> DeletePostJobAsync(long jobId)
     {
-        var existingJob = await _jobRepository.FindByJobIdAsync(jobId);
+        var existingJob = await _postJobRepository.FindByPostJobIdAsync(jobId);
         if (existingJob == null)
             return new JobResponse("Job does not exist.");
         try
         {
-            _jobRepository.DeleteJobAsync(existingJob);
+            _postJobRepository.DeletePostJobAsync(existingJob);
             await _unitOfWork.CompleteAsync();
             return new JobResponse(existingJob);
         }

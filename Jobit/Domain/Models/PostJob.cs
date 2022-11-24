@@ -16,8 +16,8 @@ public class PostJob
     //Relationship
     //Foreign Key One To Many. This is lesser (one)
     public long RecruiterId { get; set; }
-    public Recruiter Recruiter { get; set; }
+    public Recruiter? Recruiter { get; set; }
     //This is bigger (many)
-    public IList<JobRequest> JobRequests { get; set; }
+    public IList<JobRequest>? JobRequests { get; set; }
 
 }

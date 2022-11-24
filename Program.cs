@@ -65,9 +65,9 @@ builder.Services.AddMvcCore().AddApiExplorer();
 builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
 
 //Jobit Injection Configuration
-//Job
-builder.Services.AddScoped<IJobRepository, JobRepository>();
-builder.Services.AddScoped<IJobService, JobService>();
+//PostJob
+builder.Services.AddScoped<IPostJobRepository, PostJobRepository>();
+builder.Services.AddScoped<IPostJobService, PostJobService>();
 //Project
 builder.Services.AddScoped<IProjectRepository, ProjectRepository>();
 builder.Services.AddScoped<IProjectService, ProjectService>();

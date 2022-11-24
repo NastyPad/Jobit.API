@@ -1,5 +1,6 @@
 
 using AutoMapper;
+using Jobit.API.Jobit.Resources;
 using Jobit.API.Security.Domain.Models;
 using Jobit.API.Security.Domain.Models.Chat;
 using Jobit.API.Security.Domain.Services.Communication.Responses;
@@ -16,6 +17,7 @@ public class ModelToResourceProfile : Profile
         CreateMap<Company, CompanyResource>();
         CreateMap<Applicant, ApplicantResource>();
         CreateMap<Recruiter, RecruiterResource>();
+        CreateMap<Recruiter, RecruiterPostJobResource>();
         CreateMap<Applicant, ApplicantChatResource>();
         CreateMap<Recruiter, RecruiterChatResource>();
         CreateMap<Chat, ChatResource>();

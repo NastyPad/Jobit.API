@@ -10,8 +10,8 @@ public class ResourceToModelProfile : Profile
     public ResourceToModelProfile()
     {
 
-        CreateMap<UpdateJobResource, PostJob>();
-        CreateMap<SaveJobResource, PostJob>();
+        CreateMap<UpdatePostJobResource, PostJob>();
+        CreateMap<SavePostJobResource, PostJob>();
         
         CreateMap<UpdateProjectResource, Project>();
         CreateMap<SaveProjectResource, Project>();
