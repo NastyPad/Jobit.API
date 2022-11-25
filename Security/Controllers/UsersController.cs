@@ -44,7 +44,7 @@ public class UsersController : ControllerBase
    }
 
    [AllowAnonymous]
-   [HttpPost]
+   [HttpPost("auth")]
    public async Task<IActionResult> LoginUser([FromBody, SwaggerRequestBody("")] LoginUserRequest loginUserRequest)
    {
       var result = await _userService.LoginUser(loginUserRequest);
