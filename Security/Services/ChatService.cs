@@ -55,11 +55,25 @@ public class ChatService : IChatService
 
     public async Task<IEnumerable<Chat>> ListChatsByApplicantIdAsync(long applicantId)
     {
-        return await _chatRepository.ListChatsByApplicantIdAsync(applicantId);
+        var chats =  await _chatRepository.ListChatsByApplicantIdAsync(applicantId);
+        chats.ToList().ForEach(async chat =>
+            {
+                chat.Applicant = await _applicantRepository.FindApplicantByApplicantIdAsync(chat.ApplicantId);
+                chat.Recruiter = await _recruiterRepository.FindRecruiterByRecruiterIdAsync(chat.RecruiterId);
+                chat.Messages = (await _messageRepository.ListAllMessageByChatIdAsync(chat.RecruiterId, chat.ApplicantId)).ToList();
+            });
+        return chats;
     }
 
     public async Task<IEnumerable<Chat>> ListChatsByRecruiterIdAsync(long recruiterId)
     {
-        return await _chatRepository.ListChatsByApplicantIdAsync(recruiterId);
+        var chats =  await _chatRepository.ListChatsByRecruiterIdAsync(recruiterId);
+        chats.ToList().ForEach(async chat =>
+        {
+            chat.Applicant = await _applicantRepository.FindApplicantByApplicantIdAsync(chat.ApplicantId);
+            chat.Recruiter = await _recruiterRepository.FindRecruiterByRecruiterIdAsync(chat.RecruiterId);
+            chat.Messages = (await _messageRepository.ListAllMessageByChatIdAsync(chat.RecruiterId, chat.ApplicantId)).ToList();
+        });
+        return chats;
     }
 }

@@ -42,19 +42,19 @@ public class ChatController : ControllerBase
         return Ok(new { message = "Chat created"});
     }
     
-    [HttpGet("{recruiterId}")]
-    public async Task<IEnumerable<ChatResponse>> ListChatsByRecruiterId(long recruiterId)
+    [HttpGet("recruiter/{recruiterId}")]
+    public async Task<IEnumerable<ChatResource>> ListChatsByRecruiterId(long recruiterId)
     {
         var chats = await _chatService.ListChatsByApplicantIdAsync(recruiterId);
-        var mappedChats = _mapper.Map<IEnumerable<Domain.Models.Chat.Chat>, IEnumerable<ChatResponse>>(chats);
+        var mappedChats = _mapper.Map<IEnumerable<Domain.Models.Chat.Chat>, IEnumerable<ChatResource>>(chats);
         return mappedChats;
     }
     
-    [HttpGet("{applicantId}")]
-    public async Task<IEnumerable<ChatResponse>> ListChatsByApplicantId(long applicantId)
+    [HttpGet("applicant/{applicantId}")]
+    public async Task<IEnumerable<ChatResource>> ListChatsByApplicantId(long applicantId)
     {
         var chats = await _chatService.ListChatsByApplicantIdAsync(applicantId);
-        var mappedChats = _mapper.Map<IEnumerable<Domain.Models.Chat.Chat>, IEnumerable<ChatResponse>>(chats);
+        var mappedChats = _mapper.Map<IEnumerable<Domain.Models.Chat.Chat>, IEnumerable<ChatResource>>(chats);
         return mappedChats;
     }
 }
