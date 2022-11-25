@@ -62,8 +62,8 @@ public class PaymentSubscriptionController : ControllerBase
             return BadRequest(result.Message);
         return Ok(new { message = "Successfully updated."});
     }
-    [HttpPut("{paymentSubscriptionId}")]
-    public async Task<IActionResult> PutPaymentSubscriptionBySubscriptionId(long paymentSubscriptionId)
+    [HttpDelete("{paymentSubscriptionId}")]
+    public async Task<IActionResult> DeletePaymentSubscriptionBySubscriptionId(long paymentSubscriptionId)
     {
         var result = await _paymentSubscriptionService.DeletePaymentSubscriptionAsync(paymentSubscriptionId);
         if (!result.Success)
