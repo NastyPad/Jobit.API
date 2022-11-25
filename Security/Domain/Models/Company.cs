@@ -4,7 +4,7 @@ namespace Jobit.API.Security.Domain.Models;
 
 public class Company
 {
-    public int CompanyId { get; set; }
+    public long CompanyId { get; set; }
     public string? CompanyName { get; set; }
     public string? Password { get; set; }
     public string? ProfilePhotoUrl { get; set;  }
@@ -13,4 +13,5 @@ public class Company
 
     //RelationShip
     public IList<PostJob> Jobs { get; set; }
+    public IList<Recruiter> Recruiters { get; set; }
 }

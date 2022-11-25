@@ -12,8 +12,13 @@ public class Recruiter : UserBase
     public long UserId { get; set; }
     public User User { get; set; }
     //Recruiter
-    public RecruiterProfile RecruiterProfile { get; set; }
+    public RecruiterProfile? RecruiterProfile { get; set; }
 
+    //Company
+    public long CompanyId { get; set; }
+    public Company? Company { get; set; }
+
+    public String? Ruc { get; set; }
 
     public void SetRecruiter(Recruiter recruiter)
     {

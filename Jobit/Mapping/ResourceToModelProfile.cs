@@ -2,6 +2,8 @@ using AutoMapper;
 using Jobit.API.Jobit.Domain.Models;
 using Jobit.API.Jobit.Domain.Models.Intermediate;
 using Jobit.API.Jobit.Resources;
+using Jobit.API.Jobit.Resources.Save;
+using Jobit.API.Jobit.Resources.Update;
 using Jobit.API.Security.Resources.Generate;
 
 namespace Jobit.API.Jobit.Mapping;
@@ -36,6 +38,9 @@ public class ResourceToModelProfile : Profile
 
         CreateMap<UpdateCareerResource, Career>();
         CreateMap<SaveCareerResource, Career>();
+
+        CreateMap<SaveTechSkillResource, TechSkill>();
+        CreateMap<UpdateTechSkillResource, TechSkill>();
 
         //CreateMap<>();
     }

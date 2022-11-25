@@ -1,5 +1,6 @@
 using AutoMapper;
 using Jobit.API.Jobit.Domain.Models;
+using Jobit.API.Jobit.Domain.Services.Communication;
 using Jobit.API.Jobit.Resources;
 using Jobit.API.Security.Domain.Models;
 using Jobit.API.Security.Domain.Models.Chat;
@@ -8,6 +9,7 @@ using Jobit.API.Security.Domain.Services.Communication.Responses;
 using Jobit.API.Security.Domain.Services.Communication.Update;
 using Jobit.API.Security.Resources;
 using Jobit.API.Security.Resources.Generate;
+using Jobit.API.Security.Resources.Update;
 
 namespace Jobit.API.Security.Mapping;
 
@@ -37,5 +39,9 @@ public class ResourceToModelProfile : Profile
         //Notification
         CreateMap<UpdateNotificationResource, Notification>();
         CreateMap<SaveNotificationResource, Notification>();
+        
+        //Company
+        CreateMap<RegisterCompanyRequest, Company>();
+        CreateMap<UpdateCompanyRequest, Company>();
     }
 }

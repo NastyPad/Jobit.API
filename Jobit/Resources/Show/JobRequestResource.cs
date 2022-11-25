@@ -1,3 +1,4 @@
+using Jobit.API.Jobit.Resources.Show;
 using Jobit.API.Security.Resources;
 
 namespace Jobit.API.Jobit.Resources;

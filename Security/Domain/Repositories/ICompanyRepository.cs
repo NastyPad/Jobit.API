@@ -6,7 +6,7 @@ public interface ICompanyRepository
 {
     Task<IEnumerable<Company>> ListCompaniesAsync();
     Task AddCompanyAsync(Company company);
-    Task<Company> FindCompanyByCompanyIdAsync(int companyId);
+    Task<Company> FindCompanyByCompanyIdAsync(long companyId);
     void DeleteCompanyAsync(Company company);
     void UpdateCompanyAsync(Company company);
 }

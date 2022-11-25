@@ -1,18 +1,24 @@
 using AutoMapper;
+using Jobit.API.Jobit.Domain.Services.Communication;
 using Jobit.API.Security.Domain.Models;
 using Jobit.API.Security.Domain.Repositories;
 using Jobit.API.Security.Domain.Services;
 using Jobit.API.Security.Domain.Services.Communication;
+using Jobit.API.Shared.Domain.Repositories;
 
 namespace Jobit.API.Security.Services;
 
 public class CompanyService : ICompanyService
 {
     private readonly ICompanyRepository _companyRepository;
+    private readonly IMapper _mapper;
+    private readonly IUnitOfWork _unitOfWork;
 
-    public CompanyService(ICompanyRepository companyRepository, IMapper mapper)
+    public CompanyService(ICompanyRepository companyRepository, IMapper mapper, IUnitOfWork unitOfWork)
     {
         _companyRepository = companyRepository;
+        _mapper = mapper;
+        _unitOfWork = unitOfWork;
     }
 
     public async Task<IEnumerable<Company>> ListCompaniesAsync()
@@ -20,13 +26,27 @@ public class CompanyService : ICompanyService
         return await _companyRepository.ListCompaniesAsync();
     }
 
-    public Task<Company> GetCompanyByCompanyId(long companyId)
+    public async Task<CompanyResponse> GetCompanyByCompanyId(long companyId)
     {
-        throw new NotImplementedException();
+        var existingCompany = await _companyRepository.FindCompanyByCompanyIdAsync(companyId);
+        if (existingCompany == null)
+            return new CompanyResponse("Company does not exist");
+        return new CompanyResponse(existingCompany);
     }
 
-    public async Task RegisterCompanyAsync(RegisterCompanyRequest registerCompanyRequest)
+    public async Task<CompanyResponse> RegisterCompanyAsync(RegisterCompanyRequest registerCompanyRequest)
     {
-        throw new NotImplementedException();
+        var mappedCompany = _mapper.Map<RegisterCompanyRequest, Company>(registerCompanyRequest);
+        try
+        {
+            
+            await _companyRepository.AddCompanyAsync(mappedCompany);
+            await _unitOfWork.CompleteAsync();
+            return new CompanyResponse(mappedCompany);
+        }
+        catch (Exception exception)
+        {
+            return new CompanyResponse($"An error has ocurred { exception.Message }");
+        }
     }
 }

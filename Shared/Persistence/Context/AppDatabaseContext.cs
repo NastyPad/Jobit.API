@@ -59,12 +59,15 @@ public class AppDatabaseContext : DbContext
         modelBuilder.Entity<Company>().Property(p => p.ProfilePhotoUrl).IsRequired().HasMaxLength(200);
         modelBuilder.Entity<Company>().Property(p => p.CompanyEmail).IsRequired().HasMaxLength(200);
         modelBuilder.Entity<Company>().Property(p => p.Description).IsRequired().HasMaxLength(200);
+        modelBuilder.Entity<Company>()
+            .HasMany(p => p.Recruiters)
+            .WithOne(p => p.Company)
+            .HasForeignKey(p => p.CompanyId);
 
         //Applicant 
         modelBuilder.Entity<Applicant>().ToTable("Applicants");
         modelBuilder.Entity<Applicant>().HasKey(p => p.ApplicantId);
         modelBuilder.Entity<Applicant>().Property(p => p.ApplicantId).IsRequired().ValueGeneratedOnAdd();
-        ;
         modelBuilder.Entity<Applicant>().Property(p => p.UserId).IsRequired();
         modelBuilder.Entity<Applicant>().Property(p => p.Username).IsRequired().HasMaxLength(30);
         modelBuilder.Entity<Applicant>().Property(p => p.Firstname).IsRequired().HasMaxLength(40);
@@ -94,6 +97,7 @@ public class AppDatabaseContext : DbContext
         modelBuilder.Entity<Recruiter>().HasKey(p => p.RecruiterId);
         modelBuilder.Entity<Recruiter>().Property(p => p.RecruiterId).IsRequired().ValueGeneratedOnAdd();
         modelBuilder.Entity<Recruiter>().Property(p => p.UserId);
+        modelBuilder.Entity<Recruiter>().Property(p => p.CompanyId);
         modelBuilder.Entity<Recruiter>().Property(p => p.Username).IsRequired().HasMaxLength(30);
         modelBuilder.Entity<Recruiter>().Property(p => p.Firstname).IsRequired().HasMaxLength(40);
         modelBuilder.Entity<Recruiter>().Property(p => p.Lastname).IsRequired().HasMaxLength(40);

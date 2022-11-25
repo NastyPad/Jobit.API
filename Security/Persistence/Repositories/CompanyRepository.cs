@@ -23,7 +23,7 @@ public class CompanyRepository : BaseRepository, ICompanyRepository
         await _databaseContext.Companies.AddAsync(company);
     }
 
-    public async Task<Company> FindCompanyByCompanyIdAsync(int companyId)
+    public async Task<Company> FindCompanyByCompanyIdAsync(long companyId)
     {
         return await _databaseContext.Companies.FindAsync(companyId);
     }

@@ -11,32 +11,49 @@ public class ProjectService: IProjectService
 {
     //Remember than in service, we use repo.
     private readonly IProjectRepository _projectRepository;
-    private readonly IUserRepository _userRepository;
+    private readonly IApplicantRepository _applicantRepository;
     private readonly IUnitOfWork _unitOfWork;
     
-    public ProjectService(IProjectRepository projectRepository, IUserRepository userRepository,IUnitOfWork unitOfWork)
+    public ProjectService(IProjectRepository projectRepository, IUnitOfWork unitOfWork, IApplicantRepository applicantRepository)
     {
-        _userRepository = userRepository;
+        
         _projectRepository = projectRepository;
-        _unitOfWork = unitOfWork; 
+        _unitOfWork = unitOfWork;
+        _applicantRepository = applicantRepository;
     }
 
     public async Task<IEnumerable<Project>> ListProjectsAsync()
     {
         var projects = await _projectRepository.ListProjectsAsync();
+        projects.ToList().ForEach(async project =>
+            {
+                project.Applicant = await _applicantRepository.FindApplicantByApplicantIdAsync(project.ApplicantId);
+            });
         return projects.AsEnumerable();
     }
 
-    public async Task<Project> FindProjectByProjectIdAsync(long projectId)
+    public async Task<ProjectResponse> FindProjectByProjectIdAsync(long projectId)
     {
-        return await _projectRepository.FindProjectByProjectIdAsync(projectId);
+        
+        var exisitingProject = await _projectRepository.FindProjectByProjectIdAsync(projectId);
+        if (exisitingProject == null)
+            return new ProjectResponse("Project does not exist.");
+        exisitingProject.Applicant = await _applicantRepository.FindApplicantByApplicantIdAsync(exisitingProject.ApplicantId);
+        return new ProjectResponse(exisitingProject);
     }
 
     public async Task<ProjectResponse> AddProjectAsync(Project newProject)
     {
-        await _projectRepository.AddProjectAsync(newProject);
-        await _unitOfWork.CompleteAsync();
-        return new ProjectResponse("Successfully saved!");
+        try
+        {
+            await _projectRepository.AddProjectAsync(newProject);
+            await _unitOfWork.CompleteAsync();
+            return new ProjectResponse(newProject);
+        }
+        catch (Exception exception)
+        {
+            return new ProjectResponse($"An error has occurred: {exception.Message}");
+        }
     }
 
     public async Task<ProjectResponse> UpdateProjectAsync(long projectId, Project updatedProject)
@@ -48,9 +65,16 @@ public class ProjectService: IProjectService
         existingProject.CodeSource = updatedProject.CodeSource;
         existingProject.ProjectName = updatedProject.ProjectName;
         existingProject.ProjectUrl = updatedProject.ProjectUrl;
-        _projectRepository.UpdateProject(existingProject);
-        await _unitOfWork.CompleteAsync();
-        return new ProjectResponse("Successfully updated!");
+        try
+        {
+            _projectRepository.UpdateProject(existingProject);
+            await _unitOfWork.CompleteAsync();
+            return new ProjectResponse(existingProject);
+        }
+        catch (Exception exception)
+        {
+            return new ProjectResponse($"An error has occurred: {exception.Message}");
+        }
     }
 
     public async Task<ProjectResponse> DeleteProjectAsync(long projectId)

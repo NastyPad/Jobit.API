@@ -6,7 +6,6 @@ namespace Jobit.API.Security.Domain.Models;
 public class Applicant : UserBase
 {
     public long ApplicantId { get; set; } //Primary Key
-    
     //Relations
     public ApplicantProfile ApplicantProfile { get; set; } //Applicant has bigger cardinality
     public IList<Project> Projects { get; set; } //Applicant has bigger cardinality

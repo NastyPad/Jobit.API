@@ -1,4 +1,4 @@
-namespace Jobit.API.Jobit.Resources;
+namespace Jobit.API.Jobit.Resources.Save;
 
 public class SaveCareerResource
 {

@@ -17,8 +17,8 @@ public class ModelToResourceProfile : Profile
         CreateMap<Applicant, ApplicantResource>();
         CreateMap<Recruiter, RecruiterResource>();
         CreateMap<Recruiter, RecruiterPostJobResource>();
-        CreateMap<Applicant, ApplicantChatResource>();
-        CreateMap<Recruiter, RecruiterChatResource>();
+        CreateMap<Applicant, ApplicantSimpleResource>();
+        CreateMap<Recruiter, RecruiterSimpleResource>();
         CreateMap<Chat, ChatResource>();
         CreateMap<Message, MessageResource>();
         CreateMap<Notification, NotificationResource>();

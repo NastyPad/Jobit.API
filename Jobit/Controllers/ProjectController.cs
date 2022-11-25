@@ -3,6 +3,8 @@ using Jobit.API.Jobit.Domain.Models;
 using Jobit.API.Jobit.Domain.Services;
 using Jobit.API.Jobit.Domain.Services.Communication;
 using Jobit.API.Jobit.Resources;
+using Jobit.API.Jobit.Resources.Save;
+using Jobit.API.Jobit.Resources.Update;
 using Jobit.API.Security.Domain.Repositories;
 using Jobit.API.Security.Domain.Services;
 using Microsoft.AspNetCore.Authorization;
@@ -42,9 +44,10 @@ public class ProjectController : ControllerBase
     public async Task<IActionResult> PostProjectAsync([FromBody, SwaggerRequestBody("Project")] SaveProjectResource newProject)
     {
         var project = _mapper.Map<SaveProjectResource, Project>(newProject);
-        await _projectService.AddProjectAsync(project);
-        var newProjectResponse = _mapper.Map<Project, ProjectResource>(await _projectService.FindProjectByProjectIdAsync(project.ProjectId));
-        return Ok(new ProjectResponse("Successfully added"));
+        var result = await _projectService.AddProjectAsync(project);
+        if (!result.Success)
+            return BadRequest(result.Message);
+        return Ok(new { message = "Successfully added."});
     }
 
 

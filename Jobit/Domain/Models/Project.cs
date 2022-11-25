@@ -14,8 +14,7 @@ public class Project
     public string? ProjectUrl { get; set; }
     
     //Relationships and foreing keys
-    [ForeignKey("user_id")]
     public long ApplicantId { get; set; }
-    public Applicant Applicant { get; set; }
+    public Applicant? Applicant { get; set; }
     
 }

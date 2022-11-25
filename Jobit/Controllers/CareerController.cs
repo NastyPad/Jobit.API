@@ -2,6 +2,7 @@ using AutoMapper;
 using Jobit.API.Jobit.Domain.Models;
 using Jobit.API.Jobit.Domain.Services;
 using Jobit.API.Jobit.Resources;
+using Jobit.API.Jobit.Resources.Save;
 using Microsoft.AspNetCore.Mvc;
 using Swashbuckle.AspNetCore.Annotations;
 

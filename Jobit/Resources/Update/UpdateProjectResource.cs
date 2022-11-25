@@ -1,4 +1,4 @@
-namespace Jobit.API.Jobit.Resources;
+namespace Jobit.API.Jobit.Resources.Update;
 
 public class UpdateProjectResource
 {

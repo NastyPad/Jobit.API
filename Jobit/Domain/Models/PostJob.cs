@@ -11,6 +11,10 @@ public class PostJob
     public string? Description { get; set; }
     public double Salary { get; set; }
     public bool Available { get; set; }
+
+    public String? PostJobTitle { get; set; }
+    public DateTime DateTime { get; set; }
+
     //Foreign key
     
     //Relationship

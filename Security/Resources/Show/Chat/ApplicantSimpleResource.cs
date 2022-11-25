@@ -1,8 +1,8 @@
 namespace Jobit.API.Security.Resources.Chat;
 
-public class RecruiterChatResource
+public class ApplicantSimpleResource
 {
-    public long RecruiterId { get; set; }
+    public long ApplicantId { get; set; }
     public String? Firstname { get; set; }
     public String? Lastname { get; set; }
 }

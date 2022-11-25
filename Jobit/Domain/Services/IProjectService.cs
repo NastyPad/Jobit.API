@@ -6,7 +6,7 @@ namespace Jobit.API.Jobit.Domain.Services;
 public interface IProjectService
 {
     Task<IEnumerable<Project>> ListProjectsAsync();
-    Task<Project> FindProjectByProjectIdAsync(long projectId);
+    Task<ProjectResponse> FindProjectByProjectIdAsync(long projectId);
     Task<ProjectResponse> AddProjectAsync(Project newProject);
     Task<ProjectResponse> UpdateProjectAsync(long projectId, Project updatedProject);
     Task<ProjectResponse> DeleteProjectAsync(long projectId);

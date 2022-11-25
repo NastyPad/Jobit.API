@@ -2,6 +2,7 @@ using AutoMapper;
 using Jobit.API.Jobit.Domain.Models;
 using Jobit.API.Jobit.Domain.Models.Intermediate;
 using Jobit.API.Jobit.Resources;
+using Jobit.API.Jobit.Resources.Show;
 using Jobit.API.Security.Domain.Models;
 using Microsoft.EntityFrameworkCore;
 
