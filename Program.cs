@@ -122,6 +122,9 @@ builder.Services.AddScoped<IMessageService, MessageService>();
 //Chat
 builder.Services.AddScoped<IChatRepository, ChatRepository>();
 builder.Services.AddScoped<IChatService, ChatService>();
+//PaymentSubscription
+builder.Services.AddScoped<IPaymentSubscriptionRepository, PaymentSubscriptionRepository>();
+builder.Services.AddScoped<IPaymentSubscriptionService, PaymentSubscriptionService>();
 
 
 

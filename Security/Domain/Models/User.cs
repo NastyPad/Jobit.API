@@ -6,6 +6,7 @@ namespace Jobit.API.Security.Domain.Models;
 //Models are from database!
 public class User : UserBase
 {
+    public PaymentSubscription? PaymentSubscription;
     public Recruiter? Recruiter { get; set; }
     public Applicant? Applicant { get; set; }
 

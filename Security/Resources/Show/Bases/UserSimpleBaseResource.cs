@@ -1,6 +1,6 @@
-namespace Jobit.API.Security.Resources.Chat;
+namespace Jobit.API.Security.Resources.Bases;
 
-public class ApplicantSimpleResource
+public class UserSimpleBaseResource
 {
     public long ApplicantId { get; set; }
     public String? Firstname { get; set; }

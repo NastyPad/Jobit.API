@@ -30,6 +30,7 @@ public class AppDatabaseContext : DbContext
     public DbSet<RecruiterProfile> RecruiterProfiles { get; set; }
     public DbSet<Message> Messages { get; set; }
     public DbSet<Chat> Chats { get; set; }
+    public DbSet<PaymentSubscription> PaymentSubscriptions { get; set; }
 
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -227,7 +228,19 @@ public class AppDatabaseContext : DbContext
         modelBuilder.Entity<Message>().Property(p => p.RecruiterId);
         modelBuilder.Entity<Message>().Property(p => p.MessageContent);
         modelBuilder.Entity<Message>().Property(p => p.WhoSentIt);
-
+        
+        //PaymentSubscription
+        modelBuilder.Entity<PaymentSubscription>().ToTable("PaymentSubscription");
+        modelBuilder.Entity<PaymentSubscription>().HasKey(p => p.PaymentSubscriptionId);
+        modelBuilder.Entity<PaymentSubscription>().Property(p => p.PaymentSubscriptionId);
+        modelBuilder.Entity<PaymentSubscription>().Property(p => p.CardNumber);
+        modelBuilder.Entity<PaymentSubscription>().Property(p => p.ExpirationDate);
+        modelBuilder.Entity<PaymentSubscription>().Property(p => p.Ccv);
+        modelBuilder.Entity<PaymentSubscription>().Property(p => p.UserId);
+        modelBuilder.Entity<PaymentSubscription>()
+            .HasOne(p => p.User)
+            .WithOne(p => p.PaymentSubscription)
+            .HasForeignKey<PaymentSubscription>(p => p.UserId);
 
         //Intermediate Tables
         //ApplicantProfileTechSkills

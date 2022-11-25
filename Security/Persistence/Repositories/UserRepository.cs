@@ -31,4 +31,9 @@ public class UserRepository: BaseRepository, IUserRepository
     {
         _databaseContext.Users.Remove(toDeleteUser);
     }
+
+    public async Task<User> EmailExistence(User toAnalyzeuser)
+    {
+        return await _databaseContext.Users.FirstOrDefaultAsync(user => user.Email == toAnalyzeuser.Email);
+    }
 }

@@ -1,4 +1,5 @@
 using AutoMapper;
+using Jobit.API.Jobit.Domain.Services.Communication.Login;
 using Jobit.API.Security.Domain.Models;
 using Jobit.API.Security.Domain.Services;
 using Jobit.API.Security.Domain.Services.Communication;
@@ -36,9 +37,22 @@ public class UsersController : ControllerBase
    [HttpGet("{id}")]
    public async Task<IActionResult> GetUserByIdAsync(int id)
    {
-      var user = await _userService.GetByUserIdAsync(id);
+      var user = await _userService.GetUserByUserIdAsync(id);
       var resource = _mapper.Map<User, UserResource>(user);
 
       return Ok(resource);
+   }
+
+   [AllowAnonymous]
+   [HttpPost]
+   public async Task<IActionResult> LoginUser([FromBody, SwaggerRequestBody("")] LoginUserRequest loginUserRequest)
+   {
+      var result = await _userService.LoginUser(loginUserRequest);
+      if (!result.Success)
+         return BadRequest(new {message = "access denied", auth = false });
+
+      var user = _userService.GetUserByUserIdAsync(result.Resource.UserId);
+      
+      return Ok(new {message = "access granted", auth = true, data = user });
    }
 }

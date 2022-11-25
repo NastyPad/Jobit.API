@@ -1,10 +1,12 @@
 using AutoMapper;
 using Jobit.API.Jobit.Domain.Models;
 using Jobit.API.Jobit.Domain.Repositories;
+using Jobit.API.Jobit.Domain.Services.Communication.Login;
 using Jobit.API.Security.Domain.Models;
 using Jobit.API.Security.Domain.Repositories;
 using Jobit.API.Security.Domain.Services;
 using Jobit.API.Security.Domain.Services.Communication;
+using Jobit.API.Security.Domain.Services.Communication.Responses;
 using Jobit.API.Security.Resources;
 using Jobit.API.Shared.Domain.Repositories;
 
@@ -30,7 +32,7 @@ public class UserService : IUserService
         return await _userRepository.ListAllUsersAsync();
     }
 
-    public async Task<User> GetByUserIdAsync(long userId)
+    public async Task<User> GetUserByUserIdAsync(long userId)
     {
         var user = await _userRepository.FindUserByUserIdAsync(userId);
         if (user == null) 
@@ -81,5 +83,18 @@ public class UserService : IUserService
         {
             throw new ApplicationException($"An error has occurred creating user profile: { exception.Message }");
         }
+    }
+
+    public async Task<UserResponse> LoginUser(LoginUserRequest loginUserRequest)
+    {
+        var mappedLoginUserRequest = _mapper.Map<LoginUserRequest, User>(loginUserRequest);
+        var existingUserWithEmail = await _userRepository.EmailExistence(mappedLoginUserRequest);
+        if (existingUserWithEmail == null)
+            return new UserResponse("User email does not exist.");
+
+        if (loginUserRequest.Password == existingUserWithEmail.Password)
+            return new UserResponse(existingUserWithEmail);
+        
+        return new UserResponse("Oops! Try again.");
     }
 }

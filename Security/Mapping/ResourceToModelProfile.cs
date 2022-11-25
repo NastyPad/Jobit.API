@@ -1,6 +1,7 @@
 using AutoMapper;
 using Jobit.API.Jobit.Domain.Models;
 using Jobit.API.Jobit.Domain.Services.Communication;
+using Jobit.API.Jobit.Domain.Services.Communication.Login;
 using Jobit.API.Jobit.Resources;
 using Jobit.API.Security.Domain.Models;
 using Jobit.API.Security.Domain.Models.Chat;
@@ -43,5 +44,12 @@ public class ResourceToModelProfile : Profile
         //Company
         CreateMap<RegisterCompanyRequest, Company>();
         CreateMap<UpdateCompanyRequest, Company>();
+        
+        //PaymentSubscription
+        CreateMap<GeneratePaymentSubscription, PaymentSubscription>();
+        CreateMap<UpdatePaymentSubscriptionResource, PaymentSubscription>();
+        
+        //User
+        CreateMap<LoginUserRequest, User>();
     }
 }
