@@ -148,11 +148,8 @@ using (var context = scope.ServiceProvider.GetService<AppDatabaseContext>())
 }
 
 // Configure the HTTP request pipeline.
-if (app.Environment.IsDevelopment())
-{
-    app.UseSwagger();
-    app.UseSwaggerUI();
-}
+app.UseSwagger(); 
+app.UseSwaggerUI();
 
 //Configure CORS
 app.UseCors(x => x
