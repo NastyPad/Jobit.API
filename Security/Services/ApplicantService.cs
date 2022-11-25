@@ -111,8 +111,20 @@ public class ApplicantService : IApplicantService
 
         try
         {
-            _applicantRepository.UpdateApplicantAsync(updatedApplicant);
+            //Deleting new recruiter profile
+            var existingApplicantProfile = await _applicantProfileRepository.FindApplicantProfileByApplicantIdAsync(existingApplicant.ApplicantId);
+            _applicantProfileRepository.DeleteApplicantProfile(existingApplicantProfile);
             await _unitOfWork.CompleteAsync();
+            
+            //Deleting new recruiter
+            _applicantRepository.DeleteApplicantAsync(existingApplicant);
+            await _unitOfWork.CompleteAsync();
+            
+            //Deleting new user
+            var existingUser = await _userRepository.FindUserByUserIdAsync(existingApplicant.UserId);
+            _userRepository.DeleteUser(existingUser);
+            await _unitOfWork.CompleteAsync();
+            
             return new ApplicantResponse(existingApplicant);
         }
         catch (Exception exception)

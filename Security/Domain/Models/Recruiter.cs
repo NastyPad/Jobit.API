@@ -27,6 +27,6 @@ public class Recruiter : UserBase
         Lastname = recruiter.Lastname;
         Password = recruiter.Password;
         Email = recruiter.Email;
-        Type = recruiter.Type;
+        Type = "recruit";
     }
 }

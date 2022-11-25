@@ -29,11 +29,11 @@ public class ApplicantRepository : BaseRepository, IApplicantRepository
 
     public void DeleteApplicantAsync(Applicant toDeleteApplicant)
     {
-        _databaseContext.Applicants.Update(toDeleteApplicant);
+        _databaseContext.Applicants.Remove(toDeleteApplicant);
     }
 
     public void UpdateApplicantAsync(Applicant updatedApplicant)
     {
-        _databaseContext.Applicants.Remove(updatedApplicant);
+        _databaseContext.Applicants.Update(updatedApplicant);
     }
 }

@@ -110,6 +110,7 @@ public class RecruiterService : IRecruiterService
             //Deleting new user
             var existingUser = await _userRepository.FindUserByUserIdAsync(existingRecruiter.UserId);
             _userRepository.DeleteUser(existingUser);
+            await _unitOfWork.CompleteAsync();
             
             return new RecruiterResponse(existingRecruiter);
         }

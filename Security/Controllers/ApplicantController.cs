@@ -76,7 +76,7 @@ public class ApplicantController: ControllerBase
         if (!result.Success)
             return BadRequest(result.Message);
         var mappedResponse = _mapper.Map<Applicant, ApplicantResource>(result.Resource);
-        return Ok(mappedResponse);
+        return Ok(new {message = "Successfully deleted."});
     }
 
 }

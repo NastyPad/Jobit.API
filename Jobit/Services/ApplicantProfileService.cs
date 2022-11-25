@@ -44,7 +44,7 @@ public class ApplicantProfileService : IApplicantProfileService
 
     public async Task<UserProfileResponse> FindUserProfileByUserIdAsync(long userId)
     {
-        var existingUserProfile = await _applicantProfileRepository.FindUserProfileByUserIdAsync(userId);
+        var existingUserProfile = await _applicantProfileRepository.FindApplicantProfileByApplicantIdAsync(userId);
         if (existingUserProfile == null)
             return new UserProfileResponse("Not found");
         try
@@ -101,7 +101,7 @@ public class ApplicantProfileService : IApplicantProfileService
 
     public async Task<UserProfileResponse> UpdatedUserProfileAsync(long userId, ApplicantProfile updateApplicantProfile)
     {
-        var existingUserProfile = await _applicantProfileRepository.FindUserProfileByUserIdAsync(userId);
+        var existingUserProfile = await _applicantProfileRepository.FindApplicantProfileByApplicantIdAsync(userId);
         if (existingUserProfile == null)
             return new UserProfileResponse("User does not exist.");
 

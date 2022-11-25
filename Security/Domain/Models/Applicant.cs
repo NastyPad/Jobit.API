@@ -24,6 +24,6 @@ public class Applicant : UserBase
         Lastname = applicant.Lastname;
         Password = applicant.Password;
         Email = applicant.Email;
-        Type = applicant.Type;
+        Type = "applicant";
     }
 }

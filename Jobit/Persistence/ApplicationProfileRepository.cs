@@ -17,7 +17,7 @@ public class ApplicationProfileRepository: BaseRepository, IApplicantProfileRepo
         return await _databaseContext.ApplicantProfiles.ToListAsync();
     }
 
-    public async Task<ApplicantProfile> FindUserProfileByUserIdAsync(long userId)
+    public async Task<ApplicantProfile> FindApplicantProfileByApplicantIdAsync(long userId)
     {
         return await _databaseContext.ApplicantProfiles.FindAsync(userId);
     }
@@ -32,7 +32,7 @@ public class ApplicationProfileRepository: BaseRepository, IApplicantProfileRepo
         _databaseContext.ApplicantProfiles.Update(updatedApplicantProfile);
     }
 
-    public void DeleteUserProfile(ApplicantProfile toDeleteApplicantProfile)
+    public void DeleteApplicantProfile(ApplicantProfile toDeleteApplicantProfile)
     { 
         _databaseContext.ApplicantProfiles.Remove(toDeleteApplicantProfile);
     }

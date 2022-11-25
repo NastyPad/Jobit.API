@@ -21,7 +21,7 @@ public class User : UserBase
         Lastname = applicant.Lastname;
         Email = applicant.Email;
         Password = applicant.Password;
-        Type = applicant.Type;
+        Type = "applicant";
     }
     
     public User(Recruiter recruiter)
@@ -32,7 +32,7 @@ public class User : UserBase
         Lastname = recruiter.Lastname;
         Email = recruiter.Email;
         Password = recruiter.Password;
-        Type = recruiter.Type;
+        Type = "recruiter";
     }
 
     public void SetUserWithApplicant(Applicant applicant)
