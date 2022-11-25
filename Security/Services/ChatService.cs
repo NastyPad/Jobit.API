@@ -52,4 +52,14 @@ public class ChatService : IChatService
             return new ChatResponse($"An error has occurred: {exception.Message}");
         }
     }
+
+    public async Task<IEnumerable<Chat>> ListChatsByApplicantIdAsync(long applicantId)
+    {
+        return await _chatRepository.ListChatsByApplicantIdAsync(applicantId);
+    }
+
+    public async Task<IEnumerable<Chat>> ListChatsByRecruiterIdAsync(long recruiterId)
+    {
+        return await _chatRepository.ListChatsByApplicantIdAsync(recruiterId);
+    }
 }

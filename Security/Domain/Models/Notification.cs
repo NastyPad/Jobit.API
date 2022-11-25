@@ -8,7 +8,7 @@ public class Notification
     //Attributes
     //Standard
     public long NotificationId { get; set; }
-    public string? Content { get; set; }
+    public String? Content { get; set; }
     public DateTime NotificationDate { get; set; }
     //Foreign Key
     public long JobRequestId { get; set; }

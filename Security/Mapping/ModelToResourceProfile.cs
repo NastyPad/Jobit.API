@@ -1,4 +1,5 @@
 using AutoMapper;
+using Jobit.API.Jobit.Domain.Models;
 using Jobit.API.Jobit.Resources;
 using Jobit.API.Security.Domain.Models;
 using Jobit.API.Security.Domain.Models.Chat;
@@ -20,6 +21,7 @@ public class ModelToResourceProfile : Profile
         CreateMap<Recruiter, RecruiterChatResource>();
         CreateMap<Chat, ChatResource>();
         CreateMap<Message, MessageResource>();
+        CreateMap<Notification, NotificationResource>();
     }
     
 }

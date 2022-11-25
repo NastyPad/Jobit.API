@@ -1,5 +1,6 @@
 using AutoMapper;
 using Jobit.API.Security.Domain.Services;
+using Jobit.API.Security.Domain.Services.Communication.Responses;
 using Jobit.API.Security.Resources;
 using Jobit.API.Security.Resources.Generate;
 using Microsoft.AspNetCore.Mvc;
@@ -39,5 +40,21 @@ public class ChatController : ControllerBase
         if (!result.Success)
             return BadRequest(result.Message);
         return Ok(new { message = "Chat created"});
+    }
+    
+    [HttpGet("{recruiterId}")]
+    public async Task<IEnumerable<ChatResponse>> ListChatsByRecruiterId(long recruiterId)
+    {
+        var chats = await _chatService.ListChatsByApplicantIdAsync(recruiterId);
+        var mappedChats = _mapper.Map<IEnumerable<Domain.Models.Chat.Chat>, IEnumerable<ChatResponse>>(chats);
+        return mappedChats;
+    }
+    
+    [HttpGet("{applicantId}")]
+    public async Task<IEnumerable<ChatResponse>> ListChatsByApplicantId(long applicantId)
+    {
+        var chats = await _chatService.ListChatsByApplicantIdAsync(applicantId);
+        var mappedChats = _mapper.Map<IEnumerable<Domain.Models.Chat.Chat>, IEnumerable<ChatResponse>>(chats);
+        return mappedChats;
     }
 }

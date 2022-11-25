@@ -3,6 +3,7 @@ using Jobit.API.Jobit.Domain.Models;
 using Jobit.API.Jobit.Domain.Services;
 using Jobit.API.Jobit.Resources;
 using Jobit.API.Jobit.Services;
+using Jobit.API.Security.Resources.Generate;
 using Microsoft.AspNetCore.Mvc;
 using Swashbuckle.AspNetCore.Annotations;
 

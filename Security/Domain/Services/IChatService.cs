@@ -8,4 +8,6 @@ public interface IChatService
 {
     Task<ChatResponse> FindChatByChatIdAsync(long applicantId, long recruiterId);
     Task<ChatResponse> GenerateChatAsync(GenerateChat newChat);
+    Task<IEnumerable<Chat>> ListChatsByApplicantIdAsync(long applicantId);
+    Task<IEnumerable<Chat>> ListChatsByRecruiterIdAsync(long recruiterId);
 }
